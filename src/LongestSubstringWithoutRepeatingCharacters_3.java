@@ -8,6 +8,9 @@ import java.util.Set;
  * @date : 2019/3/14 20:04
  */
 class LongestSubstringWithoutRepeatingCharacters_3 {
+    /**
+     * 暴力法
+     */
     class Solution1 {
         public int lengthOfLongestSubstring(String s) {
             int n = s.length();
@@ -35,6 +38,9 @@ class LongestSubstringWithoutRepeatingCharacters_3 {
         }
     }
 
+    /**
+     * 滑动窗口
+     */
     class Solution2 {
         public int lengthOfLongestSubstring(String s) {
             int i = 0, j = 0, ans = 0, n = s.length();
@@ -51,6 +57,9 @@ class LongestSubstringWithoutRepeatingCharacters_3 {
         }
     }
 
+    /**
+     * 优化的滑动窗口，窗口左边不用一个个地递增了
+     */
     class Solution3 {
         public int lengthOfLongestSubstring(String s) {
             int ans = 0, n = s.length();

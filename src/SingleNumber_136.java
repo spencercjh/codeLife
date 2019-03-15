@@ -2,6 +2,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class SingleNumber_136 {
+    /**
+     * 使用集合对数列进行去重，最后仍在集合里的即单独的一个数
+     */
     class Solution1 {
         public int singleNumber(int[] nums) {
             Set<Integer> set = new HashSet<>();
@@ -17,6 +20,9 @@ public class SingleNumber_136 {
         }
     }
 
+    /**
+     * 异或运算有交换律；2个相同的数字异或等于0,0和任意数字异或是其本身，这样跑完整个数列就能得到单独的那个数
+     */
     class Solution2 {
         public int singleNumber(int[] nums) {
             int num = 0;

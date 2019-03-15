@@ -3,6 +3,9 @@
  * @date : 2019/3/14 23:15
  */
 public class PalindromeNumber_9 {
+    /**
+     * 使用字符串
+     */
     class Solution1 {
         public boolean isPalindrome(int x) {
             if (x < 0 || x % 10 == 0 && x != 0) {
@@ -18,6 +21,9 @@ public class PalindromeNumber_9 {
         }
     }
 
+    /**
+     * 将后一半数字取出来并取反后和前一半做对比
+     */
     class Solution2 {
         public boolean isPalindrome(int x) {
             if (x < 0 || x % 10 == 0 && x != 0) {

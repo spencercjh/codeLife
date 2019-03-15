@@ -46,6 +46,7 @@ public class AddTwoNumbers_2 {
                     node = node.next;
                 }
             }
+            assert node != null;
             return node.next;
         }
     }

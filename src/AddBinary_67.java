@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class AddBinary_67 {
     class Solution1 {
         public String addBinary(String a, String b) {

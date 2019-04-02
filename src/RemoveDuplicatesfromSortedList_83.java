@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class RemoveDuplicatesfromSortedList_83 {
     class Solution {
         public ListNode deleteDuplicates(ListNode head) {

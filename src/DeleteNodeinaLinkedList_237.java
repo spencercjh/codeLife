@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class DeleteNodeinaLinkedList_237 {
     /**
      * Definition for singly-linked list.

@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class RemoveDuplicatesfromSortedArray_26 {
     /**
      * 数组是排序过的

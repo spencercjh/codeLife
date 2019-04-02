@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class LongestCommonPrefix_14 {
     /**
      * 纵向比较字符串前缀

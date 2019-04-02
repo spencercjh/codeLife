@@ -1,6 +1,9 @@
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author spencercjh
+ */
 public class MajorityElement_169 {
     /**
      * 普通hash法

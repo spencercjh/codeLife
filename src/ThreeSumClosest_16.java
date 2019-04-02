@@ -1,5 +1,8 @@
 import java.util.Arrays;
 
+/**
+ * @author spencercjh
+ */
 public class ThreeSumClosest_16 {
     class Solution {
         public int threeSumClosest(int[] nums, int target) {

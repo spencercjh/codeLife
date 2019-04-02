@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class CountandSay_38 {
     class Solution {
         public String countAndSay(int n) {

@@ -1,6 +1,9 @@
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author spencercjh
+ */
 public class LinkedListCycle_141 {
     /**
      * Definition for singly-linked list.

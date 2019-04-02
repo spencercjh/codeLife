@@ -1,6 +1,9 @@
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author spencercjh
+ */
 public class SingleNumber_136 {
     /**
      * 使用集合对数列进行去重，最后仍在集合里的即单独的一个数

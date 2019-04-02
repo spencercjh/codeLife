@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class LengthofLastWord_58 {
     class Solution1 {
         public int lengthOfLastWord(String s) {

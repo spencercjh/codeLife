@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class MergeTwoSortedLists_21 {
     /**
      * Definition for singly-linked list.

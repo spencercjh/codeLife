@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class Searcha2DMatrixII_240 {
     /**
      * 从右上角斜向左下方向寻找，比target大就下一行，比它小就左一列

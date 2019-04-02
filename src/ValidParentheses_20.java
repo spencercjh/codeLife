@@ -2,6 +2,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+/**
+ * @author spencercjh
+ */
 public class ValidParentheses_20 {
     class Solution {
         public boolean isValid(String s) {

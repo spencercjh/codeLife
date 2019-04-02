@@ -1,3 +1,6 @@
+/**
+ * @author spencercjh
+ */
 public class MaximumSubarray_53 {
     class Solution {
         public int maxSubArray(int[] nums) {

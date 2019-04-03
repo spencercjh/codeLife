@@ -9,9 +9,8 @@ public class CombinationSum_39 {
     class Solution {
         public List<List<Integer>> combinationSum(int[] candidates, int target) {
             List<List<Integer>> answers = new ArrayList<>();
-            List<Integer> answer = new ArrayList<>();
             Arrays.sort(candidates);
-            find(answers, answer, candidates, target, 0);
+            find(answers, new ArrayList<>(), candidates, target, 0);
             return answers;
         }
 
@@ -19,7 +18,7 @@ public class CombinationSum_39 {
             if (target == 0) {
                 answers.add(answer);
             }
-            if (target < candidates[0]) {
+            if (index >= candidates.length || target < candidates[index]) {
                 return;
             }
             for (int i = index; i < candidates.length && candidates[i] <= target; i++) {

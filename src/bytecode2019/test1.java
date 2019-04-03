@@ -1,4 +1,4 @@
-package bytecode;
+package bytecode2019;
 
 import java.util.Scanner;
 

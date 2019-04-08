@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -33,22 +34,24 @@ public class MergeIntervals_56 {
 
     class Solution {
         public List<Interval> merge(List<Interval> intervals) {
-            if (null == intervals || intervals.size() == 0) {
+            if (intervals.size() == 0) {
                 return Collections.emptyList();
             }
+            List<Interval> res = new ArrayList<>();
             intervals.sort(Comparator.comparingInt(o -> o.start));
-            Interval pre = intervals.get(0), current;
-            for (int i = 1; i < intervals.size(); ) {
-                current = intervals.get(i);
-                if (current.start > pre.end) {
-                    pre = current;
-                    i++;
+            int start = intervals.get(0).start;
+            int end = intervals.get(0).end;
+            for (Interval interval : intervals) {
+                if (interval.start <= end) {
+                    end = Math.max(interval.end, end);
                 } else {
-                    pre.end = Math.max(current.end, pre.end);
-                    intervals.remove(i);
+                    res.add(new Interval(start, end));
+                    start = interval.start;
+                    end = interval.end;
                 }
             }
-            return intervals;
+            res.add(new Interval(start, end));
+            return res;
         }
     }
 }

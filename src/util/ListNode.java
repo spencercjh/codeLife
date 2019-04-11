@@ -1,6 +1,8 @@
 package util;
 
 /**
+ * Definition for singly-linked list
+ *
  * @author : SpencerCJH
  * @date : 2019/4/11 22:19
  */

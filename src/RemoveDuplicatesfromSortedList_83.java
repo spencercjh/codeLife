@@ -1,3 +1,5 @@
+import util.ListNode;
+
 /**
  * @author spencercjh
  */
@@ -13,15 +15,6 @@ public class RemoveDuplicatesfromSortedList_83 {
                 }
             }
             return head;
-        }
-
-        public class ListNode {
-            int val;
-            ListNode next;
-
-            ListNode(int x) {
-                val = x;
-            }
         }
     }
 }

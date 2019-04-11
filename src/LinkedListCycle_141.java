@@ -1,3 +1,5 @@
+import util.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -5,19 +7,6 @@ import java.util.Set;
  * @author spencercjh
  */
 public class LinkedListCycle_141 {
-    /**
-     * Definition for singly-linked list.
-     */
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
     public class Solution1 {
         public boolean hasCycle(ListNode head) {
             if (null == head || null == head.next) {

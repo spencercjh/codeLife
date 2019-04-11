@@ -1,24 +1,9 @@
+import util.ListNode;
+
 /**
  * @author spencercjh
  */
 public class MergeTwoSortedLists_21 {
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-    public class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     class Solution {
         public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
             ListNode newListNode = new ListNode(0), current = newListNode;

@@ -1,27 +1,9 @@
+import util.ListNode;
 /**
  * @author : spencercjh
  * @date : 2019/3/14 18:26
  */
 public class AddTwoNumbers_2 {
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     class Solution1 {
         public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             ListNode node = new ListNode(0), current = node;

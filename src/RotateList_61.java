@@ -1,3 +1,5 @@
+import util.ListNode;
+
 /**
  * 思路from曾文浩:说是循环旋转，但其实本质上是将尾部向前数第K个元素作为头，原来的头接到原来的尾上
  *
@@ -5,23 +7,6 @@
  * @date 2019/4/8 18:45
  */
 public class RotateList_61 {
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
-
     class Solution {
         public ListNode rotateRight(ListNode head, int k) {
             if (null == head) {

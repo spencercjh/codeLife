@@ -12,6 +12,12 @@ public class ListNode {
         val = x;
     }
 
+    /**
+     * 输入一个int数组返回这个数组的头结点
+     *
+     * @param nums nums
+     * @return ListNode
+     */
     public static ListNode makeListNodeChain(int[] nums) {
         ListNode head = new ListNode(-1), current = head;
         for (int i = 0; i < nums.length; i++) {

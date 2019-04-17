@@ -51,4 +51,5 @@
 94. 二叉树的中序遍历 Binary Tree Inorder Traversal
 95. 不同的二叉搜索树 II Unique Binary Search Trees II
 96. 不同的二叉搜索树 Unique Binary Search Trees
+98. 验证二叉搜索树 Validate Binary Search Tree
 206. 反转链表 Reverse Linked List

@@ -1,4 +1,4 @@
-package puyuan;
+package puyuan2019;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,15 +11,14 @@ import java.util.regex.Pattern;
 public class FlightTime {
     private static Pattern PATTERN = Pattern.compile("0[0-9][0-5][0-9]|1[0-9][0-5][0-9]|2[0-3][0-5][0-9]");
 
-    public String calculate(String startTime, String endTime) {
+    public String calculate(String startTime, String endTime) throws RuntimeException {
         Calendar start = getTime(startTime);
         Calendar end = getTime(endTime);
-        assert start != null;
         long a = start.getTimeInMillis(), b = end.getTimeInMillis();
         return new Date(a - b).toString();
     }
 
-    private Calendar getTime(String str) {
+    private Calendar getTime(String str) throws RuntimeException {
         if (PATTERN.matcher(str).matches()) {
             Calendar calendar = Calendar.getInstance();
             if (str.length() == 3) {
@@ -30,7 +29,8 @@ public class FlightTime {
                 calendar.set(Calendar.MINUTE, Integer.parseInt(str.substring(2)));
             }
             return calendar;
+        } else {
+            throw new RuntimeException();
         }
-        return null;
     }
 }

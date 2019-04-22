@@ -1,0 +1,7 @@
+CREATE TABLE `student`{
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `name` VARCHAR (15) NOT NULL,
+    `age` INT NOT NULL,
+    `birth` TIMESTAMP
+  PRIMARY KEY (`id`),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='学生表';

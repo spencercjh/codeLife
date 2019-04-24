@@ -16,7 +16,7 @@ public class DemoServer extends Thread {
     public static void main(String[] args) throws IOException {
         DemoServer server = new DemoServer();
         server.start();
-        String text = "test content";
+        String text = "Test1 content";
         try (Socket client = new Socket(HOST, PORT);
              PrintWriter printWriter = new PrintWriter(client.getOutputStream())) {
             printWriter.println(text);

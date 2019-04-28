@@ -1,4 +1,4 @@
-package qihu2019;
+package exam.qihu2019;
 
 import java.util.HashMap;
 import java.util.Map;

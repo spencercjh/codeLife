@@ -9,7 +9,7 @@ import java.sql.*;
 public class SaveStudent {
     private static Connection getConn() {
         String driver = "com.mysql.jdbc.Driver";
-        String url = "jdbc:mysql://127.0.0.1:3306/test";
+        String url = "jdbc:mysql://127.0.0.1:3306/Test1";
         String username = "root";
         String password = "000000";
         Connection conn = null;

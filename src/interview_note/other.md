@@ -1,3 +1,7 @@
+# Other
+
+这个部分主要包括计算机网络、数据库等其他面试考点。
+
 ### TCP建立链接为什么需要三次握手，而不是两次？
 
 解释1.三次握手可以确保发送端和接收端来去之间的链路都畅通：如A向B建立链接，发送SYN到B，B收到SYN，这时候A没法知道A到B是否是畅通的，B知道A到B是畅通的但不知道B到A是否是畅通的，接着B发回ACK，SYN，A收到后知道了A到B，B到A的链路都是畅通的，但对B来说，B仍然只知道A到B是畅通的，不知道B到A发出去的消息有没有被收到，最后A再向B发出ACK，这时候AB两端都知道A到B，B到A互相是畅通的。
@@ -110,3 +114,11 @@ Software entities like classes,modules and fuctions should be open for
 extension but closed for
 modifications.一个软件实体如类、模块和函数应该对拓展开放，对修改关闭。
 软件实体应该通过拓展来实现变化，而不是通过修改已有的代码来实现变化。
+
+### 谈谈MySQL中的索引
+
+#### 简要回答
+
+使用良好正确的索引能加快查询的速度，加快SQL语句的执行。
+MySQL中有B-Tree B树（B+树）索引，HASH哈希索引，R-Tree空间索引，FullText全文索引。MyISAM、InnoDB、Memory引擎对他们的支持也各不相同。我们用的最多的InnoDB支持B树索引和全文索引（5.6开始）。
+B树索引中有普通索引，唯一索引，主键索引，外键索引。

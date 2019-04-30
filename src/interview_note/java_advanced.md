@@ -2,7 +2,11 @@
 
 ## 简要回答
 
-
+每个线程都有的程序计数器PC，Java栈，本地方法栈；
+JVM共用的堆，堆里有分老年代和新生代；
+JVM共有的方法区，方法区里有运行时常量池；
+Buffer类中操作的DirectBuffer，也叫堆外内存。
+还有一些JVM程序本身需要的内存，以及JIT编译时消耗的cache。
 
 ## 完整内容
 
@@ -60,3 +64,66 @@ Direct Buffer：如果我们看 Buffer 的方法定义，你会发现它定义�
 
 JVM本身是个本地程序，还需要其他的内存去完成各种基本任务，比如，JIT Compiler 在运行时对热点方法进行编译，就会将编译后的方法储存在 Code Cache 里面；GC 等功能需要运行在本地线程之中，
 类似部分都需要占用内存空间。这些是实现 JVM JIT 等功能的需要，但规范中并不涉及。
+***
+### 线程的状态有哪些，他们是如何相互转化的？
+
+#### 简要回答
+
+一个线程从创建完对象实例开始状态为NEW；
+Thread.start()后变为RUNNABLE；
+获得CPU执行时间片后会变成RUNNING；
+时间片用完后变回RUNNABLE；
+碰到I/O释放，同步块释放，锁阻塞时变成BLOCKED；
+碰到I/O释放，同步块释放，获得锁后变回RUNNABLE；
+碰到Object.wait()释放锁，状态变成WAIT；
+碰到Object.notify()或者Object.notifyAll()后重新回到RUNNABLE；
+碰到Object.wait(timeout)释放锁，状态变成TIME_WAIT；
+碰到Object.notify()或者Object.notifyAll()或者线程等待超时后重新回到RUNNABLE；
+线程运行结束或者抛出异常退出后状态变成TERMINATED
+***
+
+### Object.wait()和Thread.sleep()有什么区别？
+
+#### 简要回答
+
+wait和sleep的主要区别是调用wait方法时，线程在等待的时候会释放掉它所获得的monitor，但是调用Thread.sleep()方法时，线程在等待的时候仍然会持有monitor或者锁。
+另外，Java中的wait方法应在同步代码块中调用，但是sleep方法不需要。
+另一个区别是Thread.sleep()方法是一个静态方法，作用在当前线程上；
+但是wait方法是一个实例方法，并且只能在其他线程调用本实例的notify()方法时被唤醒。
+另外，使用sleep方法时，被暂停的线程在被唤醒之后会立即进入就绪态（Runnable state)，但是使用wait方法的时候，被暂停的线程会首先获得锁（进入阻塞态），然后再进入就绪态。
+***
+
+### ConcurrentHashMap是如何实现线程安全的？
+
+#### 简要回答
+
+在JDK8之前，使用分段锁，将table分成多个Segment，对Segment加锁，以实现map中的一个部分可以进行线程安全地修改。
+
+在JDK8以后，取消了这样的设计。put方法中使用ReservationNode在并发场景下对某一个slot(也就是table[i])加锁；
+涉及到元素总数的相关更新和计算时，彻底避免使用锁，取而代之的是更多的CAS操作。
+在竞争激烈的情况下使用内部类CounterCell作为一个计数器单元，当竞争进一步加剧时会通过扩容减少竞争。
+***
+### violated 和 synchronize 的区别？
+
+#### 简要回答
+
+***
+
+### Executor,ExecutorService,Executors的关系和区别？
+
+#### 简要回答
+
+***
+
+### ThreadPoolExecutor的参数都是什么含义？
+
+#### 简要回答
+
+***
+
+### Executors中有哪些线程池？
+
+#### 简要回答
+
+***
+

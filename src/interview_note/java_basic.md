@@ -1,4 +1,4 @@
-# Java
+# JavaBasic
 
 这个部分参考了**极客时间**中的《Java核心技术36讲》，作者杨晓峰，前Oracle首席工程师，
 其他参考书目如下：
@@ -9,6 +9,7 @@
 4. 《Java核心技术·卷 II（原书第10版）》 ISBN: 9787111573319
 5. 《阿里巴巴Java开发手册》 ISBN: 9787121332319
 
+**这里不会包括高级Java内容：JVM、多线程等。相关内容请看java_advanced.md![java_advanced.md](java_advanced.md)**
 ***
 ## Java语言概况
 
@@ -207,26 +208,10 @@ LinkedHashMap 提供的机制来实现。
 HashMap实现了Map接口，继承了AbstractMap，是Java语言中的哈希表实现。
 底层使用数组table存放每一个key的链表头（红黑树树根），使用value的hashCode和内部的hash方法计算哈希值与数组的下标对应。
 当不存在哈希冲突时候，查找元素的时间复杂度是O(n)；存在哈希冲突后，如果table的大小大于64，且某一个key下的链表节点数超过8个时，链表会转会为红黑树，当红黑树下的节点小于6个时，重新转化为链表。
-
+HashMap是非线程安全的，在多线程情况下可能会导致元素丢失和链表死链的问题。
+HashMap是懒加载的，在初始化的过程中只会根据initialCapacity和loadFactor去计算实际的capacity，并不会分配table数组空间。
+实际capacity是接近initialCapacity的一个2的整数幂，如果initialCapacity是15，那么实际capacity是16，最后map扩容前最大的size等于capacity*loadFactor。
 ***
-
-### 线程的状态有哪些，他们是如何相互转化的？
-
-#### 简要回答
-
-一个线程从创建完对象实例开始状态为NEW；
-Thread.start()后变为RUNNABLE；
-遇到synchronized或者阻塞IO时（其他线程持有锁）变成BLOCKED；
-线程重新获取到锁后变回RUNNABLE；
-碰到Object.wait()释放锁，状态变成WAIT；
-碰到Object.notify()或者Object.notifyAll()后重新回到RUNNABLE；
-碰到Object.wait(timeout)释放锁，状态变成TIME_WAIT；
-碰到Object.notify()或者Object.notifyAll()或者线程等待超时后重新回到RUNNABLE；
-线程运行结束或者抛出异常退出后状态变成TERMINATED
-
-Thread.sleep
-***
-
 
 #### 谈谈你了解的Java IO？
 

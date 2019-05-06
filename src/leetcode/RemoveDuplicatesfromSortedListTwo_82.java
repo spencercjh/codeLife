@@ -1,18 +1,20 @@
 package leetcode;
 
 import leetcode.util.ListNode;
+import org.junit.Test;
 
 /**
  * @author : SpencerCJH
  * @date : 2019/4/11 21:52
  */
 public class RemoveDuplicatesfromSortedListTwo_82 {
-    public static void main(String[] args) {
-        Solution2.deleteDuplicates(ListNode.makeListNodeChain(new int[]{1, 2, 3, 3, 3, 4, 4, 5}));
+    @Test
+    public void testSolution2() {
+        new Solution2().deleteDuplicates(ListNode.makeListNodeChain(new int[]{1, 2, 3, 3, 3, 4, 4, 5}));
     }
 
-    static class Solution2 {
-        static public ListNode deleteDuplicates(ListNode head) {
+    class Solution2 {
+        public ListNode deleteDuplicates(ListNode head) {
             ListNode dummyNode = new ListNode(-1), current = head;
             dummyNode.next = head;
             ListNode previous = dummyNode;

@@ -8,12 +8,8 @@ import java.math.BigInteger;
  */
 public class BigIntegerExample {
     public static void main(String[] args) {
-        System.out.println(new BigInteger(String.valueOf(66)).modPow(new BigInteger(String.valueOf(77)),
-                new BigInteger(String.valueOf(119))));
-        System.out.println(new BigInteger(String.valueOf(773)).modPow(new BigInteger("1217"),
-                new BigInteger("2773")));
-        System.out.println(new BigInteger("128").modPow(new BigInteger("57"),
-                new BigInteger("2773")));
+        System.out.println(new BigInteger(String.valueOf(172)).modPow(new BigInteger(String.valueOf(197)),
+                new BigInteger(String.valueOf(263))));
     }
 
     /**

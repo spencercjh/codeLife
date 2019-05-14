@@ -1,0 +1,1 @@
+参考https://blog.csdn.net/xiaoping0915/article/details/81202851，原作者项目中关于本聊天室有一些bug的，且它基于Netty4，我已经改了一些。

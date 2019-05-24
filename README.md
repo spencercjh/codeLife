@@ -3,7 +3,7 @@
 目录结构如下:
 
 ```
-
+├─django-study django study demo0
 ├─chat-demo 基于Spring Boot Netty的WebSocket聊天室Demo
 └─src 
     ├─design_patterns 设计模式

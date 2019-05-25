@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% extends "admin/base.html" %}
+    {% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+</head>
+<body>
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">Spencer Django Demo</a></h1>
+    <br>
+    <h2><a href="https://www.spencercjh.top">My Home Page</a></h2>
+{% endblock %}
+{% block nav-global %}{% endblock %}
+</body>

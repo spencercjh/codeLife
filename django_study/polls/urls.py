@@ -17,6 +17,15 @@ from django.urls import path
 
 import polls.views as v
 
+# 为url添加app命名空间
+app_name = 'polls'
 urlpatterns = [
-    path('test', v.index, name='index'),
+    # ex: /polls/
+    path('', v.IndexView.as_view(), name='index'),
+    # ex: /polls/5/
+    path('<int:pk>/', v.DetailView.as_view(), name='detail'),
+    # ex: /polls/5/results/
+    path('<int:pk>/results/', v.ResultsView.as_view(), name='results'),
+    # ex: /polls/5/vote/
+    path('<int:question_id>/vote/', v.vote, name='vote'),
 ]

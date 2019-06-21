@@ -14,6 +14,16 @@
     
     Spring中的注解功能
     
+在线笔试（面试官看着你写）
+
+    给一个类似于Student类的业务类进行排序（使用Collections.sort，实现comparable）
+    
+    写一个线程安全的单例
+    
+    写一个排序算法（任意）
+    
+    reverse number
+    
 # 蚂蚁金服二面：
     
     介绍自己

@@ -24,15 +24,15 @@
     ├─interviewnote 笔记
     │  └─image
     ├─javastudy Java学习
-    │  └─cglibDemo CGLIB学习Demo  
+    │  └─cglibDemo CGLIB学习Demo 
+       └─netty Netty学习
+            ├─src
+               ├─main
+                  ├─java
+                     ├─echo EchoDemo
+                     └─file FileServerDemo 
     ├─leetcode 力扣刷题
-    │  └─util 自己写的一些工具类
-    └─netty Netty学习
-        ├─src
-           ├─main
-              ├─java
-                 ├─echo EchoDemo
-                 └─file FileServerDemo
+       └─util 自己写的一些工具类
 ```
 
 其中设计模式参考《设计模式之禅》，实战考试中缺失了一些只能在网页上编写代码的XX厂家的考试，面试笔记中记录着被闻到过的真题及其拓展，Java学习包括了学习《Java核心技术》等书籍编写的一些源代码，LeetCode刷题请参阅刷题目录content.md。Netty方面以《Netty实战》和网上Blog为主。

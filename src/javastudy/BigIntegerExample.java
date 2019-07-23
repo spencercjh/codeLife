@@ -1,4 +1,4 @@
-package java_study;
+package javastudy;
 
 import java.math.BigInteger;
 

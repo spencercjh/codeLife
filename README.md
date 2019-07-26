@@ -4,7 +4,6 @@
 
 ```
 ├─django-study django study demo0
-├─chat-demo 基于Spring Boot Netty的WebSocket聊天室Demo
 └─src 
     ├─design_patterns 设计模式
     │  ├─adapter    适配器
@@ -24,8 +23,9 @@
     ├─interviewnote 笔记
     │  └─image
     ├─javastudy Java学习
-    │  └─cglibDemo CGLIB学习Demo 
-       └─netty Netty学习
+       ├─chat-demo 基于Spring Boot Netty的WebSocket聊天室Demo
+       ├─cglibDemo CGLIB学习Demo 
+       ├─netty Netty学习
             ├─src
                ├─main
                   ├─java

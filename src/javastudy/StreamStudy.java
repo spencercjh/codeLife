@@ -13,11 +13,8 @@ import java.util.stream.Stream;
 public class StreamStudy {
     /**
      * return numbers from 0 to limit
-     *
      * @param limit
-     *
      * @return Stream
-     *
      * @since 1.9
      */
     private static LongStream integers(long limit) {
@@ -26,11 +23,9 @@ public class StreamStudy {
 
     /**
      * @return primes stream
-     *
-     * @since 1.9
      */
     private static Stream<BigInteger> primes() {
-        return Stream.iterate(BigInteger.TWO, BigInteger::nextProbablePrime);
+        return Stream.iterate((BigInteger.ONE.add(BigInteger.ONE)), BigInteger::nextProbablePrime);
     }
 
     private static LongStream otherPrimes(long limit) {
@@ -40,9 +35,7 @@ public class StreamStudy {
     /**
      * https://blog.csdn.net/afei__/article/details/80638460
      * 一个优化过的判断素数方法
-     *
      * @param num
-     *
      * @return isPrime
      */
     private static boolean isPrime(long num) {
@@ -64,15 +57,11 @@ public class StreamStudy {
 
     /**
      * return limit of MersennePrimes(p is prime and 2**p-1 is also prime)
-     *
      * @param limit
-     *
      * @return Stream
-     *
-     * @since 1.9
      */
     private static Stream<String> outputMersennePrimes(long limit) {
-        return primes().map(p -> BigInteger.TWO.pow(p.intValueExact()).subtract(BigInteger.ONE))
+        return primes().map(p -> (BigInteger.ONE.add(BigInteger.ONE)).pow(p.intValueExact()).subtract(BigInteger.ONE))
                 .filter(temp -> temp.isProbablePrime(50))
                 .limit(limit)
                 .map(ans -> ans.bitLength() + ": " + ans);
@@ -80,9 +69,7 @@ public class StreamStudy {
 
     /**
      * return limit * limit of number from 0 to limit
-     *
      * @param limit
-     *
      * @return Stream
      */
     public static LongStream doubleCycleTest(long limit) {

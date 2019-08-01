@@ -26,7 +26,7 @@ public interface Result<T> {
     }
 
     /**
-     * 绑定
+     * 绑定成功与失败两个Consumer
      * @param success Consumer
      * @param failure Consumer
      */

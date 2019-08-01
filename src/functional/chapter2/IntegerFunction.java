@@ -1,7 +1,5 @@
 package functional.chapter2;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  * @author Spencer
  * Page 30
@@ -18,7 +16,7 @@ public interface IntegerFunction {
      * test default
      * @param o
      */
-    default void request(@NotNull Object o) {
+    default void request(Object o) {
         System.out.println(o.toString());
     }
 

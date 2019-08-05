@@ -4,7 +4,7 @@ package functional.chapter2;
  * @author Spencer
  * Page 30
  */
-public interface IntegerFunction {
+interface IntegerFunction {
     /**
      * 一个操作
      * @param arg

@@ -4,7 +4,7 @@ package functional.chapter2.summery;
  * @author Spencer
  * page 56 57
  */
-public interface Function<T, U> {
+interface Function<T, U> {
     /**
      * 一个操作
      * @param arg T

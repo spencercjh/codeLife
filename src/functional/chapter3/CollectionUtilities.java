@@ -28,14 +28,14 @@ public class CollectionUtilities {
         return Collections.unmodifiableList(Arrays.asList(Arrays.copyOf(list, list.length)));
     }
 
-    protected static <T> T getHead(List<T> list) {
+    public static <T> T getHead(List<T> list) {
         if (list.size() == 0) {
             throw new IllegalStateException("head of empty list");
         }
         return list.get(0);
     }
 
-    protected static <T> List<T> getTail(List<T> list) {
+    public static <T> List<T> getTail(List<T> list) {
         if (list.size() == 0) {
             throw new IllegalStateException("tail of empty list");
         }
@@ -82,12 +82,10 @@ public class CollectionUtilities {
         return list.isEmpty() ? identity : f.apply(getHead(list)).apply(recursiveFoldRight(getTail(list), identity, f));
     }
 
-    @Deprecated
     private static <T> List<T> prepend(T element, List<T> list) {
         return foldLeft(list, list(element), (List<T> a) -> (T b) -> append(a, b));
     }
 
-    @Deprecated
     public static <T> List<T> reverse(List<T> list) {
         return foldLeft(list, list(), (List<T> x) -> (T y) -> prepend(y, x));
     }
@@ -111,11 +109,19 @@ public class CollectionUtilities {
         return result;
     }
 
-    public static List<Integer> rangeWithUnfold(int start, int end) {
+    public static List<Integer> range(int start, int end) {
         return unfold(start, x -> x + 1, x -> x < end);
     }
 
     public static List<Integer> rangeWithPrepend(int start, int end) {
         return end <= start ? list() : prepend(start, rangeWithFor(start + 1, end));
+    }
+
+    public static <T, U> List<U> mapViaFoldLeft(List<T> list, Function<T, U> f) {
+        return foldLeft(list, list(), (List<U> x) -> (T y) -> append(x, f.apply(y)));
+    }
+
+    public static <T, U> List<U> mapViaFoldRight(List<T> list, Function<T, U> f) {
+        return foldRight(list, list(), (T x) -> (List<U> y) -> prepend(f.apply(x), y));
     }
 }

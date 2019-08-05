@@ -4,7 +4,7 @@ package functional.chapter2;
  * @author Spencer
  * Page 32
  */
-public interface Function<T, U> {
+interface Function<T, U> {
     static Function<Integer, Integer> composeWithLambda(final Function<Integer, Integer> function1, final Function<Integer, Integer> function2) {
         return x -> function1.apply(function2.apply(x));
     }

@@ -1,8 +1,8 @@
 package functional.chapter3.email2;
 
-import functional.chapter2.summery.Function;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.regex.Pattern;
 
 /**

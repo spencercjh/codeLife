@@ -6,7 +6,7 @@ package top.spencercjh.springsecuritydemo.util;
  * @author beyond
  * @date 2016/11/26
  */
-public class SnowFlake {
+public class SnowFlakeUtil {
     /**
      * 起始的时间戳
      */
@@ -36,7 +36,7 @@ public class SnowFlake {
     private final static long MACHINE_LEFT = SEQUENCE_BIT;
     private final static long DATA_CENTER_LEFT = SEQUENCE_BIT + MACHINE_BIT;
     private final static long TIMESTAMP_LEFT = DATA_CENTER_LEFT + DATA_CENTER_BIT;
-    volatile private static SnowFlake INSTANCE = null;
+    volatile private static SnowFlakeUtil INSTANCE = null;
     /**
      * 数据中心
      */
@@ -54,7 +54,7 @@ public class SnowFlake {
      */
     private long lastTimeStamp = -1L;
 
-    private SnowFlake(long dataCenterId, long machineId) {
+    private SnowFlakeUtil(long dataCenterId, long machineId) {
         if (dataCenterId > MAX_DATA_CENTER_NUM || dataCenterId < 0) {
             throw new IllegalArgumentException("datacenterId can't be greater than MAX_DATACENTER_NUM or less than 0");
         }
@@ -69,9 +69,9 @@ public class SnowFlake {
         if (null != INSTANCE) {
             return String.valueOf(INSTANCE.nextId());
         } else {
-            synchronized (SnowFlake.class) {
+            synchronized (SnowFlakeUtil.class) {
                 if (null == INSTANCE) {
-                    INSTANCE = new SnowFlake(1, 1);
+                    INSTANCE = new SnowFlakeUtil(1, 1);
                 }
             }
         }

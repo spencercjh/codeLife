@@ -30,7 +30,10 @@ public class TokenProvider {
     private final Logger log = LoggerFactory.getLogger(TokenProvider.class);
 
     private static final String SALT_KEY = "JpxM4e858rc673syopdZnMFb*ExeqJtUc0HJ_iOxu~jiSYu+yPdPw93OBBjF";
-    private static final int TOKEN_VALIDITY = 86400; // Value in second
+    /**
+     * Value in second equals 24H
+     */
+    private static final int TOKEN_VALIDITY = 86400;
 
     private static final String AUTHORITIES_KEY = "auth";
 

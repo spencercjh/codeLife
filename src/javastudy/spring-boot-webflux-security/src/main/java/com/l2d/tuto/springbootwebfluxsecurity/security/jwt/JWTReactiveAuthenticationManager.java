@@ -37,11 +37,11 @@ public class JWTReactiveAuthenticationManager implements ReactiveAuthenticationM
                 .switchIfEmpty(Mono.defer(this::raiseBadCredentials))
                 .cast(UsernamePasswordAuthenticationToken.class)
                 .flatMap(this::authenticateToken)
-                .publishOn(Schedulers.parallel())
+                .publishOn(Schedulers.elastic())
                 .onErrorResume(e -> raiseBadCredentials())
-                .filter(u -> passwordEncoder.matches((String) authentication.getCredentials(), u.getPassword()))
+                .filter(userDetails -> passwordEncoder.matches((String) authentication.getCredentials(), userDetails.getPassword()))
                 .switchIfEmpty(Mono.defer(this::raiseBadCredentials))
-                .map(u -> new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), u.getAuthorities()));
+                .map(userDetails -> new UsernamePasswordAuthenticationToken(authentication.getPrincipal(), authentication.getCredentials(), userDetails.getAuthorities()));
     }
 
     private <T> Mono<T> raiseBadCredentials() {

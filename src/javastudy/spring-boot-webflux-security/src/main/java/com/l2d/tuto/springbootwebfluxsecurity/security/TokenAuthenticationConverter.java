@@ -16,7 +16,7 @@ import java.util.function.Predicate;
 public class TokenAuthenticationConverter implements Function<ServerWebExchange, Mono<Authentication>> {
 	private static final String BEARER = "Bearer ";
 	private static final Predicate<String> matchBearerLength = authValue -> authValue.length() > BEARER.length();
-	private static final Function<String, String> isolateBearerValue = authValue -> authValue.substring(BEARER.length(), authValue.length());
+	private static final Function<String, String> isolateBearerValue = authValue -> authValue.substring(BEARER.length());
 
 	private final TokenProvider tokenProvider;
 

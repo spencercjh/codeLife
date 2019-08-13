@@ -32,14 +32,6 @@
     │   ├───tencent2017
     │   ├───xiecheng2019
     │   └───yuewen2019
-    ├───functional
-    │   ├───chapter2
-    │   │   └───summery
-    │   ├───chapter3
-    │   │   ├───email1
-    │   │   ├───email2
-    │   │   └───email3
-    │   └───chapter4
     ├───interviewnote
     │   └───image
     ├───javastudy
@@ -72,11 +64,26 @@
     │   │               └───top
     │   │                   └───spencercjh
     │   │                       └───chatdemo
+    │   ├───functional
+    │   │   └───src
+    │   │       ├───main
+    │   │       │   ├───java
+    │   │       │   │   ├───chapter2
+    │   │       │   │   │   └───summery
+    │   │       │   │   ├───chapter3
+    │   │       │   │   │   ├───email1
+    │   │       │   │   │   ├───email2
+    │   │       │   │   │   └───email3
+    │   │       │   │   ├───chapter4
+    │   │       │   │   └───chapter5
+    │   │       │   └───resources
+    │   │       └───test
+    │   │           └───java
     │   ├───gs-accessing-data-mongodb
     │   │   └───complete
     │   │       ├───.mvn
     │   │       │   └───wrapper
-    │   │       ├───src
+    │   │       └───src
     │   │           ├───main
     │   │           │   ├───java
     │   │           │   │   └───hello
@@ -117,23 +124,23 @@
     │   │                       └───tuto
     │   │                           └───springbootwebfluxsecurity
     │   └───spring-security-demo
-    │       ├───src
-    │          ├───main
-    │          │   ├───java
-    │          │   │   └───top
-    │          │   │       └───spencercjh
-    │          │   │           └───springsecuritydemo
-    │          │   │               ├───config
-    │          │   │               │   └───security
-    │          │   │               ├───controller
-    │          │   │               ├───service
-    │          │   │               └───util
-    │          │   └───resources
-    │          └───test
-    │              └───java
-    │                  └───top
-    │                      └───spencercjh
-    │                          └───springsecuritydemo       
+    │       └───src
+    │           ├───main
+    │           │   ├───java
+    │           │   │   └───top
+    │           │   │       └───spencercjh
+    │           │   │           └───springsecuritydemo
+    │           │   │               ├───config
+    │           │   │               │   └───security
+    │           │   │               ├───controller
+    │           │   │               ├───service
+    │           │   │               └───util
+    │           │   └───resources
+    │           └───test
+    │               └───java
+    │                   └───top
+    │                       └───spencercjh
+    │                           └───springsecuritydemo
     └───leetcode
         └───util
 

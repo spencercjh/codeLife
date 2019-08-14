@@ -5,7 +5,7 @@ import java.util.function.Function;
 /**
  * @author Spencer
  */
-public interface AbstractOptions {
+public interface Options {
     /**
      * 将一个从A到B的函数function包装成从AbstractOption<A>到AbstractOption<B>的函数
      * @param f   function A to B
@@ -13,13 +13,13 @@ public interface AbstractOptions {
      * @param <B> type B
      * @return function AbstractOption<A> to AbstractOption<B>
      */
-    static <A, B> Function<AbstractOption<A>, AbstractOption<B>> lift(Function<A, B> f) {
-        return (AbstractOption<A> x) -> {
+    static <A, B> Function<Option<A>, Option<B>> lift(Function<A, B> f) {
+        return (Option<A> x) -> {
             try {
                 return x.map(f);
             } catch (Exception e) {
                 e.printStackTrace();
-                return AbstractOption.none();
+                return Option.none();
             }
         };
     }
@@ -31,13 +31,13 @@ public interface AbstractOptions {
      * @param <B> type B
      * @return function A to AbstractOption<B>
      */
-    static <A, B> Function<A, AbstractOption<B>> halfLift(Function<A, B> f) {
+    static <A, B> Function<A, Option<B>> halfLift(Function<A, B> f) {
         return (A x) -> {
             try {
-                return AbstractOption.some(x).map(f);
+                return Option.some(x).map(f);
             } catch (Exception e) {
                 e.printStackTrace();
-                return AbstractOption.none();
+                return Option.none();
             }
         };
     }
@@ -52,7 +52,7 @@ public interface AbstractOptions {
      * @param <C> type C
      * @return AbstractOption<C>
      */
-    static <A, B, C> AbstractOption<C> map2(AbstractOption<A> a, AbstractOption<B> b, Function<A, Function<B, C>> f) {
+    static <A, B, C> Option<C> map2(Option<A> a, Option<B> b, Function<A, Function<B, C>> f) {
         return a.flatMap((A ax) -> b.map((B bx) -> f.apply(ax).apply(bx)));
     }
 
@@ -68,8 +68,8 @@ public interface AbstractOptions {
      * @param <D> type D
      * @return AbstractOption<D>
      */
-    static <A, B, C, D> AbstractOption<D> map3(AbstractOption<A> a, AbstractOption<B> b, AbstractOption<C> c,
-                                               Function<A, Function<B, Function<C, D>>> f) {
+    static <A, B, C, D> Option<D> map3(Option<A> a, Option<B> b, Option<C> c,
+                                       Function<A, Function<B, Function<C, D>>> f) {
         return a.flatMap((A ax) -> b.flatMap((B bx) -> c.map((C cx) -> f.apply(ax).apply(bx).apply(cx))));
     }
 }

@@ -15,10 +15,10 @@ public interface AbstractLists {
      * @param list double list
      * @return AbstractOption<Double>
      */
-    static AbstractOption<Double> average(AbstractList<Double> list) {
+    static Option<Double> average(AbstractList<Double> list) {
         return list.isEmpty() ?
-                AbstractOption.none() :
-                AbstractOption.some(sum(list, 0) / list.length());
+                Option.none() :
+                Option.some(sum(list, 0) / list.length());
     }
 
     /**
@@ -26,7 +26,7 @@ public interface AbstractLists {
      * @param list double list
      * @return AbstractOption<Double>
      */
-    static AbstractOption<Double> variance(AbstractList<Double> list) {
+    static Option<Double> variance(AbstractList<Double> list) {
         return average(list).flatMap((Double averageValue) -> average(list.map((Double x) -> Math.pow(x - averageValue, 2))));
     }
 
@@ -35,10 +35,10 @@ public interface AbstractLists {
      * @param <A> value type
      * @return max value
      */
-    static <A extends Comparable> Function<AbstractList<A>, AbstractOption<A>> max() {
+    static <A extends Comparable> Function<AbstractList<A>, Option<A>> max() {
         return (AbstractList<A> x) -> x.isEmpty() ?
-                AbstractOption.none() :
-                AbstractOption.some(x.foldLeft(x.head(), (A a) -> (A b) -> a.compareTo(b) > 0 ? a : b));
+                Option.none() :
+                Option.some(x.foldLeft(x.head(), (A a) -> (A b) -> a.compareTo(b) > 0 ? a : b));
     }
 
     /**
@@ -47,7 +47,7 @@ public interface AbstractLists {
      * @param <A>  value type
      * @return AbstractOption<AbstractList < A>>
      */
-    static <A> AbstractOption<AbstractList<A>> sequence(AbstractList<AbstractOption<A>> list) {
+    static <A> Option<AbstractList<A>> sequence(AbstractList<Option<A>> list) {
         return traverse(list, x -> x);
     }
 
@@ -59,9 +59,9 @@ public interface AbstractLists {
      * @param <B>  return value type B
      * @return AbstractOption<AbstractList < B>>
      */
-    static <A, B> AbstractOption<AbstractList<B>> traverse(AbstractList<A> list, Function<A, AbstractOption<B>> f) {
-        return list.foldRight(AbstractOption.some(AbstractList.list()),
-                (A x) -> (AbstractOption<AbstractList<B>> y) ->
-                        AbstractOptions.map2(f.apply(x), y, (B a) -> (AbstractList<B> b) -> b.construct(a)));
+    static <A, B> Option<AbstractList<B>> traverse(AbstractList<A> list, Function<A, Option<B>> f) {
+        return list.foldRight(Option.some(AbstractList.list()),
+                (A x) -> (Option<AbstractList<B>> y) ->
+                        Options.map2(f.apply(x), y, (B a) -> (AbstractList<B> b) -> b.construct(a)));
     }
 }

@@ -42,7 +42,7 @@ class AbstractListsTest {
 
     @Test
     void sequence() {
-        AbstractOption<AbstractList<Integer>> listOption = AbstractLists.sequence(AbstractList.list(numbers).map(AbstractOption::some));
+        Option<AbstractList<Integer>> listOption = AbstractLists.sequence(AbstractList.list(numbers).map(Option::some));
         assertTrue(listOption.getOrThrow().length() > 0);
         assertNotNull(listOption.getOrThrow().head());
         assertNotNull(listOption.getOrThrow().tail());
@@ -50,8 +50,8 @@ class AbstractListsTest {
 
     @Test
     void traverse() {
-        AbstractOption<AbstractList<String>> listOption = AbstractLists.traverse(AbstractList.list(numbers),
-                (Integer x) -> AbstractOption.some(x.toString()));
+        Option<AbstractList<String>> listOption = AbstractLists.traverse(AbstractList.list(numbers),
+                (Integer x) -> Option.some(x.toString()));
         assertTrue(listOption.getOrThrow().length() > 0);
         assertEquals("1", listOption.getOrThrow().head());
     }

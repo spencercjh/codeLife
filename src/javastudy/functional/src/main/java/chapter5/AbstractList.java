@@ -1,6 +1,7 @@
 package chapter5;
 
 import chapter4.BaseTailCell;
+import chapter6.AbstractLists;
 
 import java.util.function.Function;
 
@@ -8,12 +9,19 @@ import java.util.function.Function;
  * @author Spencer
  */
 @SuppressWarnings("WeakerAccess")
-public abstract class AbstractList<A> {
+public abstract class AbstractList<A> implements AbstractLists {
     @SuppressWarnings("rawTypes")
     private static final AbstractList NIL = new Nil();
 
+    private AbstractList() {
+    }
+
     public static <A, B> B foldRight(AbstractList<A> list, B init, Function<A, Function<B, B>> f) {
         return list.isEmpty() ? init : f.apply(list.head()).apply(AbstractList.foldRight(list.tail(), init, f));
+    }
+
+    public static double sum(AbstractList<Double> list, double init) {
+        return foldRight(list, init, (Double x) -> (Double y) -> x + y);
     }
 
     public static int sum(AbstractList<Integer> list, int init) {

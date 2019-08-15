@@ -71,7 +71,20 @@ public interface BaseResult<V> {
 
     /**
      * apply the consumer to value
-     * @param effect
+     * @param effect Consumer<V>
      */
     void forEach(Consumer<V> effect);
+
+    /**
+     * apply the consumer to value.Failure will throw exception
+     * @param effect Consumer<V>
+     */
+    void forEachOrThrow(Consumer<V> effect);
+
+    /**
+     * apply the consumer to value.Return Result with Exception
+     * @param effect Consumer
+     * @return Result with Exception
+     */
+    Result<RuntimeException> forEachOrException(Consumer<V> effect);
 }

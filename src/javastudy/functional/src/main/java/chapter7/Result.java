@@ -3,6 +3,7 @@ package chapter7;
 import chapter6.Option;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -16,6 +17,63 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
     private static final Result EMPTY = new Empty();
 
     private Result() {
+    }
+
+    /**
+     * 将从A到B的函数转换为从Result A到Result B的函数
+     * @param f   function from A to B
+     * @param <A> type A
+     * @param <B> type B
+     * @return function from Result A to Result B
+     */
+    public static <A, B> Function<Result<A>, Result<B>> lift(Function<A, B> f) {
+        return (Result<A> x) -> {
+            try {
+                return x.map(f);
+            } catch (Exception e) {
+                e.printStackTrace();
+                return failure(e);
+            }
+        };
+    }
+
+    /**
+     * 将从A到B到C的函数转换为从Result A到Result B到Result C的函数
+     * @param f   function from A to B to C
+     * @param <A> type A
+     * @param <B> type B
+     * @param <C> type C
+     * @return function from Result A to Result B to Result C
+     */
+    public static <A, B, C> Function<Result<A>, Function<Result<B>, Result<C>>> lift2(Function<A, Function<B, C>> f) {
+        return (Result<A> a) -> (Result<B> b) -> a.map(f).flatMap(b::map);
+    }
+
+    /**
+     * 将从A到B到C到D的函数转换为从Result A到Result B到Result C到Result D的函数
+     * @param f   function from A to B to C to D
+     * @param <A> type A
+     * @param <B> type B
+     * @param <C> type C
+     * @param <D> type D
+     * @return function from Result A to Result B to Result C to Result D
+     */
+    public static <A, B, C, D> Function<Result<A>, Function<Result<B>, Function<Result<C>, Result<D>>>> lift3(Function<A, Function<B, Function<C, D>>> f) {
+        return (Result<A> a) -> (Result<B> b) -> (Result<C> c) -> a.map(f).flatMap(b::map).flatMap(c::map);
+    }
+
+    /**
+     * 接收一个Result A和一个Result B以及一个从A到B到C的函数，返回一个Result C
+     * @param a   Result A
+     * @param b   Result B
+     * @param f   function from A to B to C
+     * @param <A> type A
+     * @param <B> type B
+     * @param <C> type C
+     * @return Result C
+     */
+    public static <A, B, C> Result<C> map2(Result<A> a, Result<B> b, Function<A, Function<B, C>> f) {
+        return lift2(f).apply(a).apply(b);
     }
 
     public static <T> Result<T> of(T value) {
@@ -46,19 +104,15 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
         }
     }
 
-    public static <T> Result<T> failure(String message) {
-        return new Failure<>(message);
-    }
-
     public static <T> Result<T> failure() {
         return new Failure<>();
     }
 
-    public static <T> Result<T> failure(Exception e) {
-        return new Failure<>(e);
+    public static <T> Result<T> failure(String message) {
+        return new Failure<>(message);
     }
 
-    public static <T> Result<T> failure(RuntimeException e) {
+    public static <T> Result<T> failure(Exception e) {
         return new Failure<>(e);
     }
 
@@ -136,12 +190,32 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
 
         @Override
         public void forEach(Consumer<V> effect) {
-            // nothing
+            System.err.println("empty called forEach");
+        }
+
+        @Override
+        public void forEachOrThrow(Consumer<V> effect) {
+            System.err.println("empty called forEachOrThrow");
+        }
+
+        @Override
+        public Result<RuntimeException> forEachOrException(Consumer<V> effect) {
+            return empty();
         }
 
         @Override
         public String toString() {
             return "Empty()";
+        }
+
+        @Override
+        public int hashCode() {
+            return super.hashCode();
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return super.equals(obj);
         }
     }
 
@@ -156,11 +230,6 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
         private Failure(String message) {
             super();
             exception = new RuntimeException(message);
-        }
-
-        private Failure(RuntimeException exception) {
-            super();
-            this.exception = exception;
         }
 
         private Failure(Exception e) {
@@ -211,6 +280,33 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
         @Override
         public Result<V> mapFailure(Exception e) {
             return failure(new IllegalStateException(exception));
+        }
+
+        @Override
+        public void forEachOrThrow(Consumer<V> effect) {
+            throw exception;
+        }
+
+        @Override
+        public Result<RuntimeException> forEachOrException(Consumer<V> effect) {
+            return success(exception);
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Failure<?> failure = (Failure<?>) o;
+            return Objects.equals(exception, failure.exception);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(exception);
         }
     }
 
@@ -280,6 +376,34 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
         @Override
         public void forEach(Consumer<V> effect) {
             effect.accept(value);
+        }
+
+        @Override
+        public void forEachOrThrow(Consumer<V> effect) {
+            effect.accept(value);
+        }
+
+        @Override
+        public Result<RuntimeException> forEachOrException(Consumer<V> effect) {
+            effect.accept(value);
+            return empty();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Success<?> success = (Success<?>) o;
+            return Objects.equals(value, success.value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(value);
         }
     }
 }

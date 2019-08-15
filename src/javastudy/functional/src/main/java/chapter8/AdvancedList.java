@@ -3,6 +3,7 @@ package chapter8;
 import chapter4.BaseTailCell;
 import chapter6.OptionLists;
 import chapter7.Result;
+import util.Tuple;
 
 import java.util.function.Function;
 
@@ -49,6 +50,20 @@ public abstract class AdvancedList<A> extends AdvancedLists<A> implements Option
      */
     public AdvancedList<A> construct(A a) {
         return new Construct<>(a, this);
+    }
+
+    /**
+     * 将列表转化为列表元组
+     * @param f    function from A to Tuple(A1,A2)
+     * @param <A1> tuple first type
+     * @param <A2> tuple second type
+     * @return tuple with two lists
+     */
+    public <A1, A2> Tuple<AdvancedList<A1>, AdvancedList<A2>> unzip(Function<A, Tuple<A1, A2>> f) {
+        return this.foldRight(new Tuple<>(list(), list()), (A a) -> (Tuple<AdvancedList<A1>, AdvancedList<A2>> tuple) -> {
+            Tuple<A1, A2> t = f.apply(a);
+            return new Tuple<>(tuple.first.construct(t.first), tuple.second.construct(t.second));
+        });
     }
 
     @Override

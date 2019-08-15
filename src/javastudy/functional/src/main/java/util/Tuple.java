@@ -1,4 +1,4 @@
-package chapter3.email3;
+package util;
 
 /**
  * @author Spencer

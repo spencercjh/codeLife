@@ -2,6 +2,8 @@ package chapter7;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -100,5 +102,18 @@ class ResultTest {
         assertEquals(Result.of(2), Result.of(2).filter(x -> x % 2 == 0));
         assertSame(Result.of((Integer) null).filter((Integer x) -> x % 2 == 0).getClass(), Result.failure().getClass());
         assertSame(Result.empty().filter(x -> x.toString().length() > 0).getClass(), Result.empty().getClass());
+    }
+
+    @Test
+    void function() {
+        List<Result<Integer>> list = Arrays.asList(
+                Result.success(1), Result.success(2), Result.success(3), Result.success(4), Result.success(5));
+        Result<Integer> result = list.get(0)
+                .flatMap((Integer p1) -> list.get(1)
+                        .flatMap((Integer p2) -> list.get(2)
+                                .flatMap((Integer p3) -> list.get(3)
+                                        .flatMap((Integer p4) -> list.get(4)
+                                                .map((Integer p5) -> p1 + p2 + p3 + p4 + p5)))));
+        assertEquals(Result.success(15), result);
     }
 }

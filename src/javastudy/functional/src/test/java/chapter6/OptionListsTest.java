@@ -1,11 +1,11 @@
 package chapter6;
 
-import chapter5.AbstractList;
+import chapter5.List;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class AbstractListsTest {
+class OptionListsTest {
     private final Integer[] numbers = new Integer[]{1, 2, 3, 4, 5};
     private final Double[] decimals = new Double[]{1.0, 2.0, 3.0, 4.0, 5.0};
 
@@ -20,7 +20,7 @@ class AbstractListsTest {
 
     @Test
     void average() {
-        assertEquals(getAverage(numbers), AbstractLists.average(AbstractList.list(decimals)).getOrThrow());
+        assertEquals(getAverage(numbers), OptionLists.average(List.list(decimals)).getOrThrow());
     }
 
     @Test
@@ -31,18 +31,18 @@ class AbstractListsTest {
             variance += Math.pow(number - average, 2);
         }
         variance /= numbers.length;
-        assertEquals(variance, AbstractLists.variance(AbstractList.list(decimals)).getOrThrow());
+        assertEquals(variance, OptionLists.variance(List.list(decimals)).getOrThrow());
     }
 
     @Test
     void max() {
-        int max1 = (int) AbstractLists.max().apply(AbstractList.list(numbers)).getOrThrow();
+        int max1 = (int) OptionLists.max().apply(List.list(numbers)).getOrThrow();
         assertEquals(numbers[numbers.length - 1], max1);
     }
 
     @Test
     void sequence() {
-        Option<AbstractList<Integer>> listOption = AbstractLists.sequence(AbstractList.list(numbers).map(Option::some));
+        Option<List<Integer>> listOption = OptionLists.sequence(List.list(numbers).map(Option::some));
         assertTrue(listOption.getOrThrow().length() > 0);
         assertNotNull(listOption.getOrThrow().head());
         assertNotNull(listOption.getOrThrow().tail());
@@ -50,7 +50,7 @@ class AbstractListsTest {
 
     @Test
     void traverse() {
-        Option<AbstractList<String>> listOption = AbstractLists.traverse(AbstractList.list(numbers),
+        Option<List<String>> listOption = OptionLists.traverse(List.list(numbers),
                 (Integer x) -> Option.some(x.toString()));
         assertTrue(listOption.getOrThrow().length() > 0);
         assertEquals("1", listOption.getOrThrow().head());

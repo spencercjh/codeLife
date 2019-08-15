@@ -143,6 +143,18 @@ public abstract class Result<V> implements Serializable, BaseResult<V> {
         return flatMap((V x) -> f.apply(x) ? this : failure("Condition not matched"));
     }
 
+    public boolean isSuccess() {
+        return this.getClass().equals(Success.class);
+    }
+
+    public boolean isFailure() {
+        return this.getClass().equals(Failure.class);
+    }
+
+    public boolean isEmpty() {
+        return this.getClass().equals(Empty.class);
+    }
+
     private static class Empty<V> extends Result<V> {
         public Empty() {
             super();

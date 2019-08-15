@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class EmailValidation {
     private final static Pattern EMAIL_PATTERN = Pattern.compile("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
 
-    private final static Function<String, Result> emailChecker = s -> s == null ?
+    private final static Function<String, Result> EMAIL_CHECKER = s -> s == null ?
             new Result.Failure("email must not be null") : s.length() == 0 ?
             new Result.Failure("email must not be empty") : EMAIL_PATTERN.matcher(s).matches() ?
             new Result.Success() : new Result.Failure("email " + s + " is invalid.");
@@ -24,7 +24,7 @@ public class EmailValidation {
     }
 
     private static Runnable validate(String s) {
-        Result result = emailChecker.apply(s);
+        Result result = EMAIL_CHECKER.apply(s);
         return (result instanceof Result.Success) ?
                 () -> sendVerification(s) :
                 () -> logError(((Result.Failure) result).getErrorMessage());

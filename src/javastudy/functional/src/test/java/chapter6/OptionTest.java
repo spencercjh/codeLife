@@ -1,11 +1,11 @@
 package chapter6;
 
-import chapter5.AbstractList;
+import chapter5.List;
 import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static chapter6.AbstractLists.max;
+import static chapter6.OptionLists.max;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OptionTest {
@@ -31,17 +31,17 @@ class OptionTest {
 
     @Test
     void getOrThrow() {
-        int max1 = (int) max().apply(AbstractList.list(numbers)).getOrThrow();
+        int max1 = (int) max().apply(List.list(numbers)).getOrThrow();
         assertEquals(numbers[numbers.length - 1], max1);
-        assertThrows(IllegalStateException.class, () -> max().apply(AbstractList.list()).getOrThrow());
+        assertThrows(IllegalStateException.class, () -> max().apply(List.list()).getOrThrow());
         assertThrows(IllegalStateException.class, () -> Option.none().getOrThrow());
     }
 
     @Test
     void getOrElse() {
-        int max1 = (int) max().apply(AbstractList.list(numbers)).getOrElse(OptionTest::throwException);
+        int max1 = (int) max().apply(List.list(numbers)).getOrElse(OptionTest::throwException);
         assertEquals(numbers[numbers.length - 1], max1);
-        assertThrows(NoSuchElementException.class, () -> max().apply(AbstractList.list()).getOrElse(OptionTest::throwException));
+        assertThrows(NoSuchElementException.class, () -> max().apply(List.list()).getOrElse(OptionTest::throwException));
         assertEquals(1, Option.none().getOrElse(OptionTest::getDefault));
     }
 

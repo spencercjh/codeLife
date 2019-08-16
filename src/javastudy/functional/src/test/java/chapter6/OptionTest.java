@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.NoSuchElementException;
 
-import static chapter6.OptionLists.max;
+import static chapter5.OptionLists.max;
 import static org.junit.jupiter.api.Assertions.*;
 
 class OptionTest {

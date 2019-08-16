@@ -5,7 +5,8 @@ import java.util.function.Function;
 /**
  * @author Spencer
  */
-public abstract class BaseLists {
+@SuppressWarnings("WeakerAccess")
+abstract class BaseLists {
     public static <A, B> B foldRight(List<A> list, B init, Function<A, Function<B, B>> f) {
         return list.isEmpty() ? init : f.apply(list.head()).apply(foldRight(list.tail(), init, f));
     }

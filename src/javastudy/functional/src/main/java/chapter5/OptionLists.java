@@ -1,10 +1,11 @@
-package chapter6;
+package chapter5;
 
-import chapter5.List;
+import chapter6.Option;
+import chapter6.Options;
 
 import java.util.function.Function;
 
-import static chapter5.List.sum;
+import static chapter5.BaseLists.sum;
 
 /**
  * @author Spencer
@@ -35,6 +36,7 @@ public interface OptionLists {
      * @param <A> value type
      * @return max value
      */
+    @SuppressWarnings("unchecked")
     static <A extends Comparable> Function<List<A>, Option<A>> max() {
         return (List<A> x) -> x.isEmpty() ?
                 Option.none() :

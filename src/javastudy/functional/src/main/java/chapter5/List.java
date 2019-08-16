@@ -1,14 +1,13 @@
 package chapter5;
 
 import chapter4.BaseTailCell;
-import chapter6.OptionLists;
 
 import java.util.function.Function;
 
 /**
  * @author Spencer
  */
-@SuppressWarnings("ALL")
+@SuppressWarnings({"AlibabaAbstractClassShouldStartWithAbstractNaming", "WeakerAccess"})
 public abstract class List<A> implements OptionLists, BaseList<A> {
     @SuppressWarnings("rawTypes")
     private static final List NIL = new Nil();

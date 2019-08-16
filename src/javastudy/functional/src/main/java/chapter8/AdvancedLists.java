@@ -2,14 +2,56 @@ package chapter8;
 
 import chapter4.BaseTailCell;
 import chapter7.Result;
+import util.MyMap;
 import util.Tuple;
 
+import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
 
 /**
  * @author Spencer
  */
-public abstract class AdvancedLists<Z> extends BaseLists {
+@SuppressWarnings({"WeakerAccess", "unused", "AlibabaAbstractClassShouldStartWithAbstractNaming"})
+abstract class AdvancedLists<Z> extends BaseLists {
+    /**
+     * 检查一个列表是否是另一个列表的子列表
+     * @param list list
+     * @param sub  sub list
+     * @param <T>  value type
+     * @return true or false
+     */
+    public static <T> boolean hasSubsequence(AdvancedList<T> list, AdvancedList<T> sub) {
+        return hasSubsequenceRecursive(list, sub).value();
+    }
+
+    private static <T> BaseTailCell<Boolean> hasSubsequenceRecursive(AdvancedList<T> list, AdvancedList<T> sub) {
+        return list.isEmpty() ?
+                BaseTailCell.ofReturn(sub.isEmpty()) :
+                startWith(list, sub) ?
+                        BaseTailCell.ofReturn(Boolean.TRUE) :
+                        BaseTailCell.ofSuspend(() -> hasSubsequenceRecursive(list.tail(), sub));
+    }
+
+    /**
+     * 子列表是否是列表的开头
+     * @param list list
+     * @param sub  sub list
+     * @param <T>  list value type
+     * @return true or false
+     */
+    private static <T> boolean startWith(AdvancedList<T> list, AdvancedList<T> sub) {
+        return startWithRecursive(list, sub).value();
+    }
+
+    private static <T> BaseTailCell<Boolean> startWithRecursive(AdvancedList<T> list, AdvancedList<T> sub) {
+        return sub.isEmpty() ?
+                BaseTailCell.ofReturn(Boolean.TRUE) :
+                list.isEmpty() ?
+                        BaseTailCell.ofReturn(Boolean.FALSE) :
+                        list.head().equals(sub.head()) ?
+                                BaseTailCell.ofSuspend(() -> startWithRecursive(list.tail(), sub.tail())) :
+                                BaseTailCell.ofReturn(Boolean.FALSE);
+    }
 
     /**
      * 包含原始列表中的所有Success，忽略Failure和Empty
@@ -157,4 +199,79 @@ public abstract class AdvancedLists<Z> extends BaseLists {
      * @return Result with last value
      */
     public abstract Result<Z> lastOption();
+
+    /**
+     * 找到吸收元zero时就退出左折叠
+     * @param identity init
+     * @param zero     吸收元
+     * @param f        function from B to A to B
+     * @param <B>      result type
+     * @return fold result
+     */
+    public abstract <B> B foldLeft(B identity, B zero, Function<B, Function<Z, B>> f);
+
+    /**
+     * 返回列表中索引对应的元素
+     * @param index 索引
+     * @return Result-wrapped value
+     */
+    public abstract Result<Z> getAt(int index);
+
+    /**
+     * 使用一个从A到B的函数将List转为Map
+     * @param f   function from A to B
+     * @param <B> target map value type
+     * @return map
+     */
+    public abstract <B> MyMap<B, AdvancedList<Z>> groupBy(Function<Z, B> f);
+
+    /**
+     * 如果列表里至少有一个满足条件f的值就返回true
+     * @param f function from A to Boolean
+     * @return true or false
+     */
+    public abstract boolean exists(Function<Z, Boolean> f);
+
+    /**
+     * 如果列表中的所有元素都满足条件function就返回true
+     * @param f function from A to Boolean
+     * @return true or false
+     */
+    public abstract boolean forAll(Function<Z, Boolean> f);
+
+    /**
+     * 将一个列表拆分为多个子列表，该列表将被拆分为两部分，每个子列表递归拆分为两部分
+     * @param depth 递归的步骤数
+     * @return nesting List
+     */
+    public abstract AdvancedList<AdvancedList<Z>> divide(int depth);
+
+    /**
+     * 从index处将列表拆分成两部分
+     * @param index split location
+     * @return list with two lists
+     */
+    public abstract AdvancedList<AdvancedList<Z>> splitListAt(int index);
+
+    /**
+     * 并行化的左折叠
+     * @param executorService thread pool
+     * @param identity        init
+     * @param f               function from A to B
+     * @param merge           function for merge sub list
+     * @param <B>             target type
+     * @return Result-wrapped value
+     */
+    public abstract <B> Result<B> parallelFoldLeft(ExecutorService executorService, B identity,
+                                                   Function<B, Function<Z, B>> f,
+                                                   Function<B, Function<B, B>> merge);
+
+    /**
+     * 并行化的映射
+     * @param executorService thread pool
+     * @param f               function from A to B
+     * @param <B>             target list value type
+     * @return target list
+     */
+    public abstract <B> Result<AdvancedList<B>> parallelMap(ExecutorService executorService, Function<Z, B> f);
 }

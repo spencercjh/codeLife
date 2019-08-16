@@ -6,7 +6,7 @@ import java.util.function.Function;
 /**
  * @author Spencer
  */
-public interface BaseList<A> {
+interface BaseList<A> {
     /**
      * 获取列表头
      * @return A

@@ -1,6 +1,7 @@
 package chapter3.email3;
 
 import chapter3.email2.Result;
+import util.Tuple;
 
 import java.util.function.Supplier;
 
@@ -8,6 +9,7 @@ import java.util.function.Supplier;
  * @author Spencer
  * page 75
  */
+@SuppressWarnings("WeakerAccess")
 public class Case<T> extends Tuple<Supplier<Boolean>, Supplier<Result<T>>> {
 
     private Case(Supplier<Boolean> booleanSupplier, Supplier<Result<T>> resultSupplier) {

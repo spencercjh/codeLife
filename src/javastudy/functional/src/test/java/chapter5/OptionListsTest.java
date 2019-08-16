@@ -1,6 +1,6 @@
-package chapter6;
+package chapter5;
 
-import chapter5.List;
+import chapter6.Option;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

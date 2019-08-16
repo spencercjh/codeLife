@@ -1,16 +1,20 @@
 package chapter8;
 
 import chapter4.BaseTailCell;
-import chapter6.OptionLists;
+import chapter5.OptionLists;
 import chapter7.Result;
+import util.MyMap;
 import util.Tuple;
 
+import java.util.Objects;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
 import java.util.function.Function;
 
 /**
  * @author Spencer
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "AlibabaAbstractClassShouldStartWithAbstractNaming"})
 public abstract class AdvancedList<A> extends AdvancedLists<A> implements OptionLists, BaseList<A> {
     @SuppressWarnings("rawTypes")
     private static final AdvancedList NIL = new Nil();
@@ -70,6 +74,90 @@ public abstract class AdvancedList<A> extends AdvancedLists<A> implements Option
     public Result<A> lastOption() {
         return foldLeft(Result.empty(), x -> Result::success);
     }
+
+    @Override
+    public <B> MyMap<B, AdvancedList<A>> groupBy(Function<A, B> f) {
+        return foldRight(MyMap.emptyMap(), a -> map -> {
+            final B key = f.apply(a);
+            map.put(key, map.getOrDefault(key, AdvancedList.list()).construct(a));
+            return map;
+        });
+    }
+
+    @Override
+    public boolean exists(Function<A, Boolean> f) {
+        return foldLeft(Boolean.FALSE, Boolean.TRUE, (Boolean x) -> (A a) -> x || f.apply(a));
+    }
+
+    @Override
+    public boolean forAll(Function<A, Boolean> f) {
+        return !exists((A x) -> !f.apply(x));
+    }
+
+    @Override
+    public AdvancedList<AdvancedList<A>> divide(int depth) {
+        return this.isEmpty() ?
+                AdvancedList.list(this) :
+                divide(AdvancedList.list(this), depth);
+    }
+
+    private AdvancedList<AdvancedList<A>> divide(AdvancedList<AdvancedList<A>> list, int depth) {
+        return list.head().lengthMemorized() < depth || depth < 2 ?
+                list :
+                divide(list.flatMap(x -> x.splitListAt(x.lengthMemorized() / 2)), depth / 2);
+    }
+
+    @Override
+    public AdvancedList<AdvancedList<A>> splitListAt(int index) {
+        return splitListAt(AdvancedList.list(), this.reverse(), index).value();
+    }
+
+    private BaseTailCell<AdvancedList<AdvancedList<A>>> splitListAt(AdvancedList<A> acc, AdvancedList<A> list, int index) {
+        return index == 0 || list.isEmpty() ?
+                BaseTailCell.ofReturn(AdvancedList.list(list.reverse(), acc)) :
+                BaseTailCell.ofSuspend(() -> splitListAt(acc.construct(list.head()), list.tail(), index - 1));
+    }
+
+    @Override
+    public <B> Result<B> parallelFoldLeft(ExecutorService executorService, B identity,
+                                          Function<B, Function<A, B>> f,
+                                          Function<B, Function<B, B>> merge) {
+        final int chunks = 1024;
+        final AdvancedList<AdvancedList<A>> dividedList = divide(chunks);
+        try {
+            AdvancedList<B> result = dividedList.map(subList -> executorService.submit(
+                    () -> subList.foldLeft(identity, f))).map(future -> {
+                try {
+                    return future.get();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            });
+            return Result.success(result.foldLeft(identity, merge));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.failure(e);
+        }
+    }
+
+    @Override
+    public <B> Result<AdvancedList<B>> parallelMap(ExecutorService executorService, Function<A, B> f) {
+        try {
+            return Result.success(map(x -> executorService.submit(() -> f.apply(x))).map(future -> {
+                try {
+                    return future.get();
+                } catch (InterruptedException | ExecutionException e) {
+                    e.printStackTrace();
+                    throw new RuntimeException(e);
+                }
+            }));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Result.failure(e);
+        }
+    }
+
 
     private static class Nil<A> extends AdvancedList<A> {
         private Nil() {
@@ -160,6 +248,16 @@ public abstract class AdvancedList<A> extends AdvancedLists<A> implements Option
         public Result<A> headOption() {
             return Result.empty();
         }
+
+        @Override
+        public <B> B foldLeft(B identity, B zero, Function<B, Function<A, B>> f) {
+            return identity;
+        }
+
+        @Override
+        public Result<A> getAt(int index) {
+            return Result.empty();
+        }
     }
 
     private static class Construct<A> extends AdvancedList<A> {
@@ -171,6 +269,25 @@ public abstract class AdvancedList<A> extends AdvancedLists<A> implements Option
             this.head = head;
             this.tail = tail;
             this.length = tail.length() + 1;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Construct<?> construct = (Construct<?>) o;
+            return length == construct.length &&
+                    Objects.equals(head, construct.head) &&
+                    Objects.equals(tail, construct.tail);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(length, head, tail);
         }
 
         @Override
@@ -289,6 +406,32 @@ public abstract class AdvancedList<A> extends AdvancedLists<A> implements Option
         @Override
         public Result<A> headOption() {
             return Result.success(head);
+        }
+
+        @Override
+        public <B> B foldLeft(B identity, B zero, Function<B, Function<A, B>> f) {
+            return foldLeft(identity, zero, this, f).value();
+        }
+
+        private <B> BaseTailCell<B> foldLeft(B acc, B zero, AdvancedList<A> list, Function<B, Function<A, B>> f) {
+            return list.isEmpty() || acc.equals(zero) ?
+                    BaseTailCell.ofReturn(acc) :
+                    BaseTailCell.ofSuspend(() ->
+                            foldLeft(f.apply(acc).apply(list.head()), zero, list.tail(), f));
+        }
+
+        @Override
+        public Result<A> getAt(int index) {
+            Tuple<Result<A>, Integer> zero = new Tuple<>(Result.failure("index out of bound"), -1);
+            Tuple<Result<A>, Integer> identity = new Tuple<>(Result.failure("index out of bound"), index);
+            Tuple<Result<A>, Integer> result = index < 0 || index >= lengthMemorized() ?
+                    identity :
+                    foldLeft(identity, zero,
+                            (Tuple<Result<A>, Integer> tuple) -> (A a) ->
+                                    tuple.second < 0 ?
+                                            tuple :
+                                            new Tuple<>(Result.success(a), tuple.second - 1));
+            return result.first;
         }
     }
 }

@@ -1,0 +1,58 @@
+﻿Dear Spencer,
+
+Thank you for interesting in NETTY topic. Typically Netty adopted in very low device of IoT area like “CCU, TBox”. So JT808 is China government standard.
+
+Besides, the JT808 implementation is native JAVA without Spring boot. Use spring boot of the implementation
+
+Following is data frame for your resolving 
+7E 02 00 00 2C 01 00 30 62 54 56 00 73 00 00 00 00 00 0C 00 03 01 DC 6C D4 07 3E 7D 02 65 00 00 00 01 00 7D 01 17 11 04 15 58 18 01 04 00 00 01 17 03 02 00 01 30 01 17 31 01 10 7A 7E 
+7E 02 00 00 2C 01 00 30 62 54 56 00 7D 01 00 00 00 00 00 0C 00 03 01 DC 2F 49 07 3B A8 D4 00 00 03 25 01 5F 17 11 03 23 09 52 01 04 00 00 00 C1 03 02 03 25 30 01 12 31 01 09 0A 7E
+
+-redis
+        -spring.boot
+        -spring.data
+        -spring.rabbit
+        -spring.amqp
+        -spring.ioc
+        -netty
+        -fastjson
+        -jms
+        -qpid
+        -mock
+#JT808 communication protocol
+中华人名共和国交通部jt／t808-2013道路运输车辆卫星定位系统北斗兼容车载终端通 讯协议技术规范 
+ 
+ 
+
+## Feature
+* JT808 device 
+        ```EV0-A
+* JT808 server
+        ```netty with spring-boot
+
+
+## How to use
+* Building: $ mvn clean package
+* Run  
+```debug :eclipse  
+```Q/P : $nohup java -jar netty-spring-1.0-SNAPSHOT.jar  >/dev/null 2>&1 &
+```
+* Connect to this server by net assistant 
+```local:
+    protol : TCP client 
+    local addr:127.0.0.1 
+    remote addr: 127.0.0.1:17623
+    
+```remote
+    protol : TCP client 
+    local addr:[your machien ip]
+    remote addr: ubuntuweb01:17902
+
+* click connect
+* check send as HEX
+* put following in bottom pane
+
+```
+  7E0200002C010030625456007D0100000000000C000301DC2F49073BA8D400000325015F1711032309520104000000C1030203253001123101090A7E
+```
+* click send

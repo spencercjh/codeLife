@@ -16,36 +16,31 @@
             <version>3.2.12</version>
         </dependency>
     </dependencies>
+    <!-- 国内阿里云maven仓库 -->
     <repositories>
         <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
-            <id>central</id>
-            <name>remote-repos</name>
-            <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/remote-repos</url>
-        </repository>
-        <repository>
-            <snapshots/>
-            <id>snapshots</id>
-            <name>libs-snapshot</name>
-            <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/libs-snapshot</url>
         </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
-            <id>central</id>
-            <name>mdm-plugins-release</name>
-            <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/mdm-plugins-release</url>
-        </pluginRepository>
-        <pluginRepository>
-            <snapshots/>
-            <id>snapshots</id>
-            <name>mdm-plugins-release</name>
-            <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/mdm-plugins-release</url>
         </pluginRepository>
     </pluginRepositories>
 </project>

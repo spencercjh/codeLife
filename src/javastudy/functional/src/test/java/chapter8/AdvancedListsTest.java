@@ -1,5 +1,6 @@
 package chapter8;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 class AdvancedListsTest {
     private final Integer[] numbers = new Integer[]{1, 2, 3, 4, 5};
 
@@ -65,7 +67,7 @@ class AdvancedListsTest {
         AdvancedList<Integer> list = AdvancedList.list(numbers);
         Map<String, AdvancedList<Integer>> map = list.groupBy(x -> x % 2 == 0 ? "偶数" : "奇数");
         map.forEach((s, integerAdvancedList) ->
-                System.out.println(String.format("key: %s values: %s", s, integerAdvancedList.toString())));
+                log.debug("key: {} values: {}", s, integerAdvancedList.toString()));
         assertTrue(map.containsKey("偶数"));
         assertEquals(2, map.get("偶数").lengthMemorized());
         assertTrue(map.containsKey("奇数"));

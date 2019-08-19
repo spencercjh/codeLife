@@ -7,6 +7,18 @@
     <groupId>top.spencercjh</groupId>
     <artifactId>functional</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -16,6 +28,25 @@
             <artifactId>junit-jupiter</artifactId>
             <version>RELEASE</version>
             <scope>compile</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.28</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.28</version>
         </dependency>
     </dependencies>
     <repositories>
@@ -28,7 +59,7 @@
             <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/remote-repos</url>
         </repository>
         <repository>
-            <snapshots />
+            <snapshots/>
             <id>snapshots</id>
             <name>libs-snapshot</name>
             <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/libs-snapshot</url>
@@ -44,7 +75,7 @@
             <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/mdm-plugins-release</url>
         </pluginRepository>
         <pluginRepository>
-            <snapshots />
+            <snapshots/>
             <id>snapshots</id>
             <name>mdm-plugins-release</name>
             <url>https://CAP5SGH:cjh1998CJH@rb-artifactory.bosch.com:443/artifactory/mdm-plugins-release</url>

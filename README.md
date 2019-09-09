@@ -1,149 +1,26 @@
 # 四非Java找个好工作真难啊
+## 四非Java找个好工作真难啊
+### 四非Java找个好工作真难啊
+#### 四非Java找个好工作真难啊
+##### 四非Java找个好工作真难啊
+###### 四非Java找个好工作真难啊
 
-目录结构如下:
+
+仓库目录结构如下:
 
 ```
-├───django_study
-│   ├───django_study
-│   │   └───__pycache__
-│   ├───polls
-│   │   ├───migrations
-│   │   ├───static
-│   │   │   └───polls
-│   │   │       └───images
-│   │   ├───templates
-│   │   │   └───polls
-│   │   └───__pycache__
-│   └───templates
-│       └───admin
+├───django_study // 参照官方文档一步步写下来的Django HelloWorld Demo
 └───src
-    ├───design_patterns
-    │   ├───adapter
-    │   ├───bridge
-    │   ├───builder
-    │   ├───decorator
-    │   ├───factory_method
-    │   ├───strategy
-    │   └───template_method
-    ├───exam
-    │   ├───bytecode2019
-    │   ├───puyuan2019
-    │   ├───qihu2019
-    │   ├───tencent2017
-    │   ├───xiecheng2019
-    │   └───yuewen2019
-    ├───interviewnote
-    │   └───image
-    ├───javastudy
-    │   ├───cglibDemo
-    │   │   └───src
-    │   │       └───main
-    │   │           └───java
-    │   │               ├───callbackfilter
-    │   │               ├───interceptor
-    │   │               ├───interfacemaker
-    │   │               └───lazyload
-    │   ├───chat-demo
-    │   │   └───src
-    │   │       ├───main
-    │   │       │   ├───java
-    │   │       │   │   └───top
-    │   │       │   │       └───spencercjh
-    │   │       │   │           └───chatdemo
-    │   │       │   │               ├───controller
-    │   │       │   │               ├───netty
-    │   │       │   │               └───pojo
-    │   │       │   └───resources
-    │   │       │       ├───static
-    │   │       │       │   ├───css
-    │   │       │       │   ├───img
-    │   │       │       │   └───js
-    │   │       │       └───templates
-    │   │       └───test
-    │   │           └───java
-    │   │               └───top
-    │   │                   └───spencercjh
-    │   │                       └───chatdemo
-    │   ├───functional
-    │   │   └───src
-    │   │       ├───main
-    │   │       │   ├───java
-    │   │       │   │   ├───chapter2
-    │   │       │   │   │   └───summery
-    │   │       │   │   ├───chapter3
-    │   │       │   │   │   ├───email1
-    │   │       │   │   │   ├───email2
-    │   │       │   │   │   └───email3
-    │   │       │   │   ├───chapter4
-    │   │       │   │   └───chapter5
-    │   │       │   └───resources
-    │   │       └───test
-    │   │           └───java
-    │   ├───gs-accessing-data-mongodb
-    │   │   └───complete
-    │   │       ├───.mvn
-    │   │       │   └───wrapper
-    │   │       └───src
-    │   │           ├───main
-    │   │           │   ├───java
-    │   │           │   │   └───hello
-    │   │           │   └───resources
-    │   │           └───test
-    │   │               └───java
-    │   │                   └───hello
-    │   ├───netty
-    │   │   └───src
-    │   │       └───main
-    │   │           └───java
-    │   │               ├───echo
-    │   │               └───file
-    │   ├───spring-boot-webflux-security
-    │   │   └───src
-    │   │       ├───main
-    │   │       │   ├───java
-    │   │       │   │   └───com
-    │   │       │   │       └───l2d
-    │   │       │   │           └───tuto
-    │   │       │   │               └───springbootwebfluxsecurity
-    │   │       │   │                   ├───configuration
-    │   │       │   │                   │   └───jackson
-    │   │       │   │                   ├───controller
-    │   │       │   │                   ├───security
-    │   │       │   │                   │   ├───controller
-    │   │       │   │                   │   ├───dto
-    │   │       │   │                   │   ├───exception
-    │   │       │   │                   │   └───jwt
-    │   │       │   │                   └───user
-    │   │       │   │                       ├───domain
-    │   │       │   │                       └───repository
-    │   │       │   └───resources
-    │   │       └───test
-    │   │           └───java
-    │   │               └───com
-    │   │                   └───l2d
-    │   │                       └───tuto
-    │   │                           └───springbootwebfluxsecurity
-    │   └───spring-security-demo
-    │       └───src
-    │           ├───main
-    │           │   ├───java
-    │           │   │   └───top
-    │           │   │       └───spencercjh
-    │           │   │           └───springsecuritydemo
-    │           │   │               ├───config
-    │           │   │               │   └───security
-    │           │   │               ├───controller
-    │           │   │               ├───service
-    │           │   │               └───util
-    │           │   └───resources
-    │           └───test
-    │               └───java
-    │                   └───top
-    │                       └───spencercjh
-    │                           └───springsecuritydemo
-    └───leetcode
-        └───util
-
+    ├───design_patterns // Java设计模式实践，参考《设计模式之禅》
+    ├───exam    // 一些公司的笔试题
+    ├───interviewnote   // 面经、面试笔记
+    ├───javastudy   //  Java学习
+    │   ├───cglibDemo   // CGLIB实践
+    │   ├───chat-demo   // 基于socket、Netty的聊天室Demo。Spring Boot Web做页面路由
+    │   ├───functional  //Java函数式编程实践 参考《Java函数式编程》
+    │   ├───gs-accessing-data-mongodb   // github上找的Spring Boot with MongoDB Demo
+    │   ├───netty   // 两个Netty Demo，一个是文件服务器，一个是HelloWorld Echo Server
+    │   ├───spring-boot-webflux-security    // github上找的基于JWT的Spring Secruity with Spring WebFlux Demo
+    │   └───spring-security-demo    // 我自己对上述技术栈的实现（不完整）
+    └───leetcode    //  LeetCode刷题（已经停止更新）
 ```
-
-其中设计模式参考《设计模式之禅》，实战考试中缺失了一些只能在网页上编写代码的XX厂家的考试，面试笔记中记录着被闻到过的真题及其拓展，Java学习包括了学习《Java核心技术》等书籍编写的一些源代码，LeetCode刷题请参阅刷题目录content.md。Netty方面以《Netty实战》和网上Blog为主。

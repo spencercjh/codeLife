@@ -6,7 +6,9 @@
 ###### 四非Java找个好工作真难啊
 四非Java找个好工作真难啊
 
-文件目录结构如下:
+![我的简历](./resume.png)
+
+项目文件目录结构如下:
 
 ```
 ├───django_study // 参照官方文档一步步写下来的Django HelloWorld Demo

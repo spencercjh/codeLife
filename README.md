@@ -22,6 +22,6 @@
     │   ├───netty   // 两个Netty Demo，一个是文件服务器，一个是HelloWorld Echo Server
     │   ├───spring-boot-webflux-security    // github上找的基于JWT的Spring Secruity with Spring WebFlux Demo
     │   ├───spring-security-demo    // 我自己对上述技术栈的实现（不完整）
-    │   └───DistributedID   // github上找的基于Netty和雪花算法的分布式唯一ID服务实现
+    │   └───distributed-id-service   // github上找的基于Netty和雪花算法的分布式唯一ID服务实现
     └───leetcode    // LeetCode刷题（已经停止更新）
 ```

@@ -24,7 +24,7 @@ public class SdkServerEncoder extends MessageToByteEncoder<SdkProto> {
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         Channel channel = ctx.channel();
-        logger.error("SdkServerEncoder channel [{}] error and will be closed", NettyUtil.parseRemoteAddr(channel), cause);
+        logger.error("Sdk Server Encoder channel [{}] error and will be closed", NettyUtil.parseRemoteAddr(channel), cause);
         NettyUtil.closeChannel(channel);
     }
 }

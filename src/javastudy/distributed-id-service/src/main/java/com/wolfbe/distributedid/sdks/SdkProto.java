@@ -1,19 +1,26 @@
 package com.wolfbe.distributedid.sdks;
 
+import java.util.Objects;
+
 /**
  * @author Andy
  */
 public class SdkProto {
+    /**
+     * 请求的ID
+     */
+    private int rqid;
+    /**
+     * 全局的ID
+     */
+    private long did;
 
-    private int rqid; //请求的ID
-    private long did; //全局的ID
-
-    public SdkProto(int rqid, long did) {
+    SdkProto(int rqid, long did) {
         this.rqid = rqid;
         this.did = did;
     }
 
-    public int getRqid() {
+    int getRqid() {
         return rqid;
     }
 
@@ -21,11 +28,11 @@ public class SdkProto {
         this.rqid = rqid;
     }
 
-    public long getDid() {
+    long getDid() {
         return did;
     }
 
-    public void setDid(long did) {
+    void setDid(long did) {
         this.did = did;
     }
 
@@ -35,5 +42,23 @@ public class SdkProto {
                 "rqid=" + rqid +
                 ", did=" + did +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SdkProto sdkProto = (SdkProto) o;
+        return rqid == sdkProto.rqid &&
+                did == sdkProto.did;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rqid, did);
     }
 }

@@ -1,3 +1,5 @@
+clone from: https://github.com/hylexus/jt-808-protocol
+
 # jt-808-protocol
 
 ## 说明

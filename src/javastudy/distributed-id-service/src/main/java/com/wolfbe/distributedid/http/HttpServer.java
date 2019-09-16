@@ -43,10 +43,14 @@ public class HttpServer extends BaseServer {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline().addLast(defLoopGroup,
-                                new HttpRequestDecoder(),       //请求解码器
-                                new HttpObjectAggregator(65536),//将多个消息转换成单一的消息对象
-                                new HttpResponseEncoder(),      // 响应编码器
-                                new HttpServerHandler(snowFlake)//自定义处理器
+                                //请求解码器
+                                new HttpRequestDecoder(),
+                                //将多个消息转换成单一的消息对象
+                                new HttpObjectAggregator(65536),
+                                // 响应编码器
+                                new HttpResponseEncoder(),
+                                //自定义处理器
+                                new HttpServerHandler(snowFlake)
                         );
                     }
                 });
@@ -55,8 +59,8 @@ public class HttpServer extends BaseServer {
     @Override
     public void start() {
         try {
-            cf = serverBootstrap.bind().sync();
-            InetSocketAddress addr = (InetSocketAddress) cf.channel().localAddress();
+            channelFuture = serverBootstrap.bind().sync();
+            InetSocketAddress addr = (InetSocketAddress) channelFuture.channel().localAddress();
             logger.info("HttpServer start success, port is:{}", addr.getPort());
         } catch (InterruptedException e) {
             e.printStackTrace();

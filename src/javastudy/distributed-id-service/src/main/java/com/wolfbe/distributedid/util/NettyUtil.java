@@ -17,8 +17,8 @@ public class NettyUtil {
 
     /**
      * 获取Channel的远程IP地址
-     * @param channel
-     * @return
+     * @param channel netty channel
+     * @return ip String
      */
     public static String parseRemoteAddr(final Channel channel) {
         if (null == channel) {
@@ -41,12 +41,7 @@ public class NettyUtil {
 
     public static void closeChannel(Channel channel) {
         final String addrRemote = parseRemoteAddr(channel);
-        channel.close().addListener(new ChannelFutureListener() {
-            @Override
-            public void operationComplete(ChannelFuture future) throws Exception {
-                logger.info("closeChannel: close the connection to remote address[{}] result: {}", addrRemote,
-                        future.isSuccess());
-            }
-        });
+        channel.close().addListener((ChannelFutureListener) channelFuture -> logger.info("closeChannel: close the connection to remote address[{}] result: {}", addrRemote,
+                channelFuture.isSuccess()));
     }
 }

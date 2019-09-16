@@ -21,8 +21,7 @@ public abstract class BaseServer implements Server {
     protected DefaultEventLoopGroup defLoopGroup;
     protected NioEventLoopGroup bossGroup;
     protected NioEventLoopGroup workGroup;
-    protected NioServerSocketChannel ssch;
-    protected ChannelFuture cf;
+    protected ChannelFuture channelFuture;
     protected ServerBootstrap serverBootstrap;
     protected int port;
 
@@ -63,13 +62,5 @@ public abstract class BaseServer implements Server {
         bossGroup.shutdownGracefully();
         workGroup.shutdownGracefully();
         logger.info("Server EventLoopGroup shutdown finish");
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
     }
 }

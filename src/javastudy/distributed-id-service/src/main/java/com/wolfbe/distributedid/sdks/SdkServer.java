@@ -46,8 +46,8 @@ public class SdkServer extends BaseServer {
     @Override
     public void start() {
         try {
-            cf = serverBootstrap.bind().sync();
-            InetSocketAddress addr = (InetSocketAddress) cf.channel().localAddress();
+            channelFuture = serverBootstrap.bind().sync();
+            InetSocketAddress addr = (InetSocketAddress) channelFuture.channel().localAddress();
             logger.info("SdkServer start success, port is:{}", addr.getPort());
         } catch (InterruptedException e) {
             logger.error("SdkServer start fail,", e);

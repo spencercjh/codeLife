@@ -31,7 +31,7 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<FullHttpReque
     private Semaphore semaphore = new Semaphore(GlobalConfig.HANDLE_HTTP_TPS);
     private SnowFlake snowFlake;
 
-    public HttpServerHandler(SnowFlake snowFlake) {
+    HttpServerHandler(SnowFlake snowFlake) {
         this.snowFlake = snowFlake;
     }
 

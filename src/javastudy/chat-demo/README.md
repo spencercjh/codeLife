@@ -634,19 +634,19 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
 ### 单线程Reactor模式
 
-![单线程Reactor](https://img2018.cnblogs.com/blog/1286175/201902/1286175-20190225145705104-1060766927.jpg)   
+![单线程Reactor](单线程Reactor.jpg)   
 
 一个线程又要处理TCP连接（acceptor），又要响应请求：编解码、处理业务逻辑
 
 ### 多线程Reactor模式
 
-![多线程Reactor模式](https://img2018.cnblogs.com/blog/1286175/201902/1286175-20190225145727558-1348408422.jpg)
+![多线程Reactor模式](多线程Reactor模式.jpg)
 
 Reactor线程仍然是单线程，负责acceptor和IO read/send。但是对于请求的解码以及业务处理和响应的编码都是有work thread pool负责。
 
 ### 多Reactor模式
 
-![多Reactor模式](https://img2018.cnblogs.com/blog/1286175/201902/1286175-20190225145751032-242162687.jpg)
+![多Reactor模式](多Reactor模式.jpg)
 
 其中主Reactor响应用户的连接事件，然后分发给acceptor，由其创建新的子Reactor。多个子Reactor分别处理各自的IO事件，比如read/write，然后再将其交给work thread pool进行解码，业务处理，编码。
 

@@ -12,9 +12,9 @@ public class TestCglib {
         enhancer.setSuperclass(TargetObject.class);
         enhancer.setCallback(new TargetInterceptor());
         TargetObject newTargetObject = (TargetObject) enhancer.create();
-        System.out.println(newTargetObject.toString());
+//        System.out.println(newTargetObject.toString());
         System.out.println(newTargetObject.method1("test"));
-        System.out.println(newTargetObject.method2(123));
-        System.out.println(newTargetObject.method3(123F));
+//        System.out.println(newTargetObject.method2(123));
+//        System.out.println(newTargetObject.method3(123F));
     }
 }

@@ -3,6 +3,7 @@ package javastudy;
 
 import java.math.BigInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
@@ -18,8 +19,12 @@ public class StreamStudy {
      * @return Stream
      * @since 1.9
      */
-    private static LongStream integers(long limit) {
+    private static LongStream longs(long limit) {
         return LongStream.range(0, limit);
+    }
+
+    private static IntStream integer(int limit) {
+        return IntStream.range(0, limit);
     }
 
     /**
@@ -30,7 +35,7 @@ public class StreamStudy {
     }
 
     private static LongStream otherPrimes(long limit) {
-        return integers(limit).filter(StreamStudy::isPrime);
+        return longs(limit).filter(StreamStudy::isPrime);
     }
 
     /**
@@ -74,8 +79,8 @@ public class StreamStudy {
      * @return Stream
      */
     public static LongStream doubleCycleTest(long limit) {
-        return integers(limit).flatMap((unused) ->
-                integers(limit).map(x -> x + 1));
+        return longs(limit).flatMap((unused) ->
+                longs(limit).map(x -> x + 1));
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

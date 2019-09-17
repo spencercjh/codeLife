@@ -462,49 +462,50 @@ InterfaceMaker会动态生成一个接口，该接口包含指定类定义的所
 ##### 二、示例：
 
 ```java
-package com.zghw.cglib;
- 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
- 
+package interfacemaker;
+
+import interceptor.TargetObject;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.InterfaceMaker;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
- 
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+/**
+ * @author SpencerCJH
+ * @date 2019/7/23 15:35
+ */
 public class TestInterfaceMaker {
- 
-    public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-        InterfaceMaker interfaceMaker =new InterfaceMaker();
-        //抽取某个类的方法生成接口方法
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        InterfaceMaker interfaceMaker = new InterfaceMaker();
         interfaceMaker.add(TargetObject.class);
-        Class<?> targetInterface=interfaceMaker.create();
-        for(Method method : targetInterface.getMethods()){
+        Class<?> targetInterface = interfaceMaker.create();
+        for (Method method : targetInterface.getMethods()) {
             System.out.println(method.getName());
         }
-        //接口代理并设置代理接口方法拦截
-        Object object = Enhancer.create(Object.class, new Class[]{targetInterface}, new MethodInterceptor(){
-            @Override
-            public Object intercept(Object obj, Method method, Object[] args,
-                    MethodProxy methodProxy) throws Throwable {
-                if(method.getName().equals("method1")){
-                    System.out.println("filter method1 ");
-                    return "mmmmmmmmm";
-                }
-                if(method.getName().equals("method2")){
-                    System.out.println("filter method2 ");
-                    return 1111111;
-                }
-                if(method.getName().equals("method3")){
-                    System.out.println("filter method3 ");
-                    return 3333;
-                }
-                return "default";
-            }});
-        Method targetMethod1=object.getClass().getMethod("method3",new Class[]{int.class});
-        int i=(int)targetMethod1.invoke(object, new Object[]{33});
-        Method targetMethod=object.getClass().getMethod("method1",new Class[]{String.class});
-        System.out.println(targetMethod.invoke(object, new Object[]{"sdfs"}));
+        Object object = Enhancer.create(Object.class, new Class[]{targetInterface}, (MethodInterceptor) (obj, method, parameter, proxy) -> {
+            System.out.println("show args into filter");
+            for (Object object1 : parameter) {
+                System.out.println(object1);
+            }
+            if ("method1".equals(method.getName())) {
+                System.out.println("filter method1");
+                return "test method1";
+            } else if ("method2".equals(method.getName())) {
+                System.out.println("filter method2");
+                return "test method2";
+            } else if ("method3".equals(method.getName())) {
+                System.out.println("filter method3");
+                return 789F;
+            }
+            return "deault method";
+        });
+        Method targetMethod1 = object.getClass().getMethod("method3", float.class);
+        System.out.println((float) targetMethod1.invoke(object, new Object[]{33F}));
+        Method targetMethod2 = object.getClass().getMethod("method1", String.class);
+        System.out.println(targetMethod2.invoke(object, "spencer"));
     }
 }
 ```

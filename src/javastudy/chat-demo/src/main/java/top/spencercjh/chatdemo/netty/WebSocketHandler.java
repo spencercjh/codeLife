@@ -14,9 +14,13 @@ import io.netty.handler.codec.http.HttpVersion;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.AttributeKey;
 import io.netty.util.CharsetUtil;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import top.spencercjh.chatdemo.pojo.WebSocketMessage;
+import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
@@ -26,17 +30,18 @@ import java.util.Date;
 public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
 
     private static final Logger logger = LoggerFactory.getLogger(WebSocketHandler.class);
+    private final Gson gson = new Gson();
     private WebSocketServerHandshaker handShaker;
-    private Gson gson = new Gson();
 
     /**
-     * on msg
-     * 有信号进来时
+     * 消息读取
+     * @param ctx ChannelHandlerContext
+     * @param msg WebSocketFrame or HTTP Request
      */
     @Override
-    protected void messageReceived(ChannelHandlerContext ctx, Object msg) {
+    protected void channelRead0(ChannelHandlerContext ctx, Object msg) {
         if (msg instanceof FullHttpRequest) {
-            handHttpRequest(ctx, (FullHttpRequest) msg);
+            handleHttpRequest(ctx, (FullHttpRequest) msg);
         } else if (msg instanceof WebSocketFrame) {
             handleWebSocketMessage(ctx, (WebSocketFrame) msg);
         }
@@ -49,7 +54,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
-        NettyConfig.group.add(ctx.channel());
+        Netty.CHANNEL_GROUP.add(ctx.channel());
     }
 
     /**
@@ -60,7 +65,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         broadcastWsMsg(ctx, new WebSocketMessage(-11000, ctx.channel().id().toString()));
-        NettyConfig.group.remove(ctx.channel());
+        Netty.CHANNEL_GROUP.remove(ctx.channel());
     }
 
     /**
@@ -90,7 +95,6 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
             // 关闭指令
             handShaker.close(ctx.channel(), (CloseWebSocketFrame) msg.retain());
         }
-
         if (msg instanceof PingWebSocketFrame) {
             // ping 消息
             ctx.channel().write(new PongWebSocketFrame(msg.content().retain()));
@@ -103,52 +107,44 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
                 // 进入房间
                 case 1:
                     // 给进入的房间的用户响应一个欢迎消息，向其他用户广播一个有人进来的消息
-                    broadcastWsMsg(ctx, new WebSocketMessage(-10001, webSocketmessage.getName()));
-                    AttributeKey<String> name;
-                    if (AttributeKey.exists(webSocketmessage.getName())) {
-                        name = AttributeKey.valueOf(webSocketmessage.getName());
-                    } else {
-                        name = AttributeKey.newInstance(webSocketmessage.getName());
-                    }
-                    ctx.channel().attr(name);
+                    broadcastWsMsg(ctx, new WebSocketMessage(WebSocketMessage.ENTER_MSG_TYPE, webSocketmessage.getName()));
                     ctx.channel().writeAndFlush(new TextWebSocketFrame(
-                            gson.toJson(new WebSocketMessage(-1, webSocketmessage.getName()))));
+                            gson.toJson(new WebSocketMessage(WebSocketMessage.WELCOME_MSG_TYPE, webSocketmessage.getName()))));
                     break;
                 // 发送消息
                 case 2:
                     // 广播消息
                     broadcastWsMsg(ctx, new WebSocketMessage(
-                            -2, webSocketmessage.getName(), webSocketmessage.getBody()));
+                            WebSocketMessage.NORMAL_MSG_TYPE, webSocketmessage.getName(), webSocketmessage.getBody()));
                     break;
                 // 离开房间.
                 case 3:
                     broadcastWsMsg(ctx, new WebSocketMessage(
-                            -11000, webSocketmessage.getName(), webSocketmessage.getBody()));
+                            WebSocketMessage.LEAVE_MSG_TYPE, webSocketmessage.getName(), webSocketmessage.getBody()));
                     break;
                 default:
                     break;
             }
-            NettyConfig.group.writeAndFlush(new TextWebSocketFrame(new Date().toString()));
+            Netty.CHANNEL_GROUP.writeAndFlush(new TextWebSocketFrame(new Date().toString()));
         }
-        // donothing, 暂时不处理二进制消息
-
     }
 
     /**
      * 处理 http 请求，WebSocket 初始握手 (opening handshake ) 都始于一个 HTTP 请求
      */
-    private void handHttpRequest(ChannelHandlerContext ctx, FullHttpRequest req) {
-        if (!req.decoderResult().isSuccess() || !("websocket".contentEquals(req.headers().get("Upgrade")))) {
+    private void handleHttpRequest(ChannelHandlerContext ctx, FullHttpRequest fullHttpRequest) {
+        if (!fullHttpRequest.decoderResult().isSuccess() || !(WebSocketMessage.HEADER_WEBSOCKET.contentEquals(
+                fullHttpRequest.headers().get(WebSocketMessage.HEADER_UPGRADE)))) {
             sendHttpResponse(ctx, new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.BAD_REQUEST));
             return;
         }
         WebSocketServerHandshakerFactory factory = new WebSocketServerHandshakerFactory(
-                "ws://" + NettyConfig.WS_HOST + NettyConfig.WS_PORT, null, false);
-        handShaker = factory.newHandshaker(req);
+                "ws://" + Netty.WS_HOST + Netty.WS_PORT, null, false);
+        handShaker = factory.newHandshaker(fullHttpRequest);
         if (handShaker == null) {
             WebSocketServerHandshakerFactory.sendUnsupportedVersionResponse(ctx.channel());
         } else {
-            handShaker.handshake(ctx.channel(), req);
+            handShaker.handshake(ctx.channel(), fullHttpRequest);
         }
     }
 
@@ -156,14 +152,14 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
      * 响应非 WebSocket 初始握手请求
      */
     private void sendHttpResponse(ChannelHandlerContext ctx, DefaultFullHttpResponse res) {
-        if (200 != res.status().code()) {
+        if (HttpStatus.OK.value() != res.status().code()) {
             ByteBuf buf = Unpooled.copiedBuffer(res.status().toString(), CharsetUtil.UTF_8);
             res.content().writeBytes(buf);
             buf.release();
         }
-        ChannelFuture f = ctx.channel().writeAndFlush(res);
-        if (200 != res.status().code()) {
-            f.addListener(ChannelFutureListener.CLOSE);
+        ChannelFuture channelFuture = ctx.channel().writeAndFlush(res);
+        if (HttpStatus.OK.value() != res.status().code()) {
+            channelFuture.addListener(ChannelFutureListener.CLOSE);
         }
     }
 
@@ -171,8 +167,66 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<Object> {
      * 广播 websocket 消息（不给自己发）
      */
     private void broadcastWsMsg(ChannelHandlerContext ctx, WebSocketMessage msg) {
-        NettyConfig.group.stream()
-                .filter(channel -> channel.id() != ctx.channel().id())
+        Netty.CHANNEL_GROUP.stream()
+                .filter(channel -> !channel.id().equals(ctx.channel().id()))
                 .forEach(channel -> channel.writeAndFlush(new TextWebSocketFrame(gson.toJson(msg))));
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Accessors(chain = true)
+    static class WebSocketMessage {
+        static final String HEADER_UPGRADE = "Upgrade";
+        static final String HEADER_WEBSOCKET = "websocket";
+        /**
+         * 前端：收到进入房间的响应 包含房间信息
+         */
+        static final int WELCOME_MSG_TYPE = -1;
+        /**
+         * 前端：收到其他人发过来的消息
+         */
+        static final int NORMAL_MSG_TYPE = -2;
+        /**
+         * 前端：收到其他人离开房间的信息
+         */
+        static final int LEAVE_MSG_TYPE = -11000;
+        /**
+         * 前端：收到其他人进入房间的消息
+         */
+        static final int ENTER_MSG_TYPE = -10001;
+        /**
+         * 消息类型
+         */
+        private int type;
+        /**
+         * 用户名称
+         */
+        private String name;
+        /**
+         * 房间 ID
+         */
+        private long roomId;
+        /**
+         * 消息主体
+         */
+        private String body;
+        /**
+         * 错误码
+         */
+        private int errorCode;
+
+        WebSocketMessage(int type, String name) {
+            this.type = type;
+            this.name = name;
+            this.errorCode = 0;
+        }
+
+        WebSocketMessage(int type, String name, String body) {
+            this.type = type;
+            this.name = name;
+            this.body = body;
+            this.errorCode = 0;
+        }
     }
 }

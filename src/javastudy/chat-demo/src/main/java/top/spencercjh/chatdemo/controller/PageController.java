@@ -1,21 +1,20 @@
 package top.spencercjh.chatdemo.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.http.HttpServletRequest;
-
+/**
+ * @author Spencer
+ */
 @Controller
 public class PageController {
-
-    @RequestMapping("/chat")
-    public String chat(HttpServletRequest req) {
-        return "chat.html";
+    @GetMapping("/chat")
+    public String chat() {
+        return "chat";
     }
 
-    @RequestMapping("/index")
-    public String index(HttpServletRequest req) {
-        return "index.html";
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
-
 }

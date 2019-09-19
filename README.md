@@ -25,8 +25,9 @@
     │   ├───functional  // Java函数式编程实践 参考《Java函数式编程》
     │   ├───gs-accessing-data-mongodb   // github上找的Spring Boot with MongoDB Demo
     │   ├───netty   // 两个Netty Demo，一个是文件服务器，一个是HelloWorld Echo Server
-    │   ├───spring-boot-webflux-security    // github上找的基于JWT的Spring Secruity with Spring WebFlux Demo
+    │   ├───spring-boot-webflux-security    // github上找的基于JWT的Spring Security with Spring WebFlux Demo
     │   ├───spring-security-demo    // 我自己对上述技术栈的实现（不完整）
     │   └───distributed-id-service   // github上找的基于Netty和雪花算法的分布式唯一ID服务实现
+    │   └───reactive-chat-demo  //基于reactive栈的Netty聊天室demo
     └───leetcode    // LeetCode刷题（已经停止更新）
 ```

@@ -1,5 +1,5 @@
 # Getting Started
-
+还没写完，很多代码还是复制的之前的代码，尽量全改成reactive栈的，函数式的。
 ### Reference Documentation
 For further reference, please consider the following sections:
 

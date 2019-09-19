@@ -26,3 +26,5 @@ src/test/test.iml
 
 ### VS Code ###
 .vscode/
+mvnw
+mvnw.cmd

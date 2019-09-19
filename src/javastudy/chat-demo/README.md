@@ -1,11 +1,6 @@
-*reference:* 
-    
-    聊天室Demo：https://blog.csdn.net/xiaoping0915/article/details/81202851
-    Netty线程模型：https://www.cnblogs.com/lxyit/p/10430939.html
-    
 # 基于Netty的WebSocket聊天室Demo
-
-这个项目基于Netty 4.1.x、Spring Boot、Spring WebFlux，构建了一个基于WebSocket协议的多人聊天室Demo。这个项目能够帮助我们快速学习、了解Netty和WebSocket。
+ 
+这个[项目](https://github.com/spencercjh/leetcode/tree/master/src/javastudy/chat-demo)基于Netty 4.1.x、Spring Boot、Spring WebFlux，构建了一个基于WebSocket协议的多人聊天室Demo。这个项目能够帮助我们快速学习、了解Netty和WebSocket。
 
 ## 核心依赖
 
@@ -227,20 +222,21 @@ public class Netty {
 
 `BossEventLoopGroup`是Main Reactor，其通过事件循环创建TCP连接，然后将连接的`SocketChannel`抽象绑定到`WorkEventLoopGroup`中的`EventLoop`，形成Sub Reactor。
 
-<br>
+
 Main Reactor是单线程的事件循环。虽然也可以构造多线程，但是没有意义。因为Netty中在绑定端口时，只会使用`EventLoopGroup`中的一个`EventLoop`绑定到NIO中的`Selector`上，即使是使用了`EventLoopGroup`。
 
-<br>
+
 对于同个应用，如果监听多个端口，使用多个`ServerBootstrap`共享一个`BossEventLoopGroup`。这样Main Reactor也是多线程模式了，才有多线程的意义。
 
-<br>     
+ 
 这里我这样写`bootstrap.group(bossGroup, workGroup)`，就表明使用了2个EventLoopGroup，这是Netty里声明“多Reactor模式”的体现。
 
-<br>
+
 `channel(NioServerSocketChannel.class)` Socket连接
 
-<br>
-`childHandler(new ServerInitializer())` 监听Channel，为channel中的pipeline添加各种handler。Handler和childHandler的区别如下：https://www.jianshu.com/p/da4d2b5e34ee
+
+`childHandler(new ServerInitializer())` 监听Channel，为channel中的pipeline添加各种handler。
+Handler和childHandler的区别如下：https://www.jianshu.com/p/da4d2b5e34ee
 
 #### ServerInitializer
  
@@ -651,3 +647,15 @@ Reactor线程仍然是单线程，负责acceptor和IO read/send。但是对于�
 其中主Reactor响应用户的连接事件，然后分发给acceptor，由其创建新的子Reactor。多个子Reactor分别处理各自的IO事件，比如read/write，然后再将其交给work thread pool进行解码，业务处理，编码。
 
 多Reactor的设计通过将TCP连接建立和IO read/write事件分离至不同的Reactor，从而分担单个Reactor的压力，提升其响应能力。
+
+## 源码
+
+https://github.com/spencercjh/leetcode/tree/master/src/javastudy/chat-demo
+
+## 参考资料
+
+聊天室Demo：https://blog.csdn.net/xiaoping0915/article/details/81202851
+
+Netty线程模型：https://www.cnblogs.com/lxyit/p/10430939.html
+
+NIO Model: http://gee.cs.oswego.edu/dl/cpjslides/nio.pdf

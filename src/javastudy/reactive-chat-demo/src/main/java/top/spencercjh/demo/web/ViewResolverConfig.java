@@ -1,6 +1,5 @@
-package top.spencercjh.demo.config;
+package top.spencercjh.demo.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.config.ResourceHandlerRegistry;
 import org.springframework.web.reactive.config.ViewResolverRegistry;

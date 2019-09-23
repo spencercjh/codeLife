@@ -15,7 +15,7 @@ $(function () {
     var $chatPage = $('.chat.page'); // 聊天室页
 
     // WebSocket
-    var ws = new WebSocket("ws://localhost:9090");
+    var ws = new WebSocket("ws://localhost:9000/ws");
 
     // Prompt for setting a username
     var username;

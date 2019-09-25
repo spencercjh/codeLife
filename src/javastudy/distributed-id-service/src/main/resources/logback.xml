@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="layout_pattern" value="[%level]%date, [%thread]%file:%line, %msg%n"/>
+    <property name="layout_pattern" value="%highlight([%level]%date, [%thread]%file:%line, %msg) %n"/>
     <appender name="alllog" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <Append>true</Append>
         <Encoding>UTF-8</Encoding>

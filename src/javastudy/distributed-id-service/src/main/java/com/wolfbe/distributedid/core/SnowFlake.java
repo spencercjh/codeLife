@@ -11,7 +11,7 @@ public class SnowFlake {
      * 起始的时间戳，可以修改为服务第一次启动的时间
      * 一旦服务已经开始使用，起始时间戳就不应该改变
      */
-    private final static long START_STMP = 1484754361114L;
+    private final static long START_STMP = System.currentTimeMillis();
 
     /**
      * 每一部分占用的位数
@@ -72,7 +72,7 @@ public class SnowFlake {
     }
 
     public static void main(String[] args) {
-        SnowFlake snowFlake = new SnowFlake(2, 3);
+        SnowFlake snowFlake = new SnowFlake(1, 1);
         long start = System.currentTimeMillis();
         for (int i = 0; i < (1 << 18); i++) {
             System.out.println(i + ": " + snowFlake.nextId());

@@ -8,7 +8,7 @@ NOTE: This file is used for my interview to graduate school. You can refer to my
 
 Good morning. Dear professors, I feel so glad to meet all of you here.
 
-My name is Cai Jiahao. I am major in computer science and technology and will be graduated from Information Technology College of Shanghai Ocean University next year. As an undergraduate student, during my previous three-year study, I build up a basic foundation of computer science and techniques.
+My name is Cai Jiahao. I am major in computer science and technology and will be graduated from _your school_ next year. As an undergraduate student, during my previous three-year study, I build up a basic foundation of computer science and techniques.
 
 Because of my passion for computer science and strong desire to devote to IT industry, I have participated in three internships during my undergraduate career. I hope to consolidate my knowledge of computer theory through practical enterprise-level development, and at the same time, let me be more motivated, more goal-oriented, and more specifically to learn the related theoretical foundation that I am interested in.
 
@@ -24,6 +24,6 @@ Finally I want to talk about my ambition. In this area, my idol are _Douglas S. 
 
 I have a dream that one day many people or developers or businesses will use the features which are realized by my team. For example, it’s my honor to design and develop the backend software used for Double Eleven which can handle hundreds of millions of concurrent requests. Or I want to be an active open-source community contributor and collaborate with programmers around the world every day to create popular works.
 
-I hope to further study the theoretical foundations and practical knowledge of distributed systems and distributed computing in the postgraduate stage in _your school_.
+I hope to further study the theoretical foundations and practical knowledge of distributed systems and distributed computing in the postgraduate stage in _your target school_.
 
 Thanks every one.

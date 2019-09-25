@@ -1,4 +1,3 @@
-[![TeamCity (simple build status)](https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Kotlin_dev_Compiler.svg)](https://teamcity.jetbrains.com/viewType.html?buildTypeId=Kotlin_dev_Compiler&branch_Kotlin_dev=%3Cdefault%3E&tab=buildTypeStatusDiv)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # 四非Java找个好工作真难啊
@@ -9,7 +8,9 @@
 ###### 四非Java找个好工作真难啊
 四非Java找个好工作真难啊
 
-![我的简历](./resume.png)
+[自我介绍](./src/exam/postgraduated/self-introduction.adoc)
+
+[self-introduction](./src/exam/postgraduated/self-introduction.adoc)
 
 项目文件目录结构如下:
 

@@ -8,9 +8,9 @@
 ###### 四非Java找个好工作真难啊
 四非Java找个好工作真难啊
 
-[自我介绍](./src/exam/postgraduated/self-introduction.adoc)
+[自我介绍](https://github.com/spencercjh/leetcode/blob/master/src/exam/postgraduated/self-introduction.adoc)
 
-[self-introduction](./src/exam/postgraduated/self-introduction.adoc)
+[self-introduction](https://github.com/spencercjh/leetcode/blob/master/src/exam/postgraduated/self-introduction.adoc)
 
 项目文件目录结构如下:
 

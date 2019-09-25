@@ -1,0 +1,29 @@
+:toc:
+:icons: font
+:source-highlighter: prettify
+:project_id: self-introduction
+= Self-Introduction
+
+NOTE: This file is used for my interview to graduate school. You can refer to my documentation for similar purposes.
+
+Good morning. Dear professors, I feel so glad to meet all of you here.
+
+My name is Cai Jiahao. I am major in computer science and technology and will be graduated from Information Technology College of Shanghai Ocean University next year. As an undergraduate student, during my previous three-year study, I build up a basic foundation of computer science and techniques.
+
+Because of my passion for computer science and strong desire to devote to IT industry, I have participated in three internships during my undergraduate career. I hope to consolidate my knowledge of computer theory through practical enterprise-level development, and at the same time, let me be more motivated, more goal-oriented, and more specifically to learn the related theoretical foundation that I am interested in.
+
+The first company is a startup company established by my upperclassman working in network security and outsourcing projects’ development. The second company is an Internet company that makes online novels sold to overseas which are translated from Chinese to English, Spanish or other languages by AI. The third company is _your company_, a traditional foreign company that makes electrical appliances, machinery and automobiles which is committed to transforming to the Internet. My work in these companies is detailed in my resume.
+
+Through these internships, I master some cutting-edge development skills, focus on backend development, have a lot of experience in using middleware and framework and learn some underlying source code and development principles.
+
+While going out for internships, I did not put down the curriculum on campus, actively participated in the school activities, and obtained some competition results. The awards are detailed in my Chinese resume.
+
+In the study and practice of computer science, I found the fun in software development. When I have free time, I will learn the latest and most popular development techniques and programming ideas, and I will also try my best to learn classic computer theory. Whether it's actual development or daily learning, I am constantly improving my code quality, maintainability and readability. In my spare time, I don’t suspend learning computer science. I often learn some interesting open source project in GitHub. I want to be active in the open source community such as GitHub.
+
+Finally I want to talk about my ambition. In this area, my idol are _Douglas S. Lea_ and _Linus Torvalds_. The former is a professor of computer science and current head of the computer science department at State University of New York at Oswego, where he specializes in concurrent programming and the design of concurrent data structures. I have read the book he wrote _Java Concurrency in Practice_ and some teaching materials about Java NIO. The latter is the creator and historically principal developer of the Linux kernel. As everyone knows, his legendary experience should not be repeated here.
+
+I have a dream that one day many people or developers or businesses will use the features which are realized by my team. For example, it’s my honor to design and develop the backend software used for Double Eleven which can handle hundreds of millions of concurrent requests. Or I want to be an active open-source community contributor and collaborate with programmers around the world every day to create popular works.
+
+I hope to further study the theoretical foundations and practical knowledge of distributed systems and distributed computing in the postgraduate stage in _your school_.
+
+Thanks every one.

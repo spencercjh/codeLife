@@ -1,0 +1,23 @@
+spring:
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+      settings:
+        web-allow-others: true
+  datasource:
+    platform: h2
+    url: jdbc:h2:mem:test_db
+    username: sa
+logging:
+  level:
+    root:
+      info
+    org.hibernate:
+      debug
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          "*"

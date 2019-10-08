@@ -1,34 +1,68 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
-# 四非Java找个好工作真难啊
-## 四非Java找个好工作真难啊
-### 四非Java找个好工作真难啊
-#### 四非Java找个好工作真难啊
-##### 四非Java找个好工作真难啊
-###### 四非Java找个好工作真难啊
-四非Java找个好工作真难啊
-
-[自我介绍](https://github.com/spencercjh/leetcode/blob/master/src/exam/postgraduated/self-introduction.adoc)
-
-[self-introduction](https://github.com/spencercjh/leetcode/blob/master/src/exam/postgraduated/self-introduction.adoc)
-
-项目文件目录结构如下:
+## File Directory Structure
 
 ```
-├───django_study // 参照官方文档一步步写下来的Django HelloWorld Demo
-└───src
-    ├───design_patterns // Java设计模式实践，参考《设计模式之禅》
-    ├───exam    // 一些公司的笔试题
-    ├───interviewnote   // 面经、面试笔记（不咋更新了，我更喜欢写在小本本上）
-    ├───javastudy   // Java学习
-    │   ├───cglibDemo   // CGLIB实践
-    │   ├───chat-demo   // 基于socket、Netty的聊天室Demo。Spring Boot Web做页面路由
-    │   ├───functional  // Java函数式编程实践 参考《Java函数式编程》
-    │   ├───gs-accessing-data-mongodb   // github上找的Spring Boot with MongoDB Demo
-    │   ├───netty   // 两个Netty Demo，一个是文件服务器，一个是HelloWorld Echo Server
-    │   ├───spring-boot-webflux-security    // github上找的基于JWT的Spring Security with Spring WebFlux Demo
-    │   ├───spring-security-demo    // 我自己对上述技术栈的实现（不完整）
-    │   └───distributed-id-service   // github上找的基于Netty和雪花算法的分布式唯一ID服务实现
-    │   └───reactive-chat-demo  //基于reactive栈的Netty聊天室demo
-    └───leetcode    // LeetCode刷题（已经停止更新）
+├───django_study
+├───exam
+├───interview
+├───kotlin
+│   ├───spring-kotlin-demo [Thymeleaf in Kotlin]
+│   └───spring-kotlin-restful-demo [RESTful API in Kotlin]
+├───leetcode (deprecated)
+├───netty
+│   ├───chat-demo [chat room demo in JQuery and WebSocket with Netty]
+│   ├───jt-808-protocol
+│   └───netty [a echo and a file system server demos]
+├───spring
+│   ├───gs-accessing-data-mongodb
+│   ├───reactive-chat-demo  (deprecated)
+│   ├───spring-boot-webflux-security
+│   └───spring-security-demo    (deprecated)
+└───theory
+    ├───cglibDemo
+    ├───designPatterns
+    ├───distributedIdService
+    ├───functional
+    └───rmi-example
 ```
+
+## Self-Introduction
+
+My name is Cai Jiahao.
+I am major in computer science and technology and will be graduated from _College of Information and Technology_ of _Shanghai Ocean University_ next year.
+As an undergraduate student, during my previous three-year study, I build up a basic foundation of computer science and techniques.
+
+Because of my passion for computer science and strong desire to devote to IT industry, I have participated in three internships during my undergraduate career.
+I hope to consolidate my knowledge of computer theory through practical enterprise-level development, and at the same time, let me be more motivated, more goal-oriented, and more specifically to learn the related theoretical foundation that I am interested in.
+
+Let me talk about my internship experience.
+
+The first company is a startup company established by my upperclassman working in network security and outsourcing projects’ development.
+The second company is an Internet company that makes online novels sold to overseas which are translated from Chinese to English, Spanish or other languages by AI. The third company is _Bosch Group (China)_, a traditional foreign company that makes electrical appliances, machinery and research automotive technology and related products.
+Now, Bosch tries its best to transform to an Internet company.
+My work in these companies is detailed in my resume.
+
+Through these internships, I master some cutting-edge development skills, focus on backend development, have a lot of experience in using middleware and framework and learn some underlying source code and development principles.
+
+While going out for internships, I did not put down the curriculum on campus, actively participated in the school activities, and obtained some competition results.
+The awards are detailed in my Chinese resume.
+
+During study and practice, I found the fun in software development.
+When I have spare time, I will learn the latest and most popular development techniques and design principles and thoughts.I usually learn some interesting open source project in GitHub.
+I will also try my best to learn classic computer theory.
+I want to be active in the open source community such as GitHub.Whether it's actual development or daily learning, I am constantly improving my code quality, maintainability and readability.
+
+Finally I want to talk about my ambitions.
+In this area, my idol are _Douglas S. Lea_ and _Linus Torvalds_.
+The former is a professor of computer science and current head of the computer science department at _State University of New York at Oswego_, where he specializes in concurrent programming and the design of concurrent data structures.
+I have read the book he wrote _Java Concurrency in Practice_ and some teaching materials about Java NIO. The latter is the famous, historical, main creator and developer of the Linux kernel.
+As we all known, I think his legendary experience is unnecessary to be repeated here.
+
+I have a dream that one day many people or developers or businesses will use the features which are realized by my team.
+For example, it’s my honor to design and develop the backend software used for Double Eleven which can handle hundreds of millions of concurrent requests.
+Or I want to be an active open-source community contributor and collaborate with programmers around the world every day to create popular and useful works.
+
+I hope to further study the theoretical foundations and practical knowledge of distributed systems and distributed computing in the postgraduate stage in _School of Computer Engineering and Science_ of _Shanghai University_.
+
+My speech is over, thanks for your listening.

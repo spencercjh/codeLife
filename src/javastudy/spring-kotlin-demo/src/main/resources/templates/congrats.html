@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="zh">
 <head>
     <meta charset="UTF-8"/>
     <title>Kotlin Spring Validation</title>
@@ -22,6 +22,7 @@
                 First Name
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.firstName}">Bob</span>
             </div>
         </div>
@@ -30,6 +31,7 @@
                 Last Name
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.lastName}">Belcher</span>
             </div>
         </div>
@@ -38,6 +40,7 @@
                 Email Address
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.email}">bobs.bugers@bobby.com</span>
             </div>
         </div>
@@ -46,6 +49,7 @@
                 Phone Number
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.phone}">920.867.5309</span>
             </div>
         </div>
@@ -54,6 +58,7 @@
                 Street Address
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.address}">111 Circle Drive</span>
             </div>
         </div>
@@ -62,15 +67,17 @@
                 City
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.city}">Randolph</span>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                State
+                Province
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-                <span th:text="${user.state}">WI</span>
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
+                <span th:text="${user.province}">WI</span>
             </div>
         </div>
         <div class="row">
@@ -78,6 +85,7 @@
                 Zip
             </div>
             <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <!--/*@thymesVar id="user" type="top.spencercjh.demo.entity.User"*/-->
                 <span th:text="${user.zip}">53956</span>
             </div>
         </div>

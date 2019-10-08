@@ -19,3 +19,8 @@ The following guides illustrate how to use some features concretely:
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
+
+### Reference
+
+* [JPA in Kotlin](https://www.baeldung.com/kotlin-jpa)
+* [Validation in Kotlin](https://stonesoupprogramming.com/2017/06/21/spring-bean-validation-example-jsr-303-in-kotlin/)

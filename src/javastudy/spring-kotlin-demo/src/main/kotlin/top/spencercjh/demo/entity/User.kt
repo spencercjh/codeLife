@@ -1,34 +1,49 @@
 package top.spencercjh.demo.entity
 
+import javax.persistence.*
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
-import javax.validation.constraints.Size
 
 /**
  * @author Spencer
  */
-data class User(@get: NotBlank(message = "{first_name.required}")
-                var firstName: String = "",
+@Entity
+@Table(name = "test_user")
+data class User(
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        val id: Long? = null,
 
-                @get: NotBlank(message = "{last_name.required}")
-                var lastName: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{first_name.required}")
+        var firstName: String? = null,
 
-                @get: NotBlank(message = "{email.required}")
-                @get: Email(message = "{email.invalid}")
-                var email: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{last_name.required}")
+        var lastName: String? = null,
 
-                @get: NotBlank(message = "{phone.required}")
-                var phone: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{email.required}")
+        @get: Email(message = "{email.invalid}")
+        var email: String? = null,
 
-                @get: NotBlank(message = "{address.required}")
-                var address: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{phone.required}")
+        var phone: String? = null,
 
-                @get: NotBlank(message = "{city.required}")
-                var city: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{address.required}")
+        var address: String? = null,
 
-                @get: NotBlank(message = "{state.required}")
-                @get: Size(min = 2, max = 2, message = "{state.size}")
-                var state: String = "",
+        @Column(nullable = true)
+        @get: NotBlank(message = "{city.required}")
+        var city: String? = null,
 
-                @get: NotBlank(message = "{zip.required}")
-                var zip: String = "")
+        @Column(nullable = true)
+        @get: NotBlank(message = "{province.required}")
+        var province: String? = null,
+
+        @Column(nullable = true)
+        @get: NotBlank(message = "{zip.required}")
+        var zip: String? = null) {
+}

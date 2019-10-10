@@ -14,6 +14,8 @@ logging:
     root:
       info
     org.hibernate:
+      info
+    top.spencercjh:
       debug
 management:
   endpoints:
@@ -21,3 +23,6 @@ management:
       exposure:
         include:
           "*"
+default:
+  pageSize:
+    5

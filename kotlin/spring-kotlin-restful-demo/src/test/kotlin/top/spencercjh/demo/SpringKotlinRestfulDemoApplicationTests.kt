@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner
 
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class SpringKotlinRestfulDemoApplicationTests {
+internal class SpringKotlinRestfulDemoApplicationTests {
 
     @Test
     fun contextLoads() {

@@ -10,18 +10,25 @@ import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.service.StudentService
 import java.util.*
 
-@RestController(value = "/api/v1")
+@RestController("/api/v1")
 class StudentController(@Autowired val studentService: StudentService) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
     @GetMapping("/students")
-    fun findAllStudent(page: Int, size: Int, sort: String): ResponseEntity<List<Student>> {
+    fun findAllStudents(page: Int, size: Int, sort: String): ResponseEntity<List<Student>> {
         logger.debug("request /students findAllStudent")
-        return ResponseEntity.of(Optional.of(studentService.getStudents(page, size, sort)))
+        return ResponseEntity.of(Optional.of(studentService.getAllStudents(page, size, sort)))
     }
 
-    @GetMapping("/class/{classId}/student/{studentId}")
-    fun findStudentByClassAndId(@PathVariable classId: String, @PathVariable studentId: String) {
-        logger.debug("request /class/{classId}/student/{studentId} findStudentByClassAndId")
+    @GetMapping("/classes/{classId}/students")
+    fun findStudentsByClass(@PathVariable classId: String, page: Int, size: Int, sort: String): ResponseEntity<List<Student>> {
+        logger.debug("request /classes/{classId}/students findStudentsByClass")
+        return ResponseEntity.of(Optional.of(studentService.getStudentsByClass(classId, page, size, sort)))
+    }
+
+    @GetMapping("/classes/{classId}/students/{studentId}")
+    fun findStudentByClassAndStudentId(@PathVariable classId: String, @PathVariable studentId: String): ResponseEntity<Student> {
+        logger.debug("request /classes/{classId}/students/{studentId} findStudentByClassAndStudentId")
+        return ResponseEntity.of(Optional.of(studentService.getStudentByClassAndStudentId(classId, studentId)))
     }
 }

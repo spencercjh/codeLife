@@ -8,6 +8,11 @@ import org.slf4j.LoggerFactory
 import top.spencercjh.demo.entity.Clazz
 import top.spencercjh.demo.entity.Student
 
+/**
+ * test RandomUtil use JUnit5
+ * @author Spencer
+ * @see RandomUtil
+ */
 internal class RandomUtilTest {
     private val logger = LoggerFactory.getLogger(javaClass)
 

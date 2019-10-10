@@ -1,5 +1,6 @@
 package top.spencercjh.demo
 
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -11,18 +12,23 @@ import javax.annotation.PostConstruct
 
 @SpringBootApplication
 class SpringKotlinRestfulDemoApplication {
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     @Autowired
-    lateinit var clazzRepository: ClazzRepository
+    private lateinit var clazzRepository: ClazzRepository
     @Autowired
-    lateinit var studentRepository: StudentRepository
+    private lateinit var studentRepository: StudentRepository
 
     companion object Constant {
-        var studentCount: Int = 30
+        const val studentCount: Int = 30
+        const val className = "class1"
+        const val defaultPageSize: Int = 15
     }
 
     @PostConstruct
     fun initData() {
-        val clazzOne = Clazz(name = "class1")
+        logger.debug("init data")
+        val clazzOne = Clazz(name = className)
         clazzOne.students = RandomUtil.getStudents(studentCount, clazzOne)
         clazzRepository.save(clazzOne)
         studentRepository.saveAll(clazzOne.students)

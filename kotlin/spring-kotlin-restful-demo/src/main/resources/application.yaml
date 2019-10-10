@@ -15,7 +15,7 @@ logging:
       info
     org.hibernate:
       info
-    top.spencercjh:
+    top.spencercjh.demo:
       debug
 management:
   endpoints:
@@ -23,6 +23,3 @@ management:
       exposure:
         include:
           "*"
-default:
-  pageSize:
-    5

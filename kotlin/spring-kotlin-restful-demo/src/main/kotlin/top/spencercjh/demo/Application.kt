@@ -46,14 +46,10 @@ class SpringKotlinRestfulDemoApplication {
     }
 
     companion object Constant {
-        @Value("\${default.MOCK_STUDENT_AMOUNT}")
-        const val MOCK_STUDENT_AMOUNT: Int = 10
-        @Value("\${default.DEFAULT_PAGE_SIZE}")
-        const val DEFAULT_PAGE_SIZE: Int = 15
-        @Value("\${default.DEFAULT_PAGE}")
-        const val DEFAULT_PAGE: Int = 0
-
         // FIXME these const String val cannot inject through @Value
+        const val MOCK_STUDENT_AMOUNT: Int = 30
+        const val DEFAULT_PAGE_SIZE: Int = 15
+        const val DEFAULT_PAGE: Int = 0
         const val CLASS_NAME_ONE = "class1"
         const val CLASS_NAME_TWO = "class2"
         const val DEFAULT_SORT_COLUMN = "id"

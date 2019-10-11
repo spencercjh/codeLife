@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.*
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE_SIZE
@@ -11,9 +12,12 @@ import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_S
 import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.service.StudentService
 import java.util.*
+import javax.validation.Valid
+import javax.validation.constraints.Positive
 
 @RestController
 @RequestMapping("/api/v1")
+@Validated
 class StudentController(@Autowired val studentService: StudentService) {
     private val logger = LoggerFactory.getLogger(javaClass)
 
@@ -21,7 +25,7 @@ class StudentController(@Autowired val studentService: StudentService) {
     fun findAllStudents(@RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE.toString()) page: Int,
                         @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE.toString()) size: Int,
                         @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT_COLUMN) sort: String,
-                        @RequestParam(value = "name", required = false) name: String? = null)
+                        @RequestParam(value = "name", required = false) @Valid name: String? = null)
             : ResponseEntity<List<Student>> {
         logger.debug("request /students findAllStudent")
         val students = studentService.getAllStudents(page, size, sort, name)
@@ -29,7 +33,7 @@ class StudentController(@Autowired val studentService: StudentService) {
     }
 
     @GetMapping("/classes/{classId}/students")
-    fun findStudentsByClass(@PathVariable classId: String,
+    fun findStudentsByClass(@PathVariable @Positive classId: Int,
                             @RequestParam(value = "page", required = false, defaultValue = DEFAULT_PAGE.toString()) page: Int,
                             @RequestParam(value = "size", required = false, defaultValue = DEFAULT_PAGE_SIZE.toString()) size: Int,
                             @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT_COLUMN) sort: String)
@@ -40,8 +44,8 @@ class StudentController(@Autowired val studentService: StudentService) {
     }
 
     @GetMapping("/classes/{classId}/students/{studentId}")
-    fun findStudentByClassAndStudentId(@PathVariable classId: String,
-                                       @PathVariable studentId: String): ResponseEntity<Student> {
+    fun findStudentByClassAndStudentId(@PathVariable @Positive classId: Int,
+                                       @PathVariable @Positive studentId: Int): ResponseEntity<Student> {
         logger.debug("request /classes/{classId}/students/{studentId} findStudentByClassAndStudentId")
         val student: Student? = studentService.getStudentByClassAndStudentId(classId, studentId)
         return if (student != null) ResponseEntity.of(Optional.of(student)) else ResponseEntity.notFound().build()

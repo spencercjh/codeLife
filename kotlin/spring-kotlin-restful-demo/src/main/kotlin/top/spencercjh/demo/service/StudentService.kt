@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE_SIZE
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_SORT_COLUMN
 import top.spencercjh.demo.dao.StudentRepository
 import top.spencercjh.demo.entity.Student
 
@@ -19,7 +20,7 @@ class StudentService {
     @Autowired
     private lateinit var studentRepository: StudentRepository
 
-    fun getAllStudents(page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String = "id", name: String? = null)
+    fun getAllStudents(page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String =  DEFAULT_SORT_COLUMN, name: String? = null)
             : List<Student> {
         logger.debug("StudentService getAllStudents:")
         val students = if (name != null)
@@ -30,18 +31,18 @@ class StudentService {
         return students
     }
 
-    fun getStudentsByClassId(classId: String, page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String = "id")
+    fun getStudentsByClassId(classId: Int, page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String = DEFAULT_SORT_COLUMN)
             : List<Student> {
         logger.debug("StudentService getStudentsByClass:")
         val students = studentRepository.findStudentsByClazzId(
-                classId.toInt(),
+                classId,
                 PageRequest.of(page, size, Sort(Sort.DEFAULT_DIRECTION, sort))).content
         students.forEach { student -> logger.debug(student.toString()) }
         return students
     }
 
-    fun getStudentByClassAndStudentId(classId: String, studentId: String): Student? {
+    fun getStudentByClassAndStudentId(classId: Int, studentId: Int): Student? {
         logger.debug("StudentService getStudentByClassAndStudentId:")
-        return studentRepository.findStudentByClazzIdAndId(clazz_id = classId.toInt(), id = studentId.toInt())
+        return studentRepository.findStudentByClazzIdAndId(clazz_id = classId, id = studentId)
     }
 }

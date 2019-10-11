@@ -14,7 +14,7 @@ import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.CLASS_NAM
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.MOCK_STUDENT_AMOUNT
 import top.spencercjh.demo.entity.Clazz
 import top.spencercjh.demo.entity.Student
-import top.spencercjh.demo.common.util.RandomUtil
+import top.spencercjh.demo.util.RandomUtil
 import java.util.stream.Collectors
 
 /**

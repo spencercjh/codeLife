@@ -40,7 +40,7 @@ internal class StudentRepositoryTest {
         val actualStudentList = studentRepository.findAll()
         logger.debug("actual student list is:\t")
         actualStudentList.forEach { student -> logger.debug(student.toString()) }
-        Assert.assertEquals(MOCK_STUDENT_AMOUNT, actualStudentList.size)
+        Assert.assertEquals(MOCK_STUDENT_AMOUNT * 3 + 1, actualStudentList.size)
     }
 
     /**
@@ -54,22 +54,22 @@ internal class StudentRepositoryTest {
         // init data query
         val actualStudentList = studentRepository.findStudentsByClazzName(CLASS_NAME_ONE)
         val expectStudentList = studentRepository.findAll()
-        Assert.assertEquals(expectStudentList.size, actualStudentList.size)
+        Assert.assertEquals(MOCK_STUDENT_AMOUNT, actualStudentList.size)
         /**
          * mock new class and student
          */
         fun mockNewData(expectStudentList: MutableList<Student>): Map<String, Any> {
             var newClazz = Clazz(name = "test")
             newClazz = clazzRepository.save(newClazz)
-            Assert.assertTrue(newClazz.id == clazzRepository.findAll()[0].id!! + 1)
-            var newStudent = RandomUtil.getRandomStudents(1, newClazz)[0]
+            Assert.assertTrue(newClazz.id == clazzRepository.findAll().last().id)
+            var newStudent = RandomUtil.getRandomStudents(1, newClazz).first()
             newStudent = studentRepository.save(newStudent)
-            Assert.assertEquals(newStudent.id, expectStudentList[expectStudentList.size - 1].id!! + 1)
+            Assert.assertEquals(newStudent.id, expectStudentList.last().id!! + 1)
             return mapOf("clazz" to newClazz, "student" to newStudent)
         }
         // mock new data query
         val newData = mockNewData(expectStudentList)
-        Assert.assertEquals(newData["student"] as Student, studentRepository.findStudentsByClazzName("test")[0])
+        Assert.assertEquals(newData["student"] as Student, studentRepository.findStudentsByClazzName("test").first())
     }
 
     /**

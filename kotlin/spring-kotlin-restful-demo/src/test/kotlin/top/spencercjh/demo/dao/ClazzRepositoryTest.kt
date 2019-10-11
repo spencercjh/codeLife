@@ -24,11 +24,12 @@ internal class ClazzRepositoryTest {
     lateinit var studentRepository: StudentRepository
     @Autowired
     lateinit var clazzRepository: ClazzRepository
+
     @Test
     fun testInitClazz() {
         val actualClazzList = clazzRepository.findAll()
-        logger.debug("actual clazz is:\t${actualClazzList[0]}")
-        Assert.assertEquals(1, actualClazzList.size)
+        logger.debug("actual clazz is:\t${actualClazzList.first()}")
+        Assert.assertEquals(2, actualClazzList.size)
     }
 
     /**

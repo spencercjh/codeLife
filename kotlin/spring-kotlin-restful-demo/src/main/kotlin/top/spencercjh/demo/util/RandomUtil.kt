@@ -5,6 +5,11 @@ import top.spencercjh.demo.entity.Clazz
 import top.spencercjh.demo.entity.Student
 import java.util.concurrent.ThreadLocalRandom
 
+/**
+ * generate random data object.
+ * use [ThreadLocalRandom] instead of [Math.random]
+ * @author spencer
+ */
 object RandomUtil {
     const val nameLength = 3
     private val threadLocalRandom = ThreadLocalRandom.current()

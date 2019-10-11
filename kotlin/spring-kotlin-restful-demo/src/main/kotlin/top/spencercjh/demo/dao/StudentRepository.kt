@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Service
 import top.spencercjh.demo.entity.Student
 
+/**
+ * @author spencer
+ */
 @Service
 interface StudentRepository : JpaRepository<Student, Int> {
     fun findStudentByClazzIdAndId(clazz_id: Int, id: Int): Student?

@@ -13,6 +13,9 @@ import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_S
 import top.spencercjh.demo.dao.StudentRepository
 import top.spencercjh.demo.entity.Student
 
+/**
+ * @author spencer
+ */
 @Service
 class StudentService {
     private val logger = LoggerFactory.getLogger(javaClass)
@@ -20,7 +23,7 @@ class StudentService {
     @Autowired
     private lateinit var studentRepository: StudentRepository
 
-    fun getAllStudents(page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String =  DEFAULT_SORT_COLUMN, name: String? = null)
+    fun getAllStudents(page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String = DEFAULT_SORT_COLUMN, name: String? = null)
             : List<Student> {
         logger.debug("StudentService getAllStudents:")
         val students = if (name != null)

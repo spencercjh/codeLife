@@ -15,6 +15,10 @@ import java.util.*
 import javax.validation.Valid
 import javax.validation.constraints.Positive
 
+/**
+ * enhance restful knowledge from https://www.scienjus.com/my-restful-api-best-practices/
+ * @author spencer
+ */
 @RestController
 @RequestMapping("/api/v1")
 @Validated

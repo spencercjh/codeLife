@@ -11,6 +11,10 @@ import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.util.RandomUtil
 import javax.annotation.PostConstruct
 
+/**
+ * use [PostConstruct] to init data in db
+ * @author spencer
+ */
 @SpringBootApplication
 class SpringKotlinRestfulDemoApplication {
     private val logger = LoggerFactory.getLogger(javaClass)
@@ -24,7 +28,7 @@ class SpringKotlinRestfulDemoApplication {
         const val MOCK_STUDENT_AMOUNT: Int = 30
         const val CLASS_NAME_ONE = "class1"
         const val CLASS_NAME_TWO = "class2"
-        const val DEFAULT_SORT_COLUMN="id"
+        const val DEFAULT_SORT_COLUMN = "id"
         const val DEFAULT_PAGE_SIZE: Int = 15
         const val DEFAULT_PAGE: Int = 0
     }

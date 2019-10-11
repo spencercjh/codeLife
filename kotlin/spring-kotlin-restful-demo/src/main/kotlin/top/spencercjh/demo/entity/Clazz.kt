@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull
  * @param students 班级学生
  * @param createTimeStamp 数据库的创建时间戳
  * @param updateTimestamp 数据库的更新时间戳
+ * @author spencer
  */
 @Entity
 @Table(name = "clazz")

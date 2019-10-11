@@ -1,5 +1,6 @@
 package top.spencercjh.demo.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.sql.Timestamp
@@ -22,6 +23,7 @@ import javax.validation.constraints.NotNull
 @Table(name = "student")
 data class Student(
         @Id
+        @NotNull
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Int? = null,
 
@@ -32,7 +34,8 @@ data class Student(
         @ManyToOne(fetch = FetchType.EAGER)
         @JoinColumn(name = "clazz_id", referencedColumnName = "id")
         @NotNull
-        var clazz: Clazz,
+        @JsonIgnoreProperties(value = ["students"])
+        var clazz: Clazz? = null,
 
         @Column(name = "phone")
         var phone: String? = null,
@@ -44,7 +47,7 @@ data class Student(
         @Column(columnDefinition = "smallint")
         @NotNull
         @Enumerated
-        var sex: Sex,
+        var sex: Sex? = Sex.Unknown,
 
         @Column(name = "create_time")
         @NotNull
@@ -77,20 +80,21 @@ data class Student(
     override fun hashCode(): Int {
         var result = id ?: 0
         result = 31 * result + name.hashCode()
-        result = 31 * result + clazz.hashCode()
+        result = 31 * result + (clazz?.hashCode() ?: 0)
         result = 31 * result + (phone?.hashCode() ?: 0)
         result = 31 * result + (email?.hashCode() ?: 0)
-        result = 31 * result + sex.hashCode()
+        result = 31 * result + (sex?.hashCode() ?: 0)
         result = 31 * result + createTimeStamp.hashCode()
         result = 31 * result + updateTimestamp.hashCode()
         return result
     }
 
     override fun toString(): String {
-        return "Student(id=$id, name='$name', clazz=${clazz.name}, phone=$phone, email=$email, sex=$sex, createTimeStamp=$createTimeStamp, updateTimestamp=$updateTimestamp)"
+        return "Student(id=$id, name='$name', clazz=${clazz?.name
+                ?: null.toString()}, phone=$phone, email=$email, sex=$sex, createTimeStamp=$createTimeStamp, updateTimestamp=$updateTimestamp)"
     }
 
     enum class Sex {
-        Male, Female
+        Male, Female, Unknown
     }
 }

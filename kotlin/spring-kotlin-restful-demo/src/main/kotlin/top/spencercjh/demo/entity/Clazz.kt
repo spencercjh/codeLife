@@ -1,5 +1,6 @@
 package top.spencercjh.demo.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import java.sql.Timestamp
@@ -17,27 +18,28 @@ import javax.validation.constraints.NotNull
 @Entity
 @Table(name = "clazz")
 data class Clazz(@Id
-            @GeneratedValue(strategy = GenerationType.IDENTITY)
-            var id: Int? = null,
+                 @GeneratedValue(strategy = GenerationType.IDENTITY)
+                 var id: Int? = null,
 
-            @Column(name = "name")
-            @NotNull
-            var name: String,
+                 @Column(name = "name")
+                 @NotNull
+                 var name: String,
 
-            @OneToMany(fetch = FetchType.EAGER,
-                    mappedBy = "clazz",
-                    orphanRemoval = true)
-            var students: List<Student> = ArrayList(),
+                 @OneToMany(fetch = FetchType.EAGER,
+                         mappedBy = "clazz",
+                         orphanRemoval = true)
+                 @JsonIgnoreProperties(value = ["clazz"])
+                 var students: List<Student> = ArrayList(),
 
-            @Column(name = "create_time")
-            @NotNull
-            @CreationTimestamp
-            var createTimeStamp: Timestamp = Timestamp(System.currentTimeMillis()),
+                 @Column(name = "create_time")
+                 @NotNull
+                 @CreationTimestamp
+                 var createTimeStamp: Timestamp = Timestamp(System.currentTimeMillis()),
 
-            @NotNull
-            @Column(name = "update_time")
-            @UpdateTimestamp
-            var updateTimestamp: Timestamp = Timestamp(System.currentTimeMillis())) {
+                 @NotNull
+                 @Column(name = "update_time")
+                 @UpdateTimestamp
+                 var updateTimestamp: Timestamp = Timestamp(System.currentTimeMillis())) {
     @Suppress("DuplicatedCode")
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

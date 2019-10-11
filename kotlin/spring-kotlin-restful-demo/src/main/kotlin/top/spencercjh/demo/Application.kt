@@ -33,12 +33,12 @@ class SpringKotlinRestfulDemoApplication {
     fun initData() {
         logger.debug("init data")
         val clazzOne = Clazz(name = CLASS_NAME_ONE)
-        clazzOne.students = RandomUtil.getStudents(MOCK_STUDENT_AMOUNT, clazzOne)
+        clazzOne.students = RandomUtil.getRandomStudents(MOCK_STUDENT_AMOUNT, clazzOne)
         clazzRepository.save(clazzOne)
         studentRepository.saveAll(clazzOne.students)
         val clazzTwo = Clazz(name = CLASS_NAME_TWO)
         // plus a designated student for searching api test
-        clazzTwo.students = RandomUtil.getStudents(MOCK_STUDENT_AMOUNT * 2, clazzTwo)
+        clazzTwo.students = RandomUtil.getRandomStudents(MOCK_STUDENT_AMOUNT * 2, clazzTwo)
                 .plus(Student(name = "蔡佳昊", clazz = clazzTwo, sex = Student.Sex.Male))
         clazzRepository.save(clazzTwo)
         studentRepository.saveAll(clazzTwo.students)

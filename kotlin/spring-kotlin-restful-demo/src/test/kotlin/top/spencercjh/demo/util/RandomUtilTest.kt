@@ -38,7 +38,7 @@ internal class RandomUtilTest {
     @Test
     fun getEmail() {
         for (i in 0..99) {
-            val email = RandomUtil.getEmail()
+            val email = RandomUtil.getRandomEmail()
             logger.debug("generated random email:\t$email")
             assertTrue(email.substring(0, email.indexOf('@')).length == RandomUtil.emailLength)
         }
@@ -47,7 +47,7 @@ internal class RandomUtilTest {
     @Test
     fun getPhone() {
         for (i in 0..99) {
-            val phone = RandomUtil.getPhone()
+            val phone = RandomUtil.getRandomPhone()
             logger.debug("generated random phone number:\t$phone")
             assertTrue(phone.length == RandomUtil.phoneNumberLength)
         }
@@ -56,13 +56,13 @@ internal class RandomUtilTest {
     @Test
     fun getName() {
         for (i in 0..99) {
-            val maleName = RandomUtil.getName(Student.Sex.Male)
+            val maleName = RandomUtil.getRandomName(Student.Sex.Male)
             logger.debug("male generated random Name:\t$maleName")
             assertTrue(maleName.length <= RandomUtil.nameLength)
-            val girlName = RandomUtil.getName(Student.Sex.Female)
+            val girlName = RandomUtil.getRandomName(Student.Sex.Female)
             logger.debug("female generated random Name:\t$girlName")
             assertTrue(girlName.length <= RandomUtil.nameLength)
-            val randomSexName = RandomUtil.getName()
+            val randomSexName = RandomUtil.getRandomName()
             logger.debug("random generated random Name:\t$randomSexName")
             assertTrue(randomSexName.length <= RandomUtil.nameLength)
         }
@@ -70,10 +70,10 @@ internal class RandomUtilTest {
 
     @Test
     fun getStudents() {
-        assertThrows<IllegalArgumentException> { RandomUtil.getStudents(0, Clazz(name = "test")) }
-        assertDoesNotThrow { RandomUtil.getStudents(1, Clazz(name = null.toString())) }
-        assertThrows<IllegalArgumentException> { RandomUtil.getStudents(5, Clazz(name = "")) }
-        val students = RandomUtil.getStudents(20, Clazz(name = "test"))
+        assertThrows<IllegalArgumentException> { RandomUtil.getRandomStudents(0, Clazz(name = "test")) }
+        assertDoesNotThrow { RandomUtil.getRandomStudents(1, Clazz(name = null.toString())) }
+        assertThrows<IllegalArgumentException> { RandomUtil.getRandomStudents(5, Clazz(name = "")) }
+        val students = RandomUtil.getRandomStudents(20, Clazz(name = "test"))
         students.forEach { student -> logger.debug(student.toString()) }
     }
 

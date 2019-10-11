@@ -62,7 +62,7 @@ internal class StudentRepositoryTest {
             var newClazz = Clazz(name = "test")
             newClazz = clazzRepository.save(newClazz)
             Assert.assertTrue(newClazz.id == clazzRepository.findAll()[0].id!! + 1)
-            var newStudent = RandomUtil.getStudents(1, newClazz)[0]
+            var newStudent = RandomUtil.getRandomStudents(1, newClazz)[0]
             newStudent = studentRepository.save(newStudent)
             Assert.assertEquals(newStudent.id, expectStudentList[expectStudentList.size - 1].id!! + 1)
             return mapOf("clazz" to newClazz, "student" to newStudent)

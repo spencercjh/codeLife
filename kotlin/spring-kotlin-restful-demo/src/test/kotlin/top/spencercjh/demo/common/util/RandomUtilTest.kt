@@ -1,4 +1,4 @@
-package top.spencercjh.demo.util
+package top.spencercjh.demo.common.util
 
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.Assertions.assertTrue

@@ -8,7 +8,7 @@ import top.spencercjh.demo.dao.ClazzRepository
 import top.spencercjh.demo.dao.StudentRepository
 import top.spencercjh.demo.entity.Clazz
 import top.spencercjh.demo.entity.Student
-import top.spencercjh.demo.util.RandomUtil
+import top.spencercjh.demo.common.util.RandomUtil
 import javax.annotation.PostConstruct
 
 @SpringBootApplication

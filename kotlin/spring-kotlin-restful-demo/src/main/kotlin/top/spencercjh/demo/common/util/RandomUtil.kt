@@ -1,4 +1,4 @@
-package top.spencercjh.demo.util
+package top.spencercjh.demo.common.util
 
 import org.springframework.util.StringUtils
 import top.spencercjh.demo.entity.Clazz

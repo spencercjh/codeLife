@@ -10,8 +10,8 @@ import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.transaction.annotation.Transactional
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication
-import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.className
-import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.studentCount
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.CLASS_NAME
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.MOCK_STUDENT_AMOUNT
 import top.spencercjh.demo.entity.Clazz
 import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.util.RandomUtil
@@ -40,7 +40,7 @@ internal class StudentRepositoryTest {
         val actualStudentList = studentRepository.findAll()
         logger.debug("actual student list is:\t")
         actualStudentList.forEach { student -> logger.debug(student.toString()) }
-        Assert.assertEquals(studentCount, actualStudentList.size)
+        Assert.assertEquals(MOCK_STUDENT_AMOUNT, actualStudentList.size)
     }
 
     /**
@@ -52,7 +52,7 @@ internal class StudentRepositoryTest {
     @Rollback(value = true)
     fun testFindStudentsByClassName() {
         // init data query
-        val actualStudentList = studentRepository.findStudentsByClazzName(SpringKotlinRestfulDemoApplication.className)
+        val actualStudentList = studentRepository.findStudentsByClazzName(SpringKotlinRestfulDemoApplication.CLASS_NAME)
         val expectStudentList = studentRepository.findAll()
         Assert.assertEquals(expectStudentList.size, actualStudentList.size)
         /**
@@ -78,7 +78,7 @@ internal class StudentRepositoryTest {
      */
     @Test
     fun testFindStudentByClassNameLike() {
-        val actualStudentList = studentRepository.findStudentsByClazzNameLike("%" + className.substring(0, 2) + "%")
+        val actualStudentList = studentRepository.findStudentsByClazzNameLike("%" + CLASS_NAME.substring(0, 2) + "%")
         val expectStudentList = studentRepository.findAll()
         Assert.assertEquals(expectStudentList.size, actualStudentList.size)
     }

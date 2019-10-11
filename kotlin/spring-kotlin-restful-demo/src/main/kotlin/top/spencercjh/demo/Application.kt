@@ -20,16 +20,17 @@ class SpringKotlinRestfulDemoApplication {
     private lateinit var studentRepository: StudentRepository
 
     companion object Constant {
-        const val studentCount: Int = 30
-        const val className = "class1"
-        const val defaultPageSize: Int = 15
+        const val MOCK_STUDENT_AMOUNT: Int = 30
+        const val CLASS_NAME = "class1"
+        const val DEFAULT_PAGE_SIZE: Int = 15
+        const val DEFAULT_PAGE: Int = 0
     }
 
     @PostConstruct
     fun initData() {
         logger.debug("init data")
-        val clazzOne = Clazz(name = className)
-        clazzOne.students = RandomUtil.getStudents(studentCount, clazzOne)
+        val clazzOne = Clazz(name = CLASS_NAME)
+        clazzOne.students = RandomUtil.getStudents(MOCK_STUDENT_AMOUNT, clazzOne)
         clazzRepository.save(clazzOne)
         studentRepository.saveAll(clazzOne.students)
     }

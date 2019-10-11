@@ -5,7 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Sort
 import org.springframework.stereotype.Service
-import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.defaultPageSize
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_PAGE_SIZE
 import top.spencercjh.demo.dao.StudentRepository
 import top.spencercjh.demo.entity.Student
 
@@ -16,13 +17,8 @@ class StudentService {
     @Autowired
     private lateinit var studentRepository: StudentRepository
 
-    fun getAllStudents(page: Int=0, size: Int=15, sort: String="id"): List<Student> {
-        val students = /*try {
-            studentRepository.findAll(PageRequest.of(page, size, Sort(Sort.DEFAULT_DIRECTION, sort))).content
-        } catch (e: Exception) {
-            studentRepository.findAll(PageRequest.of(0, defaultPageSize)).content
-        }*/
-                studentRepository.findAll(PageRequest.of(page, size, Sort(Sort.DEFAULT_DIRECTION, sort))).content
+    fun getAllStudents(page: Int = DEFAULT_PAGE, size: Int = DEFAULT_PAGE_SIZE, sort: String = "id"): List<Student> {
+        val students = studentRepository.findAll(PageRequest.of(page, size, Sort(Sort.DEFAULT_DIRECTION, sort))).content
         logger.debug("StudentService getStudents:")
         students.forEach { student -> logger.debug(student.toString()) }
         return students

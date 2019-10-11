@@ -5,12 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.service.StudentService
 import java.util.*
 
-@RestController("/api/v1")
+@RestController
+@RequestMapping("/api/v1")
 class StudentController(@Autowired val studentService: StudentService) {
     private val logger = LoggerFactory.getLogger(javaClass)
 

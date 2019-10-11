@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
-import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.studentCount
+import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.MOCK_STUDENT_AMOUNT
+import top.spencercjh.demo.entity.Student
 
 /**
  * test student service use JUnit5
@@ -24,11 +25,15 @@ internal class StudentServiceTest() {
     @Test
     fun getAllStudents() {
         // default sort by Id
-        val noSortList = studentService.getAllStudents(size = 15)
+        val noSortList = studentService.getAllStudents(size = MOCK_STUDENT_AMOUNT)
+        assertTrue(noSortList.size == MOCK_STUDENT_AMOUNT)
         assertTrue(noSortList[0].id == 1)
-        assertTrue(noSortList[noSortList.size - 1].id == 15)
-        // sort by name
-        val sortByNameList = studentService.getAllStudents(sort="name")
+        assertTrue(noSortList[noSortList.size - 1].id == MOCK_STUDENT_AMOUNT)
+        // sort by sex
+        val sortBySexList = studentService.getAllStudents(size = MOCK_STUDENT_AMOUNT, sort = "sex")
+        assertTrue(sortBySexList.size == MOCK_STUDENT_AMOUNT)
+        assertTrue(sortBySexList[0].sex == Student.Sex.Male)
+        assertTrue(sortBySexList[sortBySexList.size - 1].sex == Student.Sex.Female)
     }
 
     @Test

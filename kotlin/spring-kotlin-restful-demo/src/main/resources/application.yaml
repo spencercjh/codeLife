@@ -23,3 +23,10 @@ management:
       exposure:
         include:
           "*"
+default:
+  MOCK_STUDENT_AMOUNT:
+    30
+  DEFAULT_PAGE_SIZE:
+    15
+  DEFAULT_PAGE:
+    0

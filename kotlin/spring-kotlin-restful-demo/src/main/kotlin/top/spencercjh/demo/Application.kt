@@ -2,6 +2,7 @@ package top.spencercjh.demo
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import top.spencercjh.demo.dao.ClazzRepository
@@ -17,35 +18,45 @@ import javax.annotation.PostConstruct
  */
 @SpringBootApplication
 class SpringKotlinRestfulDemoApplication {
-    private val logger = LoggerFactory.getLogger(javaClass)
 
+    private val logger = LoggerFactory.getLogger(javaClass)
     @Autowired
     private lateinit var clazzRepository: ClazzRepository
     @Autowired
     private lateinit var studentRepository: StudentRepository
 
-    companion object Constant {
-        const val MOCK_STUDENT_AMOUNT: Int = 30
-        const val CLASS_NAME_ONE = "class1"
-        const val CLASS_NAME_TWO = "class2"
-        const val DEFAULT_SORT_COLUMN = "id"
-        const val DEFAULT_PAGE_SIZE: Int = 15
-        const val DEFAULT_PAGE: Int = 0
-    }
-
     @PostConstruct
     fun initData() {
+        // init two class and 90 students in total
         logger.debug("init data")
         val clazzOne = Clazz(name = CLASS_NAME_ONE)
         clazzOne.students = RandomUtil.getRandomStudents(MOCK_STUDENT_AMOUNT, clazzOne)
         clazzRepository.save(clazzOne)
         studentRepository.saveAll(clazzOne.students)
         val clazzTwo = Clazz(name = CLASS_NAME_TWO)
-        // plus a designated student for searching api test
         clazzTwo.students = RandomUtil.getRandomStudents(MOCK_STUDENT_AMOUNT * 2, clazzTwo)
-                .plus(Student(name = "蔡佳昊", clazz = clazzTwo, sex = Student.Sex.Male))
+                // plus a designated student for searching api test
+                .plus(Student(name = "蔡佳昊",
+                        clazz = clazzTwo,
+                        sex = Student.Sex.Male,
+                        phone = RandomUtil.getRandomPhone(),
+                        email = RandomUtil.getRandomEmail()))
         clazzRepository.save(clazzTwo)
         studentRepository.saveAll(clazzTwo.students)
+    }
+
+    companion object Constant {
+        @Value("\${default.MOCK_STUDENT_AMOUNT}")
+        const val MOCK_STUDENT_AMOUNT: Int = 10
+        @Value("\${default.DEFAULT_PAGE_SIZE}")
+        const val DEFAULT_PAGE_SIZE: Int = 15
+        @Value("\${default.DEFAULT_PAGE}")
+        const val DEFAULT_PAGE: Int = 0
+
+        // FIXME these const String val cannot inject through @Value
+        const val CLASS_NAME_ONE = "class1"
+        const val CLASS_NAME_TWO = "class2"
+        const val DEFAULT_SORT_COLUMN = "id"
     }
 }
 

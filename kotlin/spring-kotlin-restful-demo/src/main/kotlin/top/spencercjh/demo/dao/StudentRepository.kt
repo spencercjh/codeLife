@@ -13,12 +13,5 @@ import top.spencercjh.demo.entity.Student
 interface StudentRepository : JpaRepository<Student, Int> {
     fun findStudentByClazzIdAndId(clazz_id: Int, id: Int): Student?
 
-    fun findStudentsByClazzName(clazz_name: String): List<Student>
-    fun findStudentsByClazzName(clazz_name: String, pageable: Pageable): Page<Student>
-
-    fun findStudentsByClazzNameLike(clazz_name: String): List<Student>
-    fun findStudentsByClazzNameLike(clazz_name: String, pageable: Pageable): Page<Student>
-
-    fun findStudentsByClazzId(id: Int): List<Student>
     fun findStudentsByClazzId(id: Int, pageable: Pageable): Page<Student>
 }

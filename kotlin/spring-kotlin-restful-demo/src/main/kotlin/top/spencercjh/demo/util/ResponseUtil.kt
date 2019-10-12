@@ -21,8 +21,24 @@ object ResponseUtil {
     fun <A> failed(code: Int = HttpStatus.INTERNAL_SERVER_ERROR.value(), message: String = "Request failed"): ResponseEntity<Result<A>> {
         return ResponseEntity(
                 Result.Builder<A>().code(code).status(false).message(message).build(),
-                HttpStatus.INTERNAL_SERVER_ERROR
+                getHttpStatus(code)
         )
+    }
+
+    fun <A> failed(httpStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR, message: String = "Request failed"): ResponseEntity<Result<A>> {
+        return ResponseEntity(
+                Result.Builder<A>().code(httpStatus.value()).status(false).message(message).build(),
+                httpStatus
+        )
+    }
+
+    private fun getHttpStatus(code: Int): HttpStatus {
+        return try {
+            HttpStatus.valueOf(code)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+            HttpStatus.INTERNAL_SERVER_ERROR
+        }
     }
 
     class Result<T>(val code: Int?,

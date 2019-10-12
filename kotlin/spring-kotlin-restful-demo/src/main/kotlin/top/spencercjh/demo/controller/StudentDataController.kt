@@ -2,6 +2,7 @@ package top.spencercjh.demo.controller
 
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.validation.annotation.Validated
@@ -11,12 +12,13 @@ import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_P
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.DEFAULT_SORT_COLUMN
 import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.service.StudentService
-import java.util.*
+import top.spencercjh.demo.util.ResponseUtil
+import top.spencercjh.demo.util.ResponseUtil.Result
 import javax.validation.Valid
 import javax.validation.constraints.Positive
 
 /**
- * enhance restful knowledge from https://www.scienjus.com/my-restful-api-best-practices/
+ * enhance restful knowledge reference: https://www.scienjus.com/my-restful-api-best-practices/
  * @author spencer
  */
 @RestController
@@ -34,12 +36,12 @@ class StudentController(@Autowired val studentService: StudentService) {
                         sort: String,
                         @RequestParam(value = "name", required = false) @Valid
                         name: String? = null)
-            : ResponseEntity<List<Student>> {
+            : ResponseEntity<Result<Page<Student>>> {
         logger.debug("request /students findAllStudent")
         val students = studentService.getAllStudents(page, size, sort, name)
-        return if (students.isNotEmpty())
-            ResponseEntity.of(Optional.of(students))
-        else ResponseEntity(emptyList(), HttpStatus.NOT_FOUND)
+        return if (!students.isEmpty)
+            ResponseUtil.success(body = students)
+        else ResponseUtil.failed(HttpStatus.NOT_FOUND, "there are no students meet the criteria")
     }
 
     @GetMapping("/classes/{classId}/students")
@@ -50,23 +52,23 @@ class StudentController(@Autowired val studentService: StudentService) {
                             size: Int,
                             @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT_COLUMN)
                             sort: String)
-            : ResponseEntity<List<Student>> {
+            : ResponseEntity<Result<Page<Student>>> {
         logger.debug("request /classes/{classId}/students findStudentsByClass")
         val students = studentService.getStudentsByClassId(classId, page, size, sort)
-        return if (students.isNotEmpty())
-            ResponseEntity.of(Optional.of(students))
-        else ResponseEntity(emptyList(), HttpStatus.NOT_FOUND)
+        return if (!students.isEmpty)
+            ResponseUtil.success(body = students)
+        else ResponseUtil.failed(HttpStatus.NOT_FOUND, "there are no students meet the criteria")
     }
 
     @GetMapping("/classes/{classId}/students/{studentId}")
     fun findStudentByClassAndStudentId(@PathVariable @Positive
                                        classId: Int,
                                        @PathVariable @Positive
-                                       studentId: Int): ResponseEntity<Student> {
+                                       studentId: Int): ResponseEntity<Result<Student>> {
         logger.debug("request /classes/{classId}/students/{studentId} findStudentByClassAndStudentId")
         val student: Student? = studentService.getStudentByClassAndStudentId(classId, studentId)
         return if (student != null)
-            ResponseEntity.of(Optional.of(student))
-        else ResponseEntity.notFound().build()
+            ResponseUtil.success(body = student)
+        else ResponseUtil.failed(HttpStatus.NOT_FOUND, "there are no students meet the criteria")
     }
 }

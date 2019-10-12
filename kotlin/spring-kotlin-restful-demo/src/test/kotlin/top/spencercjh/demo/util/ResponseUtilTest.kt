@@ -64,7 +64,7 @@ internal class ResponseUtilTest {
         expect = ResponseUtil.Result(code = HttpStatus.INTERNAL_SERVER_ERROR.value(), message = "Request failed", status = false)
         // different timeStamp
         Thread.sleep(1000)
-        responseEntity = ResponseUtil.failed()
+        responseEntity = ResponseUtil.failed(code = 500)
         logger.debug(responseEntity.toString())
         assertEquals(expect.code, responseEntity.body!!.code)
         assertEquals(expect.message, responseEntity.body!!.message)

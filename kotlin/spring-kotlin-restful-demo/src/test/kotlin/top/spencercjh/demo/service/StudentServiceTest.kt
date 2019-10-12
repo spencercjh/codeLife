@@ -36,7 +36,7 @@ internal class StudentServiceTest {
         assertTrue(sortBySexList.first().sex == Student.Sex.Male ||
                 sortBySexList.last().sex == Student.Sex.Female)
         // search name
-        val searchResult = studentService.getAllStudents(name = "蔡佳昊")
+        val searchResult = studentService.getAllStudents(name = "蔡佳昊").content
         assertTrue(searchResult.isNotEmpty())
         assertTrue(searchResult.first().name == "蔡佳昊")
     }

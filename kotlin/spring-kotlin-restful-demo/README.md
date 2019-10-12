@@ -24,3 +24,4 @@ The following guides illustrate how to use some features concretely:
 
 * [Validating Request Params and Path Variables In Spring MVC](https://sadique.io/blog/2015/12/05/validating-requestparams-and-pathvariables-in-spring-mvc/)
 * [Builder Pattern In Kotlin](https://www.baeldung.com/kotlin-builder-pattern)
+* [Restful API Design Principle](https://www.scienjus.com/my-restful-api-best-practices/)

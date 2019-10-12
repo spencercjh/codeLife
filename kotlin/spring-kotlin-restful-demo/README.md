@@ -1,6 +1,6 @@
 # Getting Started
 
-### Reference Documentation
+### Official Reference Documentation
 For further reference, please consider the following sections:
 
 * [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
@@ -20,3 +20,7 @@ The following guides illustrate how to use some features concretely:
 * [Building a RESTful Web Service with Spring Boot Actuator](https://spring.io/guides/gs/actuator-service/)
 * [Accessing Data with JPA](https://spring.io/guides/gs/accessing-data-jpa/)
 
+### Reference Blog
+
+* [Validating Request Params and Path Variables In Spring MVC](https://sadique.io/blog/2015/12/05/validating-requestparams-and-pathvariables-in-spring-mvc/)
+* [Builder Pattern In Kotlin](https://www.baeldung.com/kotlin-builder-pattern)

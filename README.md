@@ -1,10 +1,10 @@
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
-this page's repo [](https://github.com/spencercjh/codeLife)
+this page's repo [Link](https://github.com/spencercjh/codeLife)
 
-my Github[](https://github.com/spencercjh)
+my Github [Link](https://github.com/spencercjh)
 
-my Gitee[](https://gitee.com/spencercjh)
+my Gitee [Link](https://gitee.com/spencercjh)
 
 ## File Directory Structure
 

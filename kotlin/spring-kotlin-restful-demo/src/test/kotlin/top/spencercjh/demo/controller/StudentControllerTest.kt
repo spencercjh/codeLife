@@ -18,18 +18,31 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 internal class StudentControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
-    private val prefix="/api/v1"
+    private val prefix = "/api/v1"
     @Test
     fun findAllStudents() {
         mockMvc.perform(get("$prefix/students"))
                 .andExpect(status().isOk)
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Request success"))
+                .andExpect(jsonPath("$.body").exists())
     }
 
     @Test
     fun findStudentsByClass() {
+        mockMvc.perform(get("$prefix/classes/1/students"))
+                .andExpect(status().isOk)
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Request success"))
+                .andExpect(jsonPath("$.body").exists())
     }
 
     @Test
     fun findStudentByClassAndStudentId() {
+        mockMvc.perform(get("$prefix/classes/2/students/91"))
+                .andExpect(status().isOk)
+                .andExpect(jsonPath("$.code").value(200))
+                .andExpect(jsonPath("$.message").value("Request success"))
+                .andExpect(jsonPath("$.body").exists())
     }
 }

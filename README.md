@@ -8,6 +8,8 @@ my Gitee [Link](https://gitee.com/spencercjh)
 
 ## File Directory Structure
 
+_In 10/2019, I focus on learning Kotlin in my spare time._
+
 ```
 ├───django_study
 ├───exam
@@ -34,6 +36,8 @@ my Gitee [Link](https://gitee.com/spencercjh)
 ```
 
 ## Self-Introduction
+
+_Here is my self introduction during the interview to postgraduate reexamine of candidates exempt from admission exam in SHU._
 
 My name is Cai Jiahao.
 I am major in computer science and technology and will be graduated from _College of Information and Technology_ of _Shanghai Ocean University_ next year.

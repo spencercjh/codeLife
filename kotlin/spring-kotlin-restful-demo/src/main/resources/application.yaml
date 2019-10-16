@@ -9,6 +9,8 @@ spring:
     platform: h2
     url: jdbc:h2:mem:test_db
     username: sa
+  jackson:
+    time-zone: Asia/Shanghai
 logging:
   level:
     root:

@@ -35,7 +35,7 @@ class StudentController(@Autowired val studentService: StudentService) {
                         @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT_COLUMN)
                         sort: String,
                         @RequestParam(value = "name", required = false) @Valid
-                        name: String)
+                        name: String?)
             : ResponseEntity<Result<Page<Student>>> {
         logger.debug("request /students findAllStudent")
         val students = studentService.getAllStudents(page, size, sort, name)

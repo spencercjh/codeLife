@@ -23,7 +23,7 @@ internal class StudentControllerTest {
     lateinit var mockMvc: MockMvc
     private val prefix = "/api/v1"
     @Test
-    fun findAllStudents() {
+    fun findAllStudentsSuccess() {
         mockMvc.perform(get("$prefix/students"))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -40,7 +40,40 @@ internal class StudentControllerTest {
     }
 
     @Test
-    fun findStudentsByClass() {
+    fun findAllStudentsByName() {
+        mockMvc.perform(get("$prefix/students").param("name", "蔡佳昊"))
+                .andExpect(status().isOk)
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
+                .andExpect(jsonPath("$.status").value(true))
+                .andExpect(jsonPath("$.message").value("Request success"))
+                .andExpect(jsonPath("$.body").exists())
+                .andExpect(jsonPath("$.body.content").exists())
+                .andExpect(jsonPath("$.body.content").isArray)
+                .andExpect(jsonPath("$.body.content", hasSize<Student>(1)))
+                .andExpect(jsonPath("$.body.content[0].clazz.id").value(2))
+                .andExpect(jsonPath("$.body.content[0].name").value("蔡佳昊"))
+                .andExpect(jsonPath("$.body.content[0].id").value(91))
+                .andExpect(jsonPath("$.body.content[0].clazz.name").value(Constant.CLASS_NAME_TWO))
+                .andExpect(jsonPath("$.body.pageable").isMap)
+                .andExpect(jsonPath("$.body.sort").isMap)
+                .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun findAllStudentsFailed() {
+        mockMvc.perform(get("$prefix/students").param("page", 10.toString()))
+                .andExpect(status().isNotFound)
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.status").value(false))
+                .andExpect(jsonPath("$.message").value("there are no students meet the criteria"))
+                .andExpect(jsonPath("$.body").doesNotExist())
+                .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun findStudentsByClassSuccess() {
         mockMvc.perform(get("$prefix/classes/2/students").param("size", (Constant.MOCK_STUDENT_AMOUNT * 2).toString()))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -59,7 +92,19 @@ internal class StudentControllerTest {
     }
 
     @Test
-    fun findStudentByClassAndStudentId() {
+    fun findStudentsByClassFailed() {
+        mockMvc.perform(get("$prefix/classes/3/students"))
+                .andExpect(status().isNotFound)
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.status").value(false))
+                .andExpect(jsonPath("$.message").value("there are no students meet the criteria"))
+                .andExpect(jsonPath("$.body").doesNotExist())
+                .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun findStudentByClassAndStudentIdSuccess() {
         mockMvc.perform(get("$prefix/classes/2/students/91"))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
@@ -74,6 +119,18 @@ internal class StudentControllerTest {
                 .andExpect(jsonPath("$.body.clazz").isMap)
                 .andExpect(jsonPath("$.body.clazz.id").value(2))
                 .andExpect(jsonPath("$.body.clazz.name").value(Constant.CLASS_NAME_TWO))
+                .andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    fun findStudentByClassAndStudentIdFailed() {
+        mockMvc.perform(get("$prefix/classes/2/students/92"))
+                .andExpect(status().isNotFound)
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
+                .andExpect(jsonPath("$.status").value(false))
+                .andExpect(jsonPath("$.message").value("there are no students meet the criteria"))
+                .andExpect(jsonPath("$.body").doesNotExist())
                 .andDo(MockMvcResultHandlers.print())
     }
 }

@@ -35,7 +35,7 @@ class StudentController(@Autowired val studentService: StudentService) {
                         @RequestParam(value = "sort", required = false, defaultValue = DEFAULT_SORT_COLUMN)
                         sort: String,
                         @RequestParam(value = "name", required = false) @Valid
-                        name: String? = null)
+                        name: String)
             : ResponseEntity<Result<Page<Student>>> {
         logger.debug("request /students findAllStudent")
         val students = studentService.getAllStudents(page, size, sort, name)
@@ -64,7 +64,8 @@ class StudentController(@Autowired val studentService: StudentService) {
     fun findStudentByClassAndStudentId(@PathVariable @Positive
                                        classId: Int,
                                        @PathVariable @Positive
-                                       studentId: Int): ResponseEntity<Result<Student>> {
+                                       studentId: Int)
+            : ResponseEntity<Result<Student>> {
         logger.debug("request /classes/{classId}/students/{studentId} findStudentByClassAndStudentId")
         val student: Student? = studentService.getStudentByClassAndStudentId(classId, studentId)
         return if (student != null)

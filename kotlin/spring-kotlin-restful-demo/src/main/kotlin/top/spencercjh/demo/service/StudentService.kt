@@ -43,6 +43,8 @@ class StudentService {
 
     fun getStudentByClassAndStudentId(classId: Int, studentId: Int): Student? {
         logger.debug("StudentService getStudentByClassAndStudentId:")
-        return studentRepository.findStudentByClazzIdAndId(clazz_id = classId, id = studentId)
+        val student = studentRepository.findStudentByClazzIdAndId(clazz_id = classId, id = studentId)
+        logger.debug("search student by ID:${student.toString()}")
+        return student
     }
 }

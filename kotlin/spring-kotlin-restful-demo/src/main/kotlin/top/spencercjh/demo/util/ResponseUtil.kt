@@ -41,39 +41,11 @@ object ResponseUtil {
         }
     }
 
-    class Result<T>(val code: Int?,
+    data class Result<T>(val code: Int?,
                     val message: String?,
                     val status: Boolean?,
                     val body: T? = null,
                     val timestamp: Timestamp = Timestamp(System.currentTimeMillis())) {
-
-        override fun equals(other: Any?): Boolean {
-            if (this === other) return true
-            if (javaClass != other?.javaClass) return false
-
-            other as Result<*>
-
-            if (code != other.code) return false
-            if (message != other.message) return false
-            if (status != other.status) return false
-            if (body != other.body) return false
-            if (timestamp != other.timestamp) return false
-
-            return true
-        }
-
-        override fun hashCode(): Int {
-            var result = code ?: 0
-            result = 31 * result + (message?.hashCode() ?: 0)
-            result = 31 * result + (status?.hashCode() ?: 0)
-            result = 31 * result + (body?.hashCode() ?: 0)
-            result = 31 * result + timestamp.hashCode()
-            return result
-        }
-
-        override fun toString(): String {
-            return "Result(code=$code, message=$message, status=$status, body=$body, timestamp=$timestamp)"
-        }
 
         data class Builder<T>(var code: Int? = null,
                               var message: String? = null,

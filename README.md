@@ -16,7 +16,8 @@ _In 10/2019, I focus on learning Kotlin in my spare time._
 ├───interview
 ├───kotlin
 │   ├───spring-kotlin-demo [Thymeleaf in Kotlin]
-│   └───spring-kotlin-restful-demo [RESTful API in Kotlin]
+│   ├───spring-kotlin-restful-demo [RESTful API in Kotlin]
+│   └───kotlin-feature [Learn Kotlin from the perspective of a Java programmer]
 ├───leetcode (deprecated)
 ├───netty
 │   ├───chat-demo [chat room demo in JQuery and WebSocket with Netty]

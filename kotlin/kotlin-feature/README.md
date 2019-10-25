@@ -78,7 +78,7 @@ get和set可以写在var变量的下面，自定义其逻辑.
 
 关于委托,可以先看看什么叫委托模式:[wiki](https://zh.wikipedia.org/wiki/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F)
 
-其实Kotlin的委托和Java里的代理非常像.不同的是Kotlin把它们提炼出来,搞了一些关键字.
+其实Kotlin的[委托](https://www.kotlincn.net/docs/reference/delegation.html) 和Java里的代理非常像.不同的是Kotlin把它们提炼出来,搞了一些关键字.
 
 一个简单的类委托的例子:
 ```kotlin
@@ -116,4 +116,12 @@ fun main(args: Array<String>) {
     println(derived.message)
 }
 ```
+
+#### 委托属性
+
+[委托属性](https://www.kotlincn.net/docs/reference/delegated-properties.html) 简单说就是类中的一个属性是委托被另一个类处理的(get and set).在这个简单的游戏规则之上,Kotlin为我们搞了三种已经实现好的属性委托模式.
+
+* 延迟属性 lazy
+* 可观察属性 Delegates.observable() 
+* 把属性储存在映射中
 

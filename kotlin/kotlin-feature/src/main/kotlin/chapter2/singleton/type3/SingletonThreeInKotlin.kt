@@ -1,4 +1,4 @@
-package chapter2.type3
+package chapter2.singleton.type3
 
 /**
  * @author SpencerCJH

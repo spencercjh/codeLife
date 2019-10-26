@@ -1,4 +1,4 @@
-package chapter2.delegation;
+package top.spencercjh.chapter2.delegation;
 
 interface Interface {
     void a();
@@ -20,12 +20,12 @@ public class Proxy implements Interface {
         proxy.a();
     }
 
-    @java.lang.Override
+    @Override
     public void a() {
         o.a();
     }
 
-    @java.lang.Override
+    @Override
     public void b() {
         o.b();
     }
@@ -41,12 +41,12 @@ public class Proxy implements Interface {
 
 class AClass implements Interface {
 
-    @java.lang.Override
+    @Override
     public void a() {
         System.out.println("A a");
     }
 
-    @java.lang.Override
+    @Override
     public void b() {
         System.out.println("A b");
     }
@@ -54,12 +54,12 @@ class AClass implements Interface {
 
 class BClass implements Interface {
 
-    @java.lang.Override
+    @Override
     public void a() {
         System.out.println("B a");
     }
 
-    @java.lang.Override
+    @Override
     public void b() {
         System.out.println("B b");
     }

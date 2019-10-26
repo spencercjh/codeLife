@@ -121,7 +121,24 @@ fun main(args: Array<String>) {
 
 [委托属性](https://www.kotlincn.net/docs/reference/delegated-properties.html) 简单说就是类中的一个属性是委托被另一个类处理的(get and set).在这个简单的游戏规则之上,Kotlin为我们搞了三种已经实现好的属性委托模式.
 
+它有固定的语法结构: `val/var <属性名>: <类型> by <表达式>`
+
 * 延迟属性 lazy
+
+lazy() 是接受一个 lambda 并返回一个 Lazy <T> 实例的函数，返回的实例可以作为实现延迟属性的委托： 第一次调用 get() 会执行已传递给 lazy() 的 lambda 表达式并记录结果， 后续调用 get() 只是返回记录的结果。
+
+```kotlin
+val testOne :String by lazy{
+    println("first")
+    "hello"
+}
+
+val testTwo :String by lazy{
+    println("first");"hello"
+}
+```
+关于Kotlin的Lambda我后面马上接着一个chapter会讲，写了几下发现和Java有明显的语法不同。
+
 * 可观察属性 Delegates.observable() 
 * 把属性储存在映射中
 

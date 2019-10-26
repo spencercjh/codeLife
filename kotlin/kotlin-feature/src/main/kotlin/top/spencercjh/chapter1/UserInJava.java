@@ -1,4 +1,4 @@
-package chapter1;
+package top.spencercjh.chapter1;
 
 import java.util.Objects;
 

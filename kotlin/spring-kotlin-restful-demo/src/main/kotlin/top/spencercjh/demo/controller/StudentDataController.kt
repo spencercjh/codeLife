@@ -22,7 +22,7 @@ import javax.validation.constraints.Positive
  * @author spencer
  */
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping
 @Validated
 class StudentController(@Autowired val studentService: StudentService) {
     private val logger = LoggerFactory.getLogger(javaClass)

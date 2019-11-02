@@ -1,4 +1,4 @@
-package chapter1
+package top.spencercjh.chapter1
 
 data class User(val name: String = "testName", val age: Int = 22) {
     // data class类体中的属性将不会有component()函数，不会在toString()、 equals()、 hashCode() 以及 copy()中出现

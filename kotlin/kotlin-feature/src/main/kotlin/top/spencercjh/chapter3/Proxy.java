@@ -1,4 +1,4 @@
-package top.spencercjh.chapter2.delegation;
+package top.spencercjh.chapter3;
 
 interface Interface {
     void a();

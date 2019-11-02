@@ -1,4 +1,4 @@
-package top.spencercjh.chapter2.delegation.properties
+package top.spencercjh.chapter3
 
 import kotlin.properties.Delegates
 

@@ -1,3 +1,5 @@
+server:
+
 spring:
   h2:
     console:
@@ -11,6 +13,9 @@ spring:
     username: sa
   jackson:
     time-zone: Asia/Shanghai
+  mvc:
+    servlet:
+      path: /api/v1
 logging:
   level:
     root:

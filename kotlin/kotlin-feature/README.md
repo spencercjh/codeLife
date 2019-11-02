@@ -2,7 +2,7 @@
 
 我将从一个Java程序员要实现具体需求的角度,从实际的业务出发,扩散开来介绍其中涉及的所有的和Java不一样的Kotlin语言特性.参考：[kotlin 中国](https://www.kotlincn.net/docs/reference/)
 
-## Chapter1:实现一个Data Class
+## Chapter1:实现一个 `Data Class`
 
 reference: https://www.kotlincn.net/docs/reference/data-classes.html
 
@@ -62,7 +62,7 @@ data class Result<T>(val code: Int?,
 }
 ```
 
-## Chapter2:实现单例Singleton
+## Chapter2:实现单例 Singleton
 
 reference:  https://www.jianshu.com/p/5797b3d0ebd0
 
@@ -74,7 +74,9 @@ get和set可以写在var变量的下面,自定义其逻辑.
 
 `@Synchronized`和`@Volatile`注解和Java的这两个同名关键字差不多.
 
-### 委托和委托属性
+## Chapter3 委托和委托属性
+
+### 委托
 
 关于委托,可以先看看什么叫委托模式:[wiki](https://zh.wikipedia.org/wiki/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F)
 
@@ -117,7 +119,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-#### 委托属性
+### 委托属性
 
 [委托属性](https://www.kotlincn.net/docs/reference/delegated-properties.html) 简单说就是类中的一个属性是委托被另一个类处理的(get and set).在这个简单的游戏规则之上,Kotlin为我们搞了三种已经实现好的属性委托模式.
 

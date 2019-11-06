@@ -27,13 +27,13 @@ fun main() {
                 newArray.add(t)
             }
         }
-        return newArray;
+        return newArray
     }
     println(peoples.myFilter(Function { node: Node -> node.age > 10 }))
     // Anonymous inner class
     println(peoples.myFilter(object : Function<Node, Boolean> {
         override fun apply(t: Node): Boolean {
-            return t.age > 10;
+            return t.age > 10
         }
     }))
     println(peoples.filter { it.age > 10 })

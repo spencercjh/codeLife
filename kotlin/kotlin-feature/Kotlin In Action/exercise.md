@@ -31,13 +31,13 @@ fun main() {
                 newArray.add(t)
             }
         }
-        return newArray;
+        return newArray
     }
     println(peoples.myFilter(Function { node: Node -> node.age > 10 }))
     // use Anonymous inner class to replace Lambda
     println(peoples.myFilter(object : Function<Node, Boolean> {
         override fun apply(t: Node): Boolean {
-            return t.age > 10;
+            return t.age > 10
         }
     }))
     println(peoples.filter { it.age > 10 })
@@ -142,29 +142,29 @@ public class Difference {
 package kotlin.jvm.functions
 
 /** A function that takes 0 arguments. */
-public interface Function0<out R> : Function<R> {
+interface Function0<out R> : Function<R> {
     /** Invokes the function. */
-    public operator fun invoke(): R
+    operator fun invoke(): R
 }
 /** A function that takes 1 argument. */
-public interface Function1<in P1, out R> : Function<R> {
+interface Function1<in P1, out R> : Function<R> {
     /** Invokes the function with the specified argument. */
-    public operator fun invoke(p1: P1): R
+    operator fun invoke(p1: P1): R
 }
 /** A function that takes 2 arguments. */
-public interface Function2<in P1, in P2, out R> : Function<R> {
+interface Function2<in P1, in P2, out R> : Function<R> {
     /** Invokes the function with the specified arguments. */
-    public operator fun invoke(p1: P1, p2: P2): R
+    operator fun invoke(p1: P1, p2: P2): R
 }
 /** A function that takes 3 arguments. */
-public interface Function3<in P1, in P2, in P3, out R> : Function<R> {
+interface Function3<in P1, in P2, in P3, out R> : Function<R> {
     /** Invokes the function with the specified arguments. */
-    public operator fun invoke(p1: P1, p2: P2, p3: P3): R
+    operator fun invoke(p1: P1, p2: P2, p3: P3): R
 }
 /** A function that takes 4 arguments. */
-public interface Function4<in P1, in P2, in P3, in P4, out R> : Function<R> {
+interface Function4<in P1, in P2, in P3, in P4, out R> : Function<R> {
     /** Invokes the function with the specified arguments. */
-    public operator fun invoke(p1: P1, p2: P2, p3: P3, p4: P4): R
+    operator fun invoke(p1: P1, p2: P2, p3: P3, p4: P4): R
 }
 // 后面还有.
 ```
@@ -172,3 +172,20 @@ public interface Function4<in P1, in P2, in P3, in P4, out R> : Function<R> {
 经过简单的测试你就会发现，这个其实是无限的，所以是auto-generated file。
 
 你可以在代码里写出`object : Function100<100个类型>`，只要你写出来了，就不会报错！
+
+### 3. 在拓展函数里使用with/apply
+
+IDE 帮助解决了我的疑惑
+```kotlin
+class WithAndApply
+
+fun WithAndApply.extendsAlphabet() = with(receiver = StringBuilder()) {
+    //  you can get reference to the extended class: alphabet(this@extendsAlphabet)
+    alphabet(this)
+    toString()
+}
+
+fun main() {
+    println(WithAndApply().extendsAlphabet())
+}
+```

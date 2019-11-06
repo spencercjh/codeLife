@@ -1,5 +1,7 @@
 ## 练习
 
+这些实践是我在看书学习的过程中产生的一些思考的验证
+
 ### 1.实践 Lambda 和 集合、拓展、匿名内部类
 源代码位置：`top.spencercjh.exercise.traverse`
 filter容器，使用不同的写法。
@@ -79,6 +81,8 @@ public class Difference {
 事实证明：
 * Lambda都可以和各自Function接口替换。
 * 拓展函数非常方便和实用。不过要注意可维护问题。
+
+***
 
 ### 2.Java Function VS Kotlin Function
 
@@ -172,6 +176,8 @@ interface Function4<in P1, in P2, in P3, in P4, out R> : Function<R> {
 经过简单的测试你就会发现，这个其实是无限的，所以是auto-generated file。
 
 你可以在代码里写出`object : Function100<100个类型>`，只要你写出来了，就不会报错！
+
+***
 
 ### 3. 在拓展函数里使用with/apply
 

@@ -6,74 +6,52 @@ my Github [Link](https://github.com/spencercjh)
 
 my Gitee [Link](https://gitee.com/spencercjh)
 
-## File Directory Structure
+**_Now, I focus on learning Kotlin in my spare time._**
 
-_In 10/2019, I focus on learning Kotlin in my spare time._
+## Main Works
 
-```
-├───django_study
-├───exam
-├───interview
-├───kotlin
-│   ├───spring-kotlin-demo [Thymeleaf in Kotlin]
-│   ├───spring-kotlin-restful-demo [RESTful API in Kotlin]
-│   └───kotlin-feature [Learn Kotlin from the perspective of a Java programmer]
-├───leetcode (deprecated)
-├───netty
-│   ├───chat-demo [chat room demo in JQuery and WebSocket with Netty]
-│   ├───jt-808-protocol
-│   └───netty [a echo and a file system server demos]
-├───spring
-│   ├───gs-accessing-data-mongodb
-│   ├───reactive-chat-demo  (deprecated)
-│   ├───spring-boot-webflux-security
-│   └───spring-security-demo    (deprecated)
-└───theory
-    ├───cglibDemo
-    ├───designPatterns
-    ├───distributedIdService
-    ├───functional
-    └───rmi-example
-```
+* a MVP Android : https://github.com/spencercjh/CrabScoreMVP
 
-## Self-Introduction
+* a Spring Cloud Practice : https://github.com/spencercjh/SpringCloudCrabScore
 
-_Here is my self introduction during the interview to postgraduate reexamine of candidates exempt from admission exam in SHU._
+* a web service calling wkhtmltopdf : https://github.com/spencercjh/htmlToPdf
 
-My name is Cai Jiahao.
-I am major in computer science and technology and will be graduated from _College of Information and Technology_ of _Shanghai Ocean University_ next year.
-As an undergraduate student, during my previous three-year study, I build up a basic foundation of computer science and techniques.
+* a web service doing CSRF : https://github.com/spencercjh/FakeCallOnApi
 
-Because of my passion for computer science and strong desire to devote to IT industry, I have participated in three internships during my undergraduate career.
-I hope to consolidate my knowledge of computer theory through practical enterprise-level development, and at the same time, let me be more motivated, more goal-oriented, and more specifically to learn the related theoretical foundation that I am interested in.
+## Code Life Links
 
-Let me talk about my internship experience.
+* a simple django demo followed official : https://github.com/spencercjh/codeLife/tree/master/django_study
 
-The first company is a startup company established by my upperclassman working in network security and outsourcing projects’ development.
-The second company is an Internet company that makes online novels sold to overseas which are translated from Chinese to English, Spanish or other languages by AI. The third company is _Bosch Group (China)_, a traditional foreign company that makes electrical appliances, machinery and research automotive technology and related products.
-Now, Bosch tries its best to transform to an Internet company.
-My work in these companies is detailed in my resume.
+* ~~a simple kotlin demo with thymeleaf~~ :  https://github.com/spencercjh/codeLife/tree/master/kotlin/spring-kotlin-demo
 
-Through these internships, I master some cutting-edge development skills, focus on backend development, have a lot of experience in using middleware and framework and learn some underlying source code and development principles.
+* **a kotlin demo with complete RESTful API, JPA** : https://github.com/spencercjh/codeLife/tree/master/kotlin/spring-kotlin-restful-demo
 
-While going out for internships, I did not put down the curriculum on campus, actively participated in the school activities, and obtained some competition results.
-The awards are detailed in my Chinese resume.
+* **my kotlin learning notes** : https://github.com/spencercjh/codeLife/tree/master/kotlin/kotlin-feature
 
-During study and practice, I found the fun in software development.
-When I have spare time, I will learn the latest and most popular development techniques and design principles and thoughts.I usually learn some interesting open source project in GitHub.
-I will also try my best to learn classic computer theory.
-I want to be active in the open source community such as GitHub.Whether it's actual development or daily learning, I am constantly improving my code quality, maintainability and readability.
+* interview experience : https://github.com/spencercjh/codeLife/tree/master/interview
 
-Finally I want to talk about my ambitions.
-In this area, my idol are _Douglas S. Lea_ and _Linus Torvalds_.
-The former is a professor of computer science and current head of the computer science department at _State University of New York at Oswego_, where he specializes in concurrent programming and the design of concurrent data structures.
-I have read the book he wrote _Java Concurrency in Practice_ and some teaching materials about Java NIO. The latter is the famous, historical, main creator and developer of the Linux kernel.
-As we all known, I think his legendary experience is unnecessary to be repeated here.
+* online exam : https://github.com/spencercjh/codeLife/tree/master/exam/src/exam
 
-I have a dream that one day many people or developers or businesses will use the features which are realized by my team.
-For example, it’s my honor to design and develop the backend software used for Double Eleven which can handle hundreds of millions of concurrent requests.
-Or I want to be an active open-source community contributor and collaborate with programmers around the world every day to create popular and useful works.
+* **a simple chat room with Netty** : https://github.com/spencercjh/codeLife/tree/master/netty/chat-demo
 
-I hope to further study the theoretical foundations and practical knowledge of distributed systems and distributed computing in the postgraduate stage in _School of Computer Engineering and Science_ of _Shanghai University_.
+* **a netty demo realized JT/T 808** : https://github.com/spencercjh/codeLife/tree/master/netty/jt-808-protocol
 
-My speech is over, thanks for your listening.
+* netty demos followed by _Netty In Action_ : https://github.com/spencercjh/codeLife/tree/master/netty/netty
+
+* a simple demo learning mongoDb : https://github.com/spencercjh/codeLife/tree/master/spring/gs-accessing-data-mongodb
+
+* ~~a simple chat room with reactive netty~~ : https://github.com/spencercjh/codeLife/tree/master/spring/reactive-chat-demo
+
+* a simple spring security demo with webflux : https://github.com/spencercjh/codeLife/tree/master/spring/spring-boot-webflux-security
+
+* ~~a simple spring security demo with webflux~~ : https://github.com/spencercjh/codeLife/tree/master/spring/spring-security-demo
+
+* demo code about cglib : https://github.com/spencercjh/codeLife/tree/master/theory/cglibDemo
+
+* design patterns : https://github.com/spencercjh/codeLife/tree/master/theory/designPattern
+
+* **distributed ID service demo** : https://github.com/spencercjh/codeLife/tree/master/theory/distributedIdService
+
+* **practice about _Java Functional Programming_** : https://github.com/spencercjh/codeLife/tree/master/theory/functional
+
+* RMI example demo : https://github.com/spencercjh/codeLife/tree/master/theory/rmi-example

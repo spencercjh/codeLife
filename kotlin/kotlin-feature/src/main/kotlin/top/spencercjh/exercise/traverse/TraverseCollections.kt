@@ -7,9 +7,11 @@ import java.util.stream.Collectors
 data class Node(val name: String, val age: Int)
 
 fun main() {
-    val peoples = listOf(Node("Alice", 11),
-            Node("Peter", 15),
-            Node("Jack", 8))
+    val peoples = listOf(
+        Node("Alice", 11),
+        Node("Peter", 15),
+        Node("Jack", 8)
+    )
     // Lambda expression equals kotlin.Function
     println(peoples.filter { person -> person.age > 10 })
     // use kotlin.function

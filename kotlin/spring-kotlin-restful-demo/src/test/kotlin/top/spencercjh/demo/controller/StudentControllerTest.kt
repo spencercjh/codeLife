@@ -21,10 +21,10 @@ import top.spencercjh.demo.entity.Student
 internal class StudentControllerTest {
     @Autowired
     lateinit var mockMvc: MockMvc
-    private val prefix = "/api/v1"
+
     @Test
     fun findAllStudentsSuccess() {
-        mockMvc.perform(get("$prefix/students"))
+        mockMvc.perform(get("/students"))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
@@ -41,7 +41,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findAllStudentsByName() {
-        mockMvc.perform(get("$prefix/students").param("name", "蔡佳昊"))
+        mockMvc.perform(get("/students").param("name", "蔡佳昊"))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
@@ -62,7 +62,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findAllStudentsFailed() {
-        mockMvc.perform(get("$prefix/students").param("page", 10.toString()))
+        mockMvc.perform(get("/students").param("page", 10.toString()))
                 .andExpect(status().isNotFound)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
@@ -74,7 +74,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findStudentsByClassSuccess() {
-        mockMvc.perform(get("$prefix/classes/2/students").param("size", (Constant.MOCK_STUDENT_AMOUNT * 2).toString()))
+        mockMvc.perform(get("/classes/2/students").param("size", (Constant.MOCK_STUDENT_AMOUNT * 2).toString()))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
@@ -93,7 +93,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findStudentsByClassFailed() {
-        mockMvc.perform(get("$prefix/classes/3/students"))
+        mockMvc.perform(get("/classes/3/students"))
                 .andExpect(status().isNotFound)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))
@@ -105,7 +105,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findStudentByClassAndStudentIdSuccess() {
-        mockMvc.perform(get("$prefix/classes/2/students/91"))
+        mockMvc.perform(get("/classes/2/students/91"))
                 .andExpect(status().isOk)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.OK.value()))
@@ -124,7 +124,7 @@ internal class StudentControllerTest {
 
     @Test
     fun findStudentByClassAndStudentIdFailed() {
-        mockMvc.perform(get("$prefix/classes/2/students/92"))
+        mockMvc.perform(get("/classes/2/students/92"))
                 .andExpect(status().isNotFound)
                 .andExpect(content().contentType("application/json;charset=UTF-8"))
                 .andExpect(jsonPath("$.code").value(HttpStatus.NOT_FOUND.value()))

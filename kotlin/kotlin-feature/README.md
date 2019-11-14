@@ -11,6 +11,7 @@
   * [Chapter Six Notes](https://github.com/spencercjh/codeLife/wiki/%5BKotlin-In-Action%5D-Chapter-Six-Notes)
   * [Chapter Seven Notes](https://github.com/spencercjh/codeLife/wiki/%5BKotlin-In-Action%5D-Chapter-Seven-Notes)
   * [Chapter Eight Notes](https://github.com/spencercjh/codeLife/wiki/%5BKotlin-In-Action%5D-Chapter-Eight-Notes)
+  * [Chapter Nine Notes](https://github.com/spencercjh/codeLife/wiki/%5BKotlin-In-Action%5D-Chapter-Nine-Notes)
   * [Exercise](https://github.com/spencercjh/codeLife/wiki/exercise)
 
 ## Docs Notes

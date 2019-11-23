@@ -8,6 +8,8 @@
 
 **_Now, I focus on learning Kotlin in my spare time._**
 
+**Some Docs are migrated to [Wiki](https://github.com/spencercjh/codeLife/wiki)**
+
 ## Main Works
 
 * [a MVP Android](https://github.com/spencercjh/CrabScoreMVP)

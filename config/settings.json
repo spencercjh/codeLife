@@ -1,0 +1,48 @@
+{
+    "editor.fontFamily": "Fira Code Medium",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 20,
+    "files.autoSave": "onFocusChange",
+    "workbench.iconTheme": "vscode-icons",
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "files.associations": {
+        "*.css": "css"
+    },
+    "git.confirmSync": true,
+    "workbench.activityBar.visible": true,
+    "window.zoomLevel": -1,
+    "typescript.check.npmIsInstalled": false,
+    "git.enableSmartCommit": true,
+    "explorer.confirmDragAndDrop": false,
+    "git.autofetch": true,
+    "explorer.confirmDelete": false,
+    "editor.suggestSelection": "first",
+    "editor.cursorWidth": 2,
+    "javascript.implicitProjectConfig.experimentalDecorators": true,
+    "terminal.integrated.fontSize": 16,
+    "terminal.external.osxExec": "iTerm.app",
+    "workbench.editor.enablePreview": false,
+    "npm.enableScriptExplorer": true,
+    "editor.tabCompletion": "on",
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": true
+    },
+    "editor.tabSize": 4,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.DS_Store": true,
+        "**/.idea": true
+    },
+    "files.trimTrailingWhitespace": true,
+    "files.autoGuessEncoding": true,
+    "markdown.extension.italic.indicator": "_",
+    "markdown.extension.toc.githubCompatibility": true,
+    "markdown.extension.orderedList.marker": "ordered",
+    "code-runner.runInTerminal": true,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "http.proxy": "http://127.0.0.1:2000",
+    "workbench.colorTheme": "One Dark Pro Bold"
+}

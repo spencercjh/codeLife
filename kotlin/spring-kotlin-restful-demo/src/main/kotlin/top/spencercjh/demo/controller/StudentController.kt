@@ -38,7 +38,7 @@ class StudentController(@Autowired val studentService: StudentService) {
                         name: String?)
             : ResponseEntity<Result<Page<Student>>> {
         logger.debug("request /students findAllStudent")
-        val students = studentService.getAllStudents(page, size, sort, name)
+        val students = studentService.getAllStudents(page, size, name, sort)
         return if (!students.isEmpty)
             ResponseUtil.success(body = students)
         else ResponseUtil.failed(HttpStatus.NOT_FOUND, "there are no students meet the criteria")

@@ -31,7 +31,7 @@ internal class StudentServiceTest {
         assertTrue(noSortList.first().id == 1)
         assertTrue(noSortList.last().id == MOCK_STUDENT_AMOUNT)
         // sort by sex
-        val sortBySexList = studentService.getAllStudents(size = MOCK_STUDENT_AMOUNT, sort = "sex")
+        val sortBySexList = studentService.getAllStudents(size = MOCK_STUDENT_AMOUNT, sort = *arrayOf("sex"))
         assertTrue(sortBySexList.size == MOCK_STUDENT_AMOUNT)
         assertTrue(sortBySexList.first().sex == Student.Sex.Male ||
                 sortBySexList.last().sex == Student.Sex.Female)
@@ -50,7 +50,7 @@ internal class StudentServiceTest {
         assertTrue(classTwoStudents.size == MOCK_STUDENT_AMOUNT * 2)
         // sort by sex
         val sortedClassTwoStudents = studentService.getStudentsByClassId(classId = 2, size = MOCK_STUDENT_AMOUNT * 2,
-                sort = "sex")
+                sort = *arrayOf("sex"))
         assertTrue(sortedClassTwoStudents.size == MOCK_STUDENT_AMOUNT * 2)
         assertTrue(sortedClassTwoStudents.first().sex == Student.Sex.Male)
         assertTrue(sortedClassTwoStudents.last().sex == Student.Sex.Female)

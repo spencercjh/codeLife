@@ -1,15 +1,17 @@
 package top.spencercjh.demo.service
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.annotation.Rollback
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import top.spencercjh.demo.SpringKotlinRestfulDemoApplication.Constant.MOCK_STUDENT_AMOUNT
-import top.spencercjh.demo.entity.Student
+import top.spencercjh.demo.entity.Sex
+import top.spencercjh.demo.entity.StudentVO
+import top.spencercjh.demo.util.RandomUtil
 
 /**
  * test student service use JUnit5
@@ -17,7 +19,7 @@ import top.spencercjh.demo.entity.Student
  * @see StudentService
  */
 @ExtendWith(SpringExtension::class)
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 internal class StudentServiceTest {
     private val logger = LoggerFactory.getLogger(javaClass)
     @Autowired
@@ -33,8 +35,8 @@ internal class StudentServiceTest {
         // sort by sex
         val sortBySexList = studentService.getAllStudents(size = MOCK_STUDENT_AMOUNT, sort = *arrayOf("sex"))
         assertTrue(sortBySexList.size == MOCK_STUDENT_AMOUNT)
-        assertTrue(sortBySexList.first().sex == Student.Sex.Male ||
-                sortBySexList.last().sex == Student.Sex.Female)
+        assertTrue(sortBySexList.first().sex == Sex.Male ||
+                sortBySexList.last().sex == Sex.Female)
         // search name
         val searchResult = studentService.getAllStudents(name = "蔡佳昊").content
         assertTrue(searchResult.isNotEmpty())
@@ -52,11 +54,11 @@ internal class StudentServiceTest {
         val sortedClassTwoStudents = studentService.getStudentsByClassId(classId = 2, size = MOCK_STUDENT_AMOUNT * 2,
                 sort = *arrayOf("sex"))
         assertTrue(sortedClassTwoStudents.size == MOCK_STUDENT_AMOUNT * 2)
-        assertTrue(sortedClassTwoStudents.first().sex == Student.Sex.Male)
-        assertTrue(sortedClassTwoStudents.last().sex == Student.Sex.Female)
+        assertTrue(sortedClassTwoStudents.first().sex == Sex.Male)
+        assertTrue(sortedClassTwoStudents.last().sex == Sex.Female)
         // empty list
         val emptyList = studentService.getStudentsByClassId(classId = 3)
-        assertTrue(emptyList.isEmpty())
+        assertTrue(emptyList.isEmpty)
     }
 
     @Test
@@ -68,5 +70,28 @@ internal class StudentServiceTest {
         val nullStudent = studentService.getStudentByClassAndStudentId(3, 1)
         logger.debug(nullStudent.toString())
         assertEquals(null, nullStudent)
+    }
+
+    @Test
+    @Rollback
+    fun createStudent() {
+        val student = StudentVO(name = "newSaved", phone = RandomUtil.getRandomPhone(), email = RandomUtil.getRandomEmail(), sex = Sex.Male)
+        val classId = 1
+        val expectSize = studentService.getStudentsByClassId(classId = classId, size = MOCK_STUDENT_AMOUNT * 2).content.size + 1
+        val result = studentService.createStudent(classId, student)
+        assertEquals(expectSize, studentService.getStudentsByClassId(classId, size = MOCK_STUDENT_AMOUNT * 2).content.size)
+        assertEquals(student.name, result.name)
+        assertEquals(student.phone, result.phone)
+        assertEquals(student.email, result.email)
+        assertEquals(student.sex, result.sex)
+        assertNotNull(result.id)
+        // class not exist
+        val notExistedClassId = 3
+        assertThrows(RuntimeException::class.java) { studentService.createStudent(notExistedClassId, student) }
+        // duplicated phone bounded
+        assertThrows(RuntimeException::class.java) {
+            studentService.createStudent(classId,
+                    StudentVO(name = "newSaved", phone = "1234567890", email = RandomUtil.getRandomEmail(), sex = Sex.Male))
+        }
     }
 }

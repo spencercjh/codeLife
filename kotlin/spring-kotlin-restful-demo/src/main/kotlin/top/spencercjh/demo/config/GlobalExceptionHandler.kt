@@ -25,6 +25,7 @@ class GlobalExceptionHandler {
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     fun handle(exception: MethodArgumentNotValidException): Map<*, *> {
+        TODO("This handler cannot be triggered correctly")
         return error(exception.bindingResult.fieldErrors
                 .stream()
                 .map(FieldError::getDefaultMessage)
@@ -52,4 +53,6 @@ class GlobalExceptionHandler {
     private fun error(message: Any?): Map<*, *> {
         return Collections.singletonMap("error", message)
     }
+
+    // TODO handle HttpMessageNotReadableException
 }

@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.slf4j.LoggerFactory
 import top.spencercjh.demo.entity.Clazz
-import top.spencercjh.demo.entity.Student
+import top.spencercjh.demo.entity.Sex
 import java.util.stream.Stream
 
 /**
@@ -56,10 +56,10 @@ internal class RandomUtilTest {
     @Test
     fun getName() {
         for (i in 0..99) {
-            val maleName = RandomUtil.getRandomName(Student.Sex.Male)
+            val maleName = RandomUtil.getRandomName(Sex.Male)
             logger.debug("male generated random Name:\t$maleName")
             assertTrue(maleName.length <= RandomUtil.nameLength)
-            val girlName = RandomUtil.getRandomName(Student.Sex.Female)
+            val girlName = RandomUtil.getRandomName(Sex.Female)
             logger.debug("female generated random Name:\t$girlName")
             assertTrue(girlName.length <= RandomUtil.nameLength)
             val randomSexName = RandomUtil.getRandomName()

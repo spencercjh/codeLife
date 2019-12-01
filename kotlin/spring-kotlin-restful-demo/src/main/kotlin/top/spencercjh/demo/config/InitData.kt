@@ -7,6 +7,7 @@ import top.spencercjh.demo.SpringKotlinRestfulDemoApplication
 import top.spencercjh.demo.dao.ClazzRepository
 import top.spencercjh.demo.dao.StudentRepository
 import top.spencercjh.demo.entity.Clazz
+import top.spencercjh.demo.entity.Sex
 import top.spencercjh.demo.entity.Student
 import top.spencercjh.demo.util.RandomUtil
 import javax.annotation.PostConstruct
@@ -32,8 +33,8 @@ class InitData {
                 // plus a designated student for searching api test
                 .plus(Student(name = "蔡佳昊",
                         clazz = clazzTwo,
-                        sex = Student.Sex.Male,
-                        phone = RandomUtil.getRandomPhone(),
+                        sex = Sex.Male,
+                        phone = "1234567890",
                         email = RandomUtil.getRandomEmail()))
         clazzRepository.save(clazzTwo)
         studentRepository.saveAll(clazzTwo.students)

@@ -2,6 +2,7 @@ package top.spencercjh.demo.util
 
 import org.springframework.util.StringUtils
 import top.spencercjh.demo.entity.Clazz
+import top.spencercjh.demo.entity.Sex
 import top.spencercjh.demo.entity.Student
 import java.util.concurrent.ThreadLocalRandom
 
@@ -60,8 +61,8 @@ object RandomUtil {
                 .toString()
     }
 
-    private fun getRandomSex(): Student.Sex {
-        return if (threadLocalRandom.nextBoolean()) Student.Sex.Male else Student.Sex.Female
+    private fun getRandomSex(): Sex {
+        return if (threadLocalRandom.nextBoolean()) Sex.Male else Sex.Female
     }
 
     /**
@@ -69,20 +70,20 @@ object RandomUtil {
      * @param sex Sex
      * @return a random Chinese name
      */
-    fun getRandomName(sex: Student.Sex? = getRandomSex()): String {
+    fun getRandomName(sex: Sex? = getRandomSex()): String {
         val stringBuffer = StringBuffer()
         stringBuffer.append(firstName[getRandomNumber(end = firstName.length - 1)])
         val hasThirdChar = threadLocalRandom.nextBoolean()
         // 这里传进来的sex只会有男女之分
         @Suppress("NON_EXHAUSTIVE_WHEN")
         when (sex) {
-            Student.Sex.Male -> {
+            Sex.Male -> {
                 stringBuffer.append(male[getRandomNumber(end = male.length - 1)])
                 if (hasThirdChar) {
                     stringBuffer.append(male[getRandomNumber(end = male.length - 1)])
                 }
             }
-            Student.Sex.Female -> {
+            Sex.Female -> {
                 stringBuffer.append(female[getRandomNumber(end = female.length - 1)])
                 if (hasThirdChar) {
                     stringBuffer.append(female[getRandomNumber(end = female.length - 1)])

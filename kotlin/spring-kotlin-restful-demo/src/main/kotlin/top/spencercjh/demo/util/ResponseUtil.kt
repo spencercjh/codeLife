@@ -11,7 +11,7 @@ import java.sql.Timestamp
  */
 object ResponseUtil {
 
-    fun <A> success(code: Int = HttpStatus.OK.value(), message: String = "Request success", body: A? = null): ResponseEntity<Result<A>> {
+    fun <A> success(code: Int = HttpStatus.OK.value(), message: String = "Request success", body: A): ResponseEntity<Result<A>> {
         return ResponseEntity(
                 Result.Builder<A>().code(code).status(true).message(message).body(body).build(),
                 HttpStatus.OK
@@ -25,27 +25,19 @@ object ResponseUtil {
         )
     }
 
-    fun <A> failed(httpStatus: HttpStatus = HttpStatus.INTERNAL_SERVER_ERROR, message: String = "Request failed"): ResponseEntity<Result<A>> {
-        return ResponseEntity(
-                Result.Builder<A>().code(httpStatus.value()).status(false).message(message).build(),
-                httpStatus
-        )
-    }
-
     private fun getHttpStatus(code: Int): HttpStatus {
         return try {
             HttpStatus.valueOf(code)
         } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
             HttpStatus.INTERNAL_SERVER_ERROR
         }
     }
 
     data class Result<T>(val code: Int?,
-                    val message: String?,
-                    val status: Boolean?,
-                    val body: T? = null,
-                    val timestamp: Timestamp = Timestamp(System.currentTimeMillis())) {
+                         val message: String?,
+                         val status: Boolean?,
+                         val body: T? = null,
+                         val timestamp: Timestamp = Timestamp(System.currentTimeMillis())) {
 
         data class Builder<T>(var code: Int? = null,
                               var message: String? = null,

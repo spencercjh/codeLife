@@ -44,7 +44,7 @@
 
 * [demo code about cglib](https://github.com/spencercjh/codeLife/tree/master/theory/cglibDemo)
 
-* [design patterns](https://github.com/spencercjh/codeLife/tree/master/theory/designPattern)
+* [design patterns](https://github.com/spencercjh/codeLife/tree/master/theory/designPatterns/src)
 
 * [**distributed ID service demo**](https://github.com/spencercjh/codeLife/tree/master/theory/distributedIdService)
 

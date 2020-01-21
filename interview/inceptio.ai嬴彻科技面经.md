@@ -49,6 +49,41 @@ public class Main {
 
 输出：4  （需要 4 次走完）
 
+```java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(fun(new int[]{3,2,4,1,3,2,2,1,5}));
+    }
+
+    public static int fun(int[] steps){
+        if(steps==null||steps.length==0){
+            return 0;
+        }
+        int n=steps.length;
+        int skipNums=0;
+        int answer=0;
+        for(int i=0;i<n;){
+            int maxLocaltion=i+steps[i];
+            int maxIndex=i;
+             System.out.println("i:"+i);
+             for(int j=i+1+skipNums;j<=i+steps[i]&&j<n;j++){
+                int innerLocation=j+steps[j];
+                 System.out.println("innerStep:"+innerLocation+" j:"+j);
+                if(innerLocation>=maxLocaltion){
+                    maxLocaltion=innerLocation;
+                    maxIndex=j;
+                    skipNums=steps[i]-maxIndex;
+                }
+            }
+             System.out.println("maxIndex:"+maxIndex);
+            answer++;
+            i+=steps[i];
+        }
+        return answer;
+    }
+}
+```
+
 ## 二面
 
 ### 算法题1

@@ -6,6 +6,8 @@
 
 * [my gitee](https://gitee.com/spencercjh)
 
+* [My resume](https://docs.google.com/document/d/1o7iQKDF-_HZUHg6cGiCSl6txrcuQ2tbQttHFFAUeRhc/edit?usp=sharing)
+
 **_Now, I focus on learning Kotlin in my spare time._**
 
 **Some Docs are migrated to [Wiki](https://github.com/spencercjh/codeLife/wiki)**
